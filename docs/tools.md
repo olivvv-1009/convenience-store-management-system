@@ -27,8 +27,8 @@ This document lists all the tools, software, and dependencies required for devel
 **Purpose**: Application runtime and development framework
 
 **Version**: 
-- .NET Framework 4.7.2 or higher (for Windows Forms applications)
-- Or .NET 6.0+ (if using modern .NET)
+- .NET Framework 4.7.2 or higher (Windows Forms)
+- Note: The specific version will be determined during project setup
 
 **Installation**: Included with Visual Studio 2022
 

@@ -66,7 +66,7 @@ After making code changes:
 
 3. **Restore NuGet Packages**
    ```cmd
-   nuget restore ConvenienceStoreManagementSystem.sln
+   nuget restore YourSolution.sln
    ```
    Or using .NET CLI:
    ```cmd
@@ -75,7 +75,7 @@ After making code changes:
 
 4. **Build the Solution**
    ```cmd
-   msbuild ConvenienceStoreManagementSystem.sln /p:Configuration=Debug
+   msbuild YourSolution.sln /p:Configuration=Debug
    ```
    Or using .NET CLI:
    ```cmd
@@ -84,7 +84,7 @@ After making code changes:
 
 5. **For Release Build**
    ```cmd
-   msbuild ConvenienceStoreManagementSystem.sln /p:Configuration=Release
+   msbuild YourSolution.sln /p:Configuration=Release
    ```
 
 ## Running the Application
@@ -119,8 +119,10 @@ After making code changes:
 
 2. **Run the Executable**
    ```cmd
-   ConvenienceStoreManagementSystem.exe
+   YourProjectName.exe
    ```
+   
+   Note: Replace `YourProjectName.exe` with the actual executable name once the project is created.
 
 ### First Run Configuration
 

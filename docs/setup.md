@@ -66,7 +66,7 @@ Before you begin, ensure you have the following installed on your system:
 1. Download Git for Windows
 2. Run the installer with default settings
 3. Verify installation by opening Command Prompt and typing:
-   ```
+   ```bash
    git --version
    ```
 
