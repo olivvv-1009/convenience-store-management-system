@@ -63,8 +63,53 @@ Progress is tracked using **GitHub Issues, Milestones, Project Board, and Roadma
 
 ---
 
+## Getting Started
+
+### Documentation
+
+- **[Development Environment Setup](docs/setup.md)** - Complete guide to set up your development environment
+- **[Required Tools & Dependencies](docs/tools.md)** - List of all tools and software needed
+- **[Build & Run Instructions](docs/build.md)** - How to build and run the application
+- **[Contributing Guidelines](CONTRIBUTING.md)** - How to contribute to this project
+
+### Quick Start
+
+1. **Prerequisites**: Install Visual Studio 2022, SQL Server, and Git
+2. **Clone the repository**:
+   ```bash
+   git clone https://github.com/olivvv-1009/convenience-store-management-system.git
+   cd convenience-store-management-system
+   ```
+3. **Set up the database**: Create a database named `ConvenienceStoreDB` in SQL Server
+4. **Open in Visual Studio**: Open the `.sln` file
+5. **Update connection string**: Configure the database connection in `App.config`
+6. **Build and Run**: Press `F5` to build and run the application
+
+For detailed instructions, see the [Setup Guide](docs/setup.md).
+
+---
+
+## Contributing
+
+We welcome contributions from all team members! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting pull requests.
+
+### Development Workflow
+
+1. Pick an issue from the [GitHub Issues](https://github.com/olivvv-1009/convenience-store-management-system/issues)
+2. Create a feature branch
+3. Make your changes following our coding standards
+4. Submit a pull request
+
+---
+
 ## Team Members
 - Le Minh Anh
 - Dinh Thi Anh Thu 
 - Nguyen Dinh Thao Nhi
 - Nguyen Huu Thong
+
+---
+
+## License
+
+This project is developed as part of a Software Engineering course.
