@@ -66,7 +66,7 @@ After making code changes:
 
 3. **Restore NuGet Packages**
    ```cmd
-   nuget restore YourSolution.sln
+   nuget restore <SolutionName>.sln
    ```
    Or using .NET CLI:
    ```cmd
@@ -75,7 +75,7 @@ After making code changes:
 
 4. **Build the Solution**
    ```cmd
-   msbuild YourSolution.sln /p:Configuration=Debug
+   msbuild <SolutionName>.sln /p:Configuration=Debug
    ```
    Or using .NET CLI:
    ```cmd
@@ -84,8 +84,10 @@ After making code changes:
 
 5. **For Release Build**
    ```cmd
-   msbuild YourSolution.sln /p:Configuration=Release
+   msbuild <SolutionName>.sln /p:Configuration=Release
    ```
+   
+   Note: Replace `<SolutionName>` with the actual .sln file name in your repository.
 
 ## Running the Application
 
@@ -119,10 +121,10 @@ After making code changes:
 
 2. **Run the Executable**
    ```cmd
-   YourProjectName.exe
+   <ProjectName>.exe
    ```
    
-   Note: Replace `YourProjectName.exe` with the actual executable name once the project is created.
+   Note: Replace `<ProjectName>` with the actual project executable name once created.
 
 ### First Run Configuration
 
