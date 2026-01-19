@@ -63,6 +63,14 @@ Progress is tracked using **GitHub Issues, Milestones, Project Board, and Roadma
 
 ---
 
+## Documentation
+Detailed requirements and analysis documents are available:
+- **[Functional Requirements Analysis](FUNCTIONAL_REQUIREMENTS.md)** - Comprehensive functional requirements (57 requirements across 7 modules)
+- **[Requirements Summary](REQUIREMENTS_SUMMARY.md)** - Quick reference guide with tables and priorities
+- **[Use Cases](USE_CASES.md)** - Detailed use case descriptions and diagrams
+
+---
+
 ## Team Members
 - Le Minh Anh
 - Dinh Thi Anh Thu 
