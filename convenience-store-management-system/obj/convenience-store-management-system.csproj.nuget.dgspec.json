@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\My PC\\source\\repos\\convenience-store-management-system\\convenience-store-management-system\\convenience-store-management-system.csproj": {}
+    "C:\\Users\\My PC\\Source\\Repos\\convenience-store-management-system\\convenience-store-management-system\\convenience-store-management-system.csproj": {}
   },
   "projects": {
-    "C:\\Users\\My PC\\source\\repos\\convenience-store-management-system\\convenience-store-management-system\\convenience-store-management-system.csproj": {
+    "C:\\Users\\My PC\\Source\\Repos\\convenience-store-management-system\\convenience-store-management-system\\convenience-store-management-system.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\My PC\\source\\repos\\convenience-store-management-system\\convenience-store-management-system\\convenience-store-management-system.csproj",
+        "projectUniqueName": "C:\\Users\\My PC\\Source\\Repos\\convenience-store-management-system\\convenience-store-management-system\\convenience-store-management-system.csproj",
         "projectName": "convenience-store-management-system",
-        "projectPath": "C:\\Users\\My PC\\source\\repos\\convenience-store-management-system\\convenience-store-management-system\\convenience-store-management-system.csproj",
+        "projectPath": "C:\\Users\\My PC\\Source\\Repos\\convenience-store-management-system\\convenience-store-management-system\\convenience-store-management-system.csproj",
         "packagesPath": "C:\\Users\\My PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\My PC\\source\\repos\\convenience-store-management-system\\convenience-store-management-system\\obj\\",
+        "outputPath": "C:\\Users\\My PC\\Source\\Repos\\convenience-store-management-system\\convenience-store-management-system\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
