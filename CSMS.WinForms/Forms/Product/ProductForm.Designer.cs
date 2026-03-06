@@ -1,6 +1,6 @@
-﻿namespace CSMS.WinForms.Forms.POS
+﻿namespace CSMS.WinForms.Forms.Product
 {
-    partial class POSForm
+    partial class ProductForm
     {
         /// <summary> 
         /// Required designer variable.
