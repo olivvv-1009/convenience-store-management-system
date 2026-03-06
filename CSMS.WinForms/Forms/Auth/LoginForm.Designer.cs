@@ -7,6 +7,7 @@
 		private void InitializeComponent()
 		{
 			panel1 = new Panel();
+			loginBtn = new Button();
 			rememberCB = new CheckBox();
 			label6 = new Label();
 			passwordTB = new TextBox();
@@ -15,7 +16,6 @@
 			label3 = new Label();
 			label2 = new Label();
 			label1 = new Label();
-			loginBtn = new Button();
 			panel1.SuspendLayout();
 			SuspendLayout();
 			// 
@@ -36,6 +36,17 @@
 			panel1.Name = "panel1";
 			panel1.Size = new Size(336, 379);
 			panel1.TabIndex = 0;
+			// 
+			// loginBtn
+			// 
+			loginBtn.BackColor = Color.MediumBlue;
+			loginBtn.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+			loginBtn.Location = new Point(18, 290);
+			loginBtn.Name = "loginBtn";
+			loginBtn.Size = new Size(294, 23);
+			loginBtn.TabIndex = 9;
+			loginBtn.Text = "Login";
+			loginBtn.UseVisualStyleBackColor = false;
 			// 
 			// rememberCB
 			// 
@@ -118,17 +129,6 @@
 			label1.TabIndex = 0;
 			label1.Text = "label1";
 			// 
-			// loginBtn
-			// 
-			loginBtn.BackColor = Color.MediumBlue;
-			loginBtn.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-			loginBtn.Location = new Point(18, 290);
-			loginBtn.Name = "loginBtn";
-			loginBtn.Size = new Size(294, 23);
-			loginBtn.TabIndex = 9;
-			loginBtn.Text = "Login";
-			loginBtn.UseVisualStyleBackColor = false;
-			// 
 			// LoginForm
 			// 
 			BackColor = Color.SkyBlue;
@@ -138,6 +138,7 @@
 			Name = "LoginForm";
 			StartPosition = FormStartPosition.CenterScreen;
 			Text = "Login";
+			Load += LoginForm_Load;
 			panel1.ResumeLayout(false);
 			panel1.PerformLayout();
 			ResumeLayout(false);

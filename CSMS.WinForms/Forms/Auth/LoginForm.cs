@@ -14,5 +14,10 @@ namespace CSMS.WinForms.Forms.Auth
 		{
 
 		}
+
+		private void LoginForm_Load(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
