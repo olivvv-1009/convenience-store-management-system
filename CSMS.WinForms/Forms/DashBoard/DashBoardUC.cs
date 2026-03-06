@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace CSMS.WinForms.Forms.DashBoard
 {
-	public partial class DashBoardForm : Form
-	{
-		public DashBoardForm()
-		{
-			InitializeComponent();
-		}
-
-		private void label12_Click(object sender, EventArgs e)
-		{
-			Application.Exit();
-		}
-	}
+    public partial class DashBoardUC : UserControl
+    {
+        public DashBoardUC()
+        {
+            InitializeComponent();
+        }
+    }
 }

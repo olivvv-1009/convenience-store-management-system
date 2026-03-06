@@ -135,7 +135,7 @@
 			// LoginForm
 			// 
 			BackColor = Color.SkyBlue;
-			ClientSize = new Size(984, 961);
+			ClientSize = new Size(984, 600);
 			Controls.Add(panel1);
 			FormBorderStyle = FormBorderStyle.None;
 			Name = "LoginForm";
