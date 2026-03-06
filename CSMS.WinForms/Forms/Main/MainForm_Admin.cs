@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CSMS.WinForms.Forms.Main
 {
-    public partial class MainForm : Form
+    public partial class MainForm_Admin : Form
     {
-        public MainForm()
+        public MainForm_Admin()
         {
             InitializeComponent();
         }
