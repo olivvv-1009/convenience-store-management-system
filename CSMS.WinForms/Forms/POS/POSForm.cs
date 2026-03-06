@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CSMS.WinForms.Forms.POS
 {
-    public partial class POSForm : Form
+    public partial class POSForm : UserControl
     {
         public POSForm()
         {

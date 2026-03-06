@@ -1,6 +1,6 @@
-﻿namespace CSMS.WinForms.Forms.POS
+﻿namespace CSMS.WinForms.Forms.DashBoard
 {
-    partial class POSForm
+    partial class DashBoardForm
     {
         /// <summary> 
         /// Required designer variable.
