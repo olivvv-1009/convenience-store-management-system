@@ -1,6 +1,6 @@
-﻿namespace CSMS.WinForms.Forms.Product
+﻿namespace CSMS.WinForms.Forms.Main
 {
-    partial class Windows_Form
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Windows_Form";
+            this.Text = "MainForm";
         }
 
         #endregion

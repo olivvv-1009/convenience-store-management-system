@@ -1,6 +1,6 @@
-﻿namespace CSMS.WinForms.Forms.POS
+﻿namespace CSMS.WinForms.CSMS.Tests
 {
-    partial class POSForm
+    partial class AuthTests
     {
         /// <summary> 
         /// Required designer variable.

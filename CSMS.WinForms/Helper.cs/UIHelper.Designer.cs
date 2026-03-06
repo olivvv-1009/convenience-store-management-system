@@ -1,6 +1,6 @@
-﻿namespace CSMS.WinForms.Forms.POS
+﻿namespace CSMS.WinForms.Helper.cs
 {
-    partial class POSForm
+    partial class UIHelper
     {
         /// <summary> 
         /// Required designer variable.

@@ -2,6 +2,9 @@
 {
     partial class LoginForm
     {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
 		private void InitializeComponent()
