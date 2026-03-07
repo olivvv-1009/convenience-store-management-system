@@ -1,26 +1,101 @@
-﻿using System;
+﻿using CSMS.Database;
+using CSMS.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
+using System.Data;
 
-namespace convenience_store_management_system.Repositories
+namespace CSMS.Repositories
 {
-    internal class InventoryRepository
+    public class InventoryRepository
     {
-        private Dictionary<int, int> stock = new Dictionary<int, int>();
+        private DbConnectionHelper db = new DbConnectionHelper();
 
-        public int GetQuantity(int productId)
+        public List<Inventory> GetInventory()
         {
-            if (stock.ContainsKey(productId))
-                return stock[productId];
+            List<Inventory> list = new List<Inventory>();
 
-            return 0;
+            using (SqlConnection conn = db.GetConnection())
+            {
+                conn.Open();
+
+                string query = "SELECT * FROM Inventory";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Inventory inv = new Inventory
+                        {
+                            InventoryId = Convert.ToInt32(reader["InventoryId"]),
+                            ProductId = Convert.ToInt32(reader["ProductId"]),
+                            Quantity = Convert.ToInt32(reader["Quantity"]),
+                            MinimumStock = Convert.ToInt32(reader["MinimumStock"]),
+                            LastUpdated = Convert.ToDateTime(reader["LastUpdated"])
+                        };
+
+                        list.Add(inv);
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        public Inventory GetByProductId(int productId)
+        {
+            Inventory inv = null;
+
+            using (SqlConnection conn = db.GetConnection())
+            {
+                conn.Open();
+
+                string query = "SELECT * FROM Inventory WHERE ProductId=@productId";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@productId", SqlDbType.Int).Value = productId;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        inv = new Inventory
+                        {
+                            InventoryId = Convert.ToInt32(reader["InventoryId"]),
+                            ProductId = Convert.ToInt32(reader["ProductId"]),
+                            Quantity = Convert.ToInt32(reader["Quantity"]),
+                            MinimumStock = Convert.ToInt32(reader["MinimumStock"]),
+                            LastUpdated = Convert.ToDateTime(reader["LastUpdated"])
+                        };
+                    }
+                }
+            }
+
+            return inv;
         }
 
         public void UpdateStock(int productId, int quantity)
         {
-            stock[productId] = quantity;
+            using (SqlConnection conn = db.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"UPDATE Inventory
+                                 SET Quantity = Quantity + @qty,
+                                     LastUpdated = GETDATE()
+                                 WHERE ProductId=@productId";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@qty", SqlDbType.Int).Value = quantity;
+                    cmd.Parameters.Add("@productId", SqlDbType.Int).Value = productId;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

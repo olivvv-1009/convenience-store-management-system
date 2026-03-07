@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace convenience_store_management_system.Models
+namespace CSMS.Models
 {
-    internal class Inventory
+    public class Inventory
     {
         public int InventoryId { get; set; }
         public int ProductId { get; set; }
         public int Quantity { get; set; }
+        public int MinimumStock { get; set; }
         public DateTime LastUpdated { get; set; }
     }
 }

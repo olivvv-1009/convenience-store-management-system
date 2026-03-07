@@ -28,10 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            button1 = new Button();
+            SuspendLayout();
+            // 
+            // button1
+            // 
+            button1.Location = new Point(45, 359);
+            button1.Name = "button1";
+            button1.Size = new Size(183, 43);
+            button1.TabIndex = 0;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // ProductItemControl
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(button1);
+            Name = "ProductItemControl";
+            Size = new Size(605, 423);
+            Load += ProductItemControl_Load;
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button button1;
     }
 }

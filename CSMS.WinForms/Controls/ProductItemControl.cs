@@ -16,5 +16,10 @@ namespace CSMS.WinForms.Controls
         {
             InitializeComponent();
         }
+
+        private void ProductItemControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
