@@ -16,5 +16,22 @@ namespace CSMS.WinForms.Forms.POS
         {
             InitializeComponent();
         }
+
+        private void CreateInvoice_Click(object sender, EventArgs e)
+        {
+            pnlContent.Controls.Clear();
+            CreateInvoice uc = new CreateInvoice();
+            uc.Dock = DockStyle.Fill;
+            pnlContent.Controls.Add(uc);
+        }
+
+        private void InvoiceHistory_Click(object sender, EventArgs e)
+        {
+            pnlContent.Controls.Clear();
+            InvoiceHistory uc = new InvoiceHistory();
+            uc.Dock = DockStyle.Fill;
+            pnlContent.Controls.Add(uc);
+
+        }
     }
 }

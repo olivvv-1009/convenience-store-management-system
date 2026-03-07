@@ -34,13 +34,13 @@
             storePOS = new Label();
             ManagementSystem = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
-            tableLayoutPanel5 = new TableLayoutPanel();
-            lblContent = new Panel();
-            tableLayoutPanel6 = new TableLayoutPanel();
             DashboardBut = new Button();
             PosBut = new Button();
             ProductBut = new Button();
             InventoryBut = new Button();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            lblContent = new Panel();
+            tableLayoutPanel6 = new TableLayoutPanel();
             staff = new Label();
             logout = new Button();
             tableLayoutPanel7 = new TableLayoutPanel();
@@ -150,46 +150,6 @@
             tableLayoutPanel4.Size = new Size(148, 350);
             tableLayoutPanel4.TabIndex = 1;
             // 
-            // tableLayoutPanel5
-            // 
-            tableLayoutPanel5.ColumnCount = 1;
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel5.Controls.Add(lblContent, 0, 1);
-            tableLayoutPanel5.Controls.Add(tableLayoutPanel6, 0, 0);
-            tableLayoutPanel5.Dock = DockStyle.Fill;
-            tableLayoutPanel5.Location = new Point(163, 3);
-            tableLayoutPanel5.Name = "tableLayoutPanel5";
-            tableLayoutPanel5.RowCount = 2;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
-            tableLayoutPanel5.Size = new Size(634, 444);
-            tableLayoutPanel5.TabIndex = 1;
-            // 
-            // lblContent
-            // 
-            lblContent.Dock = DockStyle.Fill;
-            lblContent.Location = new Point(3, 47);
-            lblContent.Name = "lblContent";
-            lblContent.Size = new Size(628, 394);
-            lblContent.TabIndex = 0;
-            // 
-            // tableLayoutPanel6
-            // 
-            tableLayoutPanel6.ColumnCount = 3;
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22F));
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8F));
-            tableLayoutPanel6.Controls.Add(staff, 1, 0);
-            tableLayoutPanel6.Controls.Add(logout, 2, 0);
-            tableLayoutPanel6.Controls.Add(tableLayoutPanel7, 0, 0);
-            tableLayoutPanel6.Dock = DockStyle.Fill;
-            tableLayoutPanel6.Location = new Point(3, 3);
-            tableLayoutPanel6.Name = "tableLayoutPanel6";
-            tableLayoutPanel6.RowCount = 1;
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel6.Size = new Size(628, 38);
-            tableLayoutPanel6.TabIndex = 1;
-            // 
             // DashboardBut
             // 
             DashboardBut.Dock = DockStyle.Fill;
@@ -233,6 +193,46 @@
             InventoryBut.TabIndex = 3;
             InventoryBut.Text = "Inventory";
             InventoryBut.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 1;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel5.Controls.Add(lblContent, 0, 1);
+            tableLayoutPanel5.Controls.Add(tableLayoutPanel6, 0, 0);
+            tableLayoutPanel5.Dock = DockStyle.Fill;
+            tableLayoutPanel5.Location = new Point(163, 3);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 2;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
+            tableLayoutPanel5.Size = new Size(634, 444);
+            tableLayoutPanel5.TabIndex = 1;
+            // 
+            // lblContent
+            // 
+            lblContent.Dock = DockStyle.Fill;
+            lblContent.Location = new Point(3, 47);
+            lblContent.Name = "lblContent";
+            lblContent.Size = new Size(628, 394);
+            lblContent.TabIndex = 0;
+            // 
+            // tableLayoutPanel6
+            // 
+            tableLayoutPanel6.ColumnCount = 3;
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8F));
+            tableLayoutPanel6.Controls.Add(staff, 1, 0);
+            tableLayoutPanel6.Controls.Add(logout, 2, 0);
+            tableLayoutPanel6.Controls.Add(tableLayoutPanel7, 0, 0);
+            tableLayoutPanel6.Dock = DockStyle.Fill;
+            tableLayoutPanel6.Location = new Point(3, 3);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 1;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.Size = new Size(628, 38);
+            tableLayoutPanel6.TabIndex = 1;
             // 
             // staff
             // 
