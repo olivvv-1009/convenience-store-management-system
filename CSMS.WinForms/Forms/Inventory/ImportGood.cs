@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSMS.WinForms.Helper.cs
+namespace CSMS.WinForms.Forms.Inventory
 {
-    public partial class UIHelper : UserControl
+    public partial class ImportGood : UserControl
     {
-        public UIHelper()
+        public ImportGood()
         {
             InitializeComponent();
         }

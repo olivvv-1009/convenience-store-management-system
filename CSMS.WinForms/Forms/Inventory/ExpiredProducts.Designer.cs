@@ -1,6 +1,6 @@
-﻿namespace CSMS.WinForms.Helper.cs
+﻿namespace CSMS.WinForms.Forms.Inventory
 {
-    partial class UIHelper
+    partial class ExpiredProducts
     {
         /// <summary> 
         /// Required designer variable.

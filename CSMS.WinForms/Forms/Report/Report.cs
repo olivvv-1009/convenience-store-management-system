@@ -4,11 +4,11 @@ using CSMS.Core.Services;
 using CSMS.Core.Helpers;
 using CSMS.WinForms.Forms.Main;
 
-namespace CSMS.WinForms.Forms.Auth
+namespace CSMS.WinForms.Forms.Report
 {
-    public partial class LoginForm : Form
+    public partial class Report : UserControl
     {
-        public LoginForm()
+        public Report()
         {
             InitializeComponent();
         }
