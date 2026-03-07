@@ -16,4 +16,9 @@
     <ProjectReference Include="..\convenience-store-management-system\convenience-store-management-system.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Forms\Employees\" />
+    <Folder Include="Forms\Report\" />
+  </ItemGroup>
+
 </Project>

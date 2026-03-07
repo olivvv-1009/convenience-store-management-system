@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSMS.WinForms.Forms.Promotion
+namespace CSMS.WinForms.Forms.Main
 {
-    public partial class PromotionForm : UserControl
+    public partial class MainForm_Staff : Form
     {
-        public PromotionForm()
+        public MainForm_Staff()
         {
             InitializeComponent();
         }

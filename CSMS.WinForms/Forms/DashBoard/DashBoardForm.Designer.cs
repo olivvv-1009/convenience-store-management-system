@@ -1,6 +1,6 @@
-﻿namespace CSMS.WinForms.Forms.Promotion
+﻿namespace CSMS.WinForms.Forms.DashBoard
 {
-    partial class PromotionForm
+    partial class DashBoardForm
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,12 +30,12 @@
         {
             SuspendLayout();
             // 
-            // PromotionForm
+            // DashBoardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            Name = "PromotionForm";
+            Name = "DashBoardForm";
             ResumeLayout(false);
         }
 

@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSMS.WinForms.Forms.Promotion
+namespace CSMS.WinForms.Forms.Inventory
 {
-    public partial class PromotionForm : UserControl
+    public partial class Inventory : UserControl
     {
-        public PromotionForm()
+        public Inventory()
         {
             InitializeComponent();
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

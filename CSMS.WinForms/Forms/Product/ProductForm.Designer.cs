@@ -1,6 +1,6 @@
-﻿namespace CSMS.WinForms.Forms.Promotion
+﻿namespace CSMS.WinForms.Forms.Product
 {
-    partial class PromotionForm
+    partial class ProductForm
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,12 +30,12 @@
         {
             SuspendLayout();
             // 
-            // PromotionForm
+            // ProductForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            Name = "PromotionForm";
+            Name = "ProductForm";
             ResumeLayout(false);
         }
 

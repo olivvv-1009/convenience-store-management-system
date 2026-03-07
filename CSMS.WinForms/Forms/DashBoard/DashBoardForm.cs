@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSMS.WinForms.Forms.Promotion
+namespace CSMS.WinForms.Forms.DashBoard
 {
-    public partial class PromotionForm : UserControl
+    public partial class DashBoardForm : UserControl
     {
-        public PromotionForm()
+        public DashBoardForm()
         {
             InitializeComponent();
         }
