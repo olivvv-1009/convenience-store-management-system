@@ -1,6 +1,6 @@
-﻿namespace CSMS.WinForms.Forms.DashBoard
+﻿namespace CSMS.WinForms.Forms.Inventory
 {
-    partial class DashBoardForm
+    partial class StockList
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,15 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SuspendLayout();
-            // 
-            // DashBoardForm
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            AutoScroll = true;
-            Name = "DashBoardForm";
-            ResumeLayout(false);
+            components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         }
 
         #endregion
