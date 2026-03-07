@@ -9,10 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.4" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\convenience-store-management-system\convenience-store-management-system.csproj" />
   </ItemGroup>
 

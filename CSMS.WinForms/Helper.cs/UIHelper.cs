@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSMS.WinForms.Forms.POS
+namespace CSMS.WinForms.Helper.cs
 {
-    public partial class POSForm : UserControl
+    public partial class UIHelper : UserControl
     {
-        public POSForm()
+        public UIHelper()
         {
             InitializeComponent();
         }
