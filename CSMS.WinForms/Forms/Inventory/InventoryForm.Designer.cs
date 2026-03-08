@@ -56,10 +56,10 @@
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 4;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 17.4682865F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15.4270906F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 13.8248844F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.142857F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.9032259F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 54.6082954F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 66.1290359F));
             tableLayoutPanel1.Size = new Size(939, 434);
             tableLayoutPanel1.TabIndex = 0;
             // 
@@ -70,7 +70,7 @@
             label1.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(933, 75);
+            label1.Size = new Size(933, 60);
             label1.TabIndex = 0;
             label1.Text = "Inventory Management";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -81,9 +81,9 @@
             label2.Dock = DockStyle.Fill;
             label2.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ControlDarkDark;
-            label2.Location = new Point(3, 75);
+            label2.Location = new Point(3, 60);
             label2.Name = "label2";
-            label2.Size = new Size(933, 66);
+            label2.Size = new Size(933, 31);
             label2.TabIndex = 1;
             label2.Text = "Track and manage your inventory levels";
             // 
@@ -94,11 +94,11 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 39.8713837F));
             tableLayoutPanel2.Controls.Add(panel1, 0, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 144);
+            tableLayoutPanel2.Location = new Point(3, 94);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(933, 49);
+            tableLayoutPanel2.Size = new Size(933, 50);
             tableLayoutPanel2.TabIndex = 2;
             tableLayoutPanel2.Paint += tableLayoutPanel2_Paint;
             // 
@@ -109,7 +109,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(555, 43);
+            panel1.Size = new Size(555, 44);
             panel1.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -127,7 +127,7 @@
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel3.Size = new Size(555, 43);
+            tableLayoutPanel3.Size = new Size(555, 44);
             tableLayoutPanel3.TabIndex = 0;
             // 
             // ImportGood
@@ -136,7 +136,7 @@
             ImportGood.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ImportGood.Location = new Point(3, 3);
             ImportGood.Name = "ImportGood";
-            ImportGood.Size = new Size(194, 37);
+            ImportGood.Size = new Size(194, 38);
             ImportGood.TabIndex = 0;
             ImportGood.Text = "Import Goods";
             ImportGood.TextAlign = ContentAlignment.MiddleLeft;
@@ -148,7 +148,7 @@
             StockList.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             StockList.Location = new Point(203, 3);
             StockList.Name = "StockList";
-            StockList.Size = new Size(171, 37);
+            StockList.Size = new Size(171, 38);
             StockList.TabIndex = 1;
             StockList.Text = "Stock List";
             StockList.TextAlign = ContentAlignment.MiddleLeft;
@@ -160,7 +160,7 @@
             ExpiredProducts.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ExpiredProducts.Location = new Point(380, 3);
             ExpiredProducts.Name = "ExpiredProducts";
-            ExpiredProducts.Size = new Size(172, 37);
+            ExpiredProducts.Size = new Size(172, 38);
             ExpiredProducts.TabIndex = 2;
             ExpiredProducts.Text = "Expired Products";
             ExpiredProducts.TextAlign = ContentAlignment.MiddleLeft;
@@ -170,19 +170,19 @@
             // 
             panel2.BackColor = SystemColors.ControlLightLight;
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(3, 199);
+            panel2.Location = new Point(3, 150);
             panel2.Name = "panel2";
-            panel2.Size = new Size(933, 232);
+            panel2.Size = new Size(933, 281);
             panel2.TabIndex = 3;
             // 
-            // Inventory
+            // InventoryForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             AutoSize = true;
             Controls.Add(tableLayoutPanel1);
-            Name = "Inventory";
+            Name = "InventoryForm";
             Size = new Size(939, 434);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
