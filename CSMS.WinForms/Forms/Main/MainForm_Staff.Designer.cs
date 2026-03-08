@@ -34,18 +34,18 @@
             storePOS = new Label();
             ManagementSystem = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
-            tableLayoutPanel5 = new TableLayoutPanel();
-            lblContent = new Panel();
-            tableLayoutPanel6 = new TableLayoutPanel();
             DashboardBut = new Button();
             PosBut = new Button();
             ProductBut = new Button();
             InventoryBut = new Button();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            tableLayoutPanel6 = new TableLayoutPanel();
             staff = new Label();
             logout = new Button();
             tableLayoutPanel7 = new TableLayoutPanel();
             textBox1 = new TextBox();
             Search = new Button();
+            pnlContent = new Panel();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -150,12 +150,60 @@
             tableLayoutPanel4.Size = new Size(148, 350);
             tableLayoutPanel4.TabIndex = 1;
             // 
+            // DashboardBut
+            // 
+            DashboardBut.Dock = DockStyle.Fill;
+            DashboardBut.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            DashboardBut.Location = new Point(3, 3);
+            DashboardBut.Name = "DashboardBut";
+            DashboardBut.Size = new Size(142, 29);
+            DashboardBut.TabIndex = 0;
+            DashboardBut.Text = "DashBoard";
+            DashboardBut.UseVisualStyleBackColor = true;
+            DashboardBut.Click += DashboardBut_Click;
+            // 
+            // PosBut
+            // 
+            PosBut.Dock = DockStyle.Fill;
+            PosBut.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            PosBut.Location = new Point(3, 38);
+            PosBut.Name = "PosBut";
+            PosBut.Size = new Size(142, 29);
+            PosBut.TabIndex = 1;
+            PosBut.Text = "POS";
+            PosBut.UseVisualStyleBackColor = true;
+            PosBut.Click += PosBut_Click;
+            // 
+            // ProductBut
+            // 
+            ProductBut.Dock = DockStyle.Fill;
+            ProductBut.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ProductBut.Location = new Point(3, 73);
+            ProductBut.Name = "ProductBut";
+            ProductBut.Size = new Size(142, 29);
+            ProductBut.TabIndex = 2;
+            ProductBut.Text = "Products";
+            ProductBut.UseVisualStyleBackColor = true;
+            ProductBut.Click += ProductBut_Click;
+            // 
+            // InventoryBut
+            // 
+            InventoryBut.Dock = DockStyle.Fill;
+            InventoryBut.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            InventoryBut.Location = new Point(3, 108);
+            InventoryBut.Name = "InventoryBut";
+            InventoryBut.Size = new Size(142, 29);
+            InventoryBut.TabIndex = 3;
+            InventoryBut.Text = "Inventory";
+            InventoryBut.UseVisualStyleBackColor = true;
+            InventoryBut.Click += InventoryBut_Click;
+            // 
             // tableLayoutPanel5
             // 
             tableLayoutPanel5.ColumnCount = 1;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel5.Controls.Add(lblContent, 0, 1);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel6, 0, 0);
+            tableLayoutPanel5.Controls.Add(pnlContent, 0, 1);
             tableLayoutPanel5.Dock = DockStyle.Fill;
             tableLayoutPanel5.Location = new Point(163, 3);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -164,14 +212,6 @@
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
             tableLayoutPanel5.Size = new Size(634, 444);
             tableLayoutPanel5.TabIndex = 1;
-            // 
-            // lblContent
-            // 
-            lblContent.Dock = DockStyle.Fill;
-            lblContent.Location = new Point(3, 47);
-            lblContent.Name = "lblContent";
-            lblContent.Size = new Size(628, 394);
-            lblContent.TabIndex = 0;
             // 
             // tableLayoutPanel6
             // 
@@ -189,50 +229,6 @@
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel6.Size = new Size(628, 38);
             tableLayoutPanel6.TabIndex = 1;
-            // 
-            // DashboardBut
-            // 
-            DashboardBut.Dock = DockStyle.Fill;
-            DashboardBut.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DashboardBut.Location = new Point(3, 3);
-            DashboardBut.Name = "DashboardBut";
-            DashboardBut.Size = new Size(142, 29);
-            DashboardBut.TabIndex = 0;
-            DashboardBut.Text = "DashBoard";
-            DashboardBut.UseVisualStyleBackColor = true;
-            // 
-            // PosBut
-            // 
-            PosBut.Dock = DockStyle.Fill;
-            PosBut.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            PosBut.Location = new Point(3, 38);
-            PosBut.Name = "PosBut";
-            PosBut.Size = new Size(142, 29);
-            PosBut.TabIndex = 1;
-            PosBut.Text = "POS";
-            PosBut.UseVisualStyleBackColor = true;
-            // 
-            // ProductBut
-            // 
-            ProductBut.Dock = DockStyle.Fill;
-            ProductBut.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ProductBut.Location = new Point(3, 73);
-            ProductBut.Name = "ProductBut";
-            ProductBut.Size = new Size(142, 29);
-            ProductBut.TabIndex = 2;
-            ProductBut.Text = "Products";
-            ProductBut.UseVisualStyleBackColor = true;
-            // 
-            // InventoryBut
-            // 
-            InventoryBut.Dock = DockStyle.Fill;
-            InventoryBut.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            InventoryBut.Location = new Point(3, 108);
-            InventoryBut.Name = "InventoryBut";
-            InventoryBut.Size = new Size(142, 29);
-            InventoryBut.TabIndex = 3;
-            InventoryBut.Text = "Inventory";
-            InventoryBut.UseVisualStyleBackColor = true;
             // 
             // staff
             // 
@@ -290,6 +286,14 @@
             Search.Text = "Search";
             Search.UseVisualStyleBackColor = true;
             // 
+            // pnlContent
+            // 
+            pnlContent.Dock = DockStyle.Fill;
+            pnlContent.Location = new Point(3, 47);
+            pnlContent.Name = "pnlContent";
+            pnlContent.Size = new Size(628, 394);
+            pnlContent.TabIndex = 2;
+            // 
             // MainForm_Staff
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -318,7 +322,6 @@
         private TableLayoutPanel tableLayoutPanel3;
         private TableLayoutPanel tableLayoutPanel4;
         private TableLayoutPanel tableLayoutPanel5;
-        private Panel lblContent;
         private TableLayoutPanel tableLayoutPanel6;
         private Label storePOS;
         private Label ManagementSystem;
@@ -331,5 +334,6 @@
         private TableLayoutPanel tableLayoutPanel7;
         private TextBox textBox1;
         private Button Search;
+        private Panel pnlContent;
     }
 }

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CSMS.WinForms.Forms.Customer
 {
-    public partial class Customer : UserControl
+    public partial class CustomerForm : UserControl
     {
-        public Customer()
+        public CustomerForm()
         {
             InitializeComponent();
         }

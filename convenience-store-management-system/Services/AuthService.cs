@@ -14,18 +14,17 @@ namespace CSMS.Core.Services
 
         public User? Login(string username, string password)
         {
-            // lấy user từ database
             var user = userRepository.GetUserByUsername(username);
 
             if (user == null)
                 return null;
 
-            // kiểm tra password
-            if (user.Password != password)
+            // So sánh mật khẩu
+            if (user.PasswordHash != password)
                 return null;
 
-            // kiểm tra user có hoạt động không
-            if (!user.IsActive)
+            // Kiểm tra tài khoản có bị khóa không
+            if (user.IsLocked)
                 return null;
 
             return user;

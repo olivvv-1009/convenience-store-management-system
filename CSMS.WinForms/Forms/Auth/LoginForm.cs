@@ -32,7 +32,7 @@ namespace CSMS.WinForms.Forms.Auth
                 MessageBox.Show("Login thành công!");
 
                 // phân quyền
-                if (user.Role == "Admin")
+                if (user.RoleId == 1)
                 {
                     MainForm_Admin main = new MainForm_Admin();
                     main.Show();
@@ -63,11 +63,6 @@ namespace CSMS.WinForms.Forms.Auth
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
         {
 
         }

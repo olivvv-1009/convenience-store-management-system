@@ -1,6 +1,6 @@
 ﻿namespace CSMS.WinForms.Forms.Report
 {
-    partial class Report
+    partial class ReportForm
     {
         /// <summary> 
         /// Required designer variable.

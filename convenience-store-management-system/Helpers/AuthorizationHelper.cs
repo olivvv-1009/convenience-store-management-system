@@ -4,11 +4,11 @@ public static class AuthorizationHelper
 {
     public static bool IsAdmin()
     {
-        return SessionHelper.CurrentUser?.Role == "Admin";
+        return SessionHelper.CurrentUser?.RoleId == 1;
     }
 
     public static bool IsStaff()
     {
-        return SessionHelper.CurrentUser?.Role == "Staff";
+        return SessionHelper.CurrentUser?.RoleId == 2;
     }
 }

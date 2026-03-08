@@ -6,7 +6,7 @@ namespace CSMS.Core.Repositories
 {
     public class UserRepository
     {
-        private string connectionString = "YOUR_CONNECTION_STRING";
+        private string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=CSMS_DB;Trusted_Connection=True;";
 
         public User? GetUserByUsername(string username)
 {
@@ -30,11 +30,13 @@ namespace CSMS.Core.Repositories
                 {
                     user = new User
                     {
-                        Id = Convert.ToInt32(reader["Id"]),
-                        Username = reader["Username"].ToString() ?? "",
-                        Password = reader["Password"].ToString() ?? "",
-                        Role = reader["Role"].ToString() ?? "",
-                        IsActive = Convert.ToBoolean(reader["IsActive"])
+                        UserId = Convert.ToInt32(reader["UserId"]),
+                        Username = reader["Username"].ToString(),
+                        PasswordHash = reader["PasswordHash"].ToString(),
+                        FullName = reader["FullName"].ToString(),
+                        Phone = reader["Phone"].ToString(),
+                        RoleId = Convert.ToInt32(reader["RoleId"]),
+                        IsLocked = Convert.ToBoolean(reader["IsLocked"])
                     };
                 }
             }
