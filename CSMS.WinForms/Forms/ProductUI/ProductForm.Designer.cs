@@ -1,4 +1,4 @@
-﻿namespace CSMS.WinForms.Forms.Product
+﻿namespace CSMS.WinForms.Forms.ProductUI
 {
     partial class ProductForm
     {

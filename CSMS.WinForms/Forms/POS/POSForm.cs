@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CSMS.Services;
 
 namespace CSMS.WinForms.Forms.POS
 {
     public partial class POSForm : UserControl
     {
+        // Khai báo service
+        private ProductService productService = new ProductService();
+
         public POSForm()
         {
             InitializeComponent();
@@ -31,7 +35,7 @@ namespace CSMS.WinForms.Forms.POS
             InvoiceHistory uc = new InvoiceHistory();
             uc.Dock = DockStyle.Fill;
             pnlContent.Controls.Add(uc);
-
         }
+        
     }
 }

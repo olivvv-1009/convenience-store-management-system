@@ -1,9 +1,10 @@
-﻿using CSMS.Database;
-using CSMS.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 using System.Data;
+using convenience_store_management_system.Models;
+using CSMS.Database;
+using CSMS.Models;
+using Microsoft.Data.SqlClient;
 
 namespace CSMS.Repositories
 {
@@ -106,6 +107,60 @@ namespace CSMS.Repositories
                 {
                     cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public List<ProductPOS> GetProductsForPOS()
+        {
+            List<ProductPOS> list = new List<ProductPOS>();
+
+            using (SqlConnection conn = db.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+            SELECT p.ProductId, p.ProductName, p.Barcode, p.Price,
+                   ISNULL(i.Quantity,0) AS Stock
+            FROM Products p
+            LEFT JOIN Inventory i ON p.ProductId = i.ProductId";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        list.Add(new ProductPOS
+                        {
+                            ProductId = Convert.ToInt32(reader["ProductId"]),
+                            ProductName = reader["ProductName"].ToString(),
+                            Barcode = reader["Barcode"].ToString(),
+                            Price = Convert.ToDecimal(reader["Price"]),
+                            Stock = Convert.ToInt32(reader["Stock"])
+                        });
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        public void UpdateStock(int productId, int quantitySold)
+        {
+            string query = @"
+        UPDATE Inventory
+        SET Quantity = Quantity - @quantitySold
+        WHERE ProductId = @productId";
+
+            using (SqlConnection conn = db.GetConnection())
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@quantitySold", quantitySold);
+                    cmd.Parameters.AddWithValue("@productId", productId);
                     cmd.ExecuteNonQuery();
                 }
             }

@@ -1,6 +1,7 @@
-﻿using CSMS.Models;
+﻿using System.Collections.Generic;
+using convenience_store_management_system.Models;
+using CSMS.Models;
 using CSMS.Repositories;
-using System.Collections.Generic;
 
 namespace CSMS.Services
 {
@@ -26,6 +27,10 @@ namespace CSMS.Services
         public void DeleteProduct(int id)
         {
             productRepo.DeleteProduct(id);
+        }
+        public List<ProductPOS> GetProductsForPOS()
+        {
+            return productRepo.GetProductsForPOS();
         }
     }
 }

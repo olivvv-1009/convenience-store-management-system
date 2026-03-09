@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSMS.WinForms.Forms.Product
+namespace CSMS.WinForms.Forms.ProductUI
 {
     public partial class ProductForm : UserControl
     {
