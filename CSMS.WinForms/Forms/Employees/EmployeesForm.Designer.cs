@@ -1,6 +1,6 @@
 ﻿namespace CSMS.WinForms.Forms.Employees
 {
-    partial class Employees
+    partial class EmployeesForm
     {
         /// <summary> 
         /// Required designer variable.

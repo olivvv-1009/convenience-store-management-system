@@ -166,6 +166,7 @@
             DashboardBut.TabIndex = 0;
             DashboardBut.Text = "DashBoard";
             DashboardBut.UseVisualStyleBackColor = true;
+            DashboardBut.Click += DashboardBut_Click;
             // 
             // PosBut
             // 
@@ -189,6 +190,7 @@
             ProductBut.TabIndex = 2;
             ProductBut.Text = "Product";
             ProductBut.UseVisualStyleBackColor = true;
+            ProductBut.Click += ProductBut_Click;
             // 
             // InventoryBut
             // 
@@ -200,6 +202,7 @@
             InventoryBut.TabIndex = 3;
             InventoryBut.Text = "Inventory";
             InventoryBut.UseVisualStyleBackColor = true;
+            InventoryBut.Click += InventoryBut_Click;
             // 
             // CustomersBut
             // 
@@ -211,6 +214,7 @@
             CustomersBut.TabIndex = 4;
             CustomersBut.Text = "Customers";
             CustomersBut.UseVisualStyleBackColor = true;
+            CustomersBut.Click += CustomersBut_Click;
             // 
             // PromotionsBut
             // 
@@ -222,6 +226,7 @@
             PromotionsBut.TabIndex = 5;
             PromotionsBut.Text = "Promotions";
             PromotionsBut.UseVisualStyleBackColor = true;
+            PromotionsBut.Click += PromotionsBut_Click;
             // 
             // EmployeesBut
             // 
@@ -233,6 +238,7 @@
             EmployeesBut.TabIndex = 6;
             EmployeesBut.Text = "Employees";
             EmployeesBut.UseVisualStyleBackColor = true;
+            EmployeesBut.Click += EmployeesBut_Click;
             // 
             // ReportsBut
             // 
@@ -244,6 +250,7 @@
             ReportsBut.TabIndex = 7;
             ReportsBut.Text = "Reports";
             ReportsBut.UseVisualStyleBackColor = true;
+            ReportsBut.Click += ReportsBut_Click;
             // 
             // tableLayoutPanel3
             // 

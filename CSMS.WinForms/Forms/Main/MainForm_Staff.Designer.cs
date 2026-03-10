@@ -160,6 +160,7 @@
             DashboardBut.TabIndex = 0;
             DashboardBut.Text = "DashBoard";
             DashboardBut.UseVisualStyleBackColor = true;
+            DashboardBut.Click += DashboardBut_Click;
             // 
             // PosBut
             // 
@@ -183,6 +184,7 @@
             ProductBut.TabIndex = 2;
             ProductBut.Text = "Products";
             ProductBut.UseVisualStyleBackColor = true;
+            ProductBut.Click += ProductBut_Click;
             // 
             // InventoryBut
             // 
@@ -194,6 +196,7 @@
             InventoryBut.TabIndex = 3;
             InventoryBut.Text = "Inventory";
             InventoryBut.UseVisualStyleBackColor = true;
+            InventoryBut.Click += InventoryBut_Click;
             // 
             // tableLayoutPanel5
             // 

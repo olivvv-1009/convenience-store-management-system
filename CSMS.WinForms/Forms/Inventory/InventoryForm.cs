@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSMS.WinForms.Forms.Employees
+namespace CSMS.WinForms.Forms.Inventory
 {
-    public partial class Employees : UserControl
+    public partial class InventoryForm : UserControl
     {
-        public Employees()
+        public InventoryForm()
         {
             InitializeComponent();
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -6,9 +6,9 @@ using CSMS.WinForms.Forms.Main;
 
 namespace CSMS.WinForms.Forms.Report
 {
-    public partial class Report : UserControl
+    public partial class ReportForm : UserControl
     {
-        public Report()
+        public ReportForm()
         {
             InitializeComponent();
         }
