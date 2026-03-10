@@ -1,32 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using convenience_store_management_system.Models;
+using Microsoft.Data.SqlClient;
+using CSMS.Core.Models;
 
-namespace convenience_store_management_system.Repositories
+namespace CSMS.Core.Repositories
 {
-    internal class UserRepository
+    public class UserRepository
     {
-        private List<User> users = new List<User>();
+        private string connectionString = "YOUR_CONNECTION_STRING";
 
-        public User GetUserByUsername(string username)
-        {
-            return users.FirstOrDefault(u => u.Username == username);
-        }
+        public User? GetUserByUsername(string username)
+{
+    if (string.IsNullOrWhiteSpace(username))
+        return null;
 
-        public bool UpdatePassword(int userId, string newPassword)
-        {
-            var user = users.FirstOrDefault(u => u.UserId == userId);
+    User? user = null;
 
-            if (user != null)
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                user.PasswordHash = newPassword;
-                return true;
+                conn.Open();
+
+                string query = "SELECT * FROM Users WHERE Username = @Username";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Username", username);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows && reader.Read())
+                {
+                    user = new User
+                    {
+                        Id = Convert.ToInt32(reader["Id"]),
+                        Username = reader["Username"].ToString() ?? "",
+                        Password = reader["Password"].ToString() ?? "",
+                        Role = reader["Role"].ToString() ?? "",
+                        IsActive = Convert.ToBoolean(reader["IsActive"])
+                    };
+                }
             }
 
-            return false;
+            return user;
         }
     }
 }

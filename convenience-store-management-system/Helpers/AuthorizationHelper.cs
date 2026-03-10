@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CSMS.Core.Helpers;
 
-namespace convenience_store_management_system.Helpers
+public static class AuthorizationHelper
 {
-    internal class AuthorizationHelper
+    public static bool IsAdmin()
     {
+        return SessionHelper.CurrentUser?.Role == "Admin";
+    }
+
+    public static bool IsStaff()
+    {
+        return SessionHelper.CurrentUser?.Role == "Staff";
     }
 }
