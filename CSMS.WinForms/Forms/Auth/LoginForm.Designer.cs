@@ -187,15 +187,34 @@
             ResumeLayout(false);
         }
 
+<<<<<<< Updated upstream
+		private Panel panel1;
+		private Label label1;
+		private Label label2;
+		private TextBox usernameTB;
+		private Label label3;
+		private TextBox passwordTB;
+		private Label label4;
+		private CheckBox rememberCB;
+		private Label label6;
+		private Button loginBtn;
+	}
+=======
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "LoginForm";
+        }
+
         #endregion
-        private TableLayoutPanel tableLayoutPanel1;
-        private Panel panel1;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label5;
-        private TextBox txtUsername;
-        private TextBox txtPassword;
-        private Button btnlogin;
     }
+>>>>>>> Stashed changes
 }
