@@ -1,6 +1,6 @@
 ﻿namespace CSMS.WinForms.Forms.Inventory
 {
-    partial class Inventory
+    partial class InventoryForm
     {
         /// <summary> 
         /// Required designer variable.
