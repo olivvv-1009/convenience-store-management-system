@@ -20,467 +20,487 @@
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
+		#region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            tableLayoutPanel1 = new TableLayoutPanel();
-            tableLayoutPanel2 = new TableLayoutPanel();
-            label1 = new Label();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            Search = new Button();
-            textBox1 = new TextBox();
-            pnlContent = new FlowLayoutPanel();
-            panel1 = new Panel();
-            tableLayoutPanel4 = new TableLayoutPanel();
-            label2 = new Label();
-            label3 = new Label();
-            discount = new Label();
-            member = new Label();
-            tableLayoutPanel5 = new TableLayoutPanel();
-            label5 = new Label();
-            lblsubtotal = new Label();
-            tableLayoutPanel6 = new TableLayoutPanel();
-            total1 = new Label();
-            lbltotal = new Label();
-            label6 = new Label();
-            tableLayoutPanel7 = new TableLayoutPanel();
-            cash = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            tableLayoutPanel8 = new TableLayoutPanel();
-            checkout = new Button();
-            pnlCartArea = new Panel();
-            lblEmptyCart = new Label();
-            flowCartItems = new Panel();
-            lblDiscount = new TextBox();
-            tableLayoutPanel1.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
-            tableLayoutPanel3.SuspendLayout();
-            panel1.SuspendLayout();
-            tableLayoutPanel4.SuspendLayout();
-            tableLayoutPanel5.SuspendLayout();
-            tableLayoutPanel6.SuspendLayout();
-            tableLayoutPanel7.SuspendLayout();
-            tableLayoutPanel8.SuspendLayout();
-            pnlCartArea.SuspendLayout();
-            SuspendLayout();
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
-            tableLayoutPanel1.Controls.Add(panel1, 1, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(851, 483);
-            tableLayoutPanel1.TabIndex = 0;
-            // 
-            // tableLayoutPanel2
-            // 
-            tableLayoutPanel2.ColumnCount = 1;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Controls.Add(label1, 0, 0);
-            tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 1);
-            tableLayoutPanel2.Controls.Add(pnlContent, 0, 2);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 3);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 3;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10.8534288F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10.2968454F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 78.8497238F));
-            tableLayoutPanel2.Size = new Size(547, 477);
-            tableLayoutPanel2.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Dock = DockStyle.Fill;
-            label1.Font = new Font("Times New Roman", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(3, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(541, 51);
-            label1.TabIndex = 0;
-            label1.Text = "Products";
-            label1.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.ColumnCount = 2;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel3.Controls.Add(Search, 1, 0);
-            tableLayoutPanel3.Controls.Add(textBox1, 0, 0);
-            tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 54);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(541, 43);
-            tableLayoutPanel3.TabIndex = 1;
-            // 
-            // Search
-            // 
-            Search.Dock = DockStyle.Fill;
-            Search.Location = new Point(489, 3);
-            Search.Name = "Search";
-            Search.Size = new Size(49, 37);
-            Search.TabIndex = 0;
-            Search.Text = "Search";
-            Search.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(3, 3);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Search products...";
-            textBox1.Size = new Size(480, 27);
-            textBox1.TabIndex = 1;
-            // 
-            // pnlContent
-            // 
-            pnlContent.AutoScroll = true;
-            pnlContent.Dock = DockStyle.Fill;
-            pnlContent.Location = new Point(3, 103);
-            pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(541, 371);
-            pnlContent.TabIndex = 2;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(tableLayoutPanel4);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(556, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(292, 477);
-            panel1.TabIndex = 1;
-            // 
-            // tableLayoutPanel4
-            // 
-            tableLayoutPanel4.ColumnCount = 1;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Controls.Add(label2, 0, 0);
-            tableLayoutPanel4.Controls.Add(label3, 0, 2);
-            tableLayoutPanel4.Controls.Add(discount, 0, 3);
-            tableLayoutPanel4.Controls.Add(member, 0, 4);
-            tableLayoutPanel4.Controls.Add(tableLayoutPanel5, 0, 6);
-            tableLayoutPanel4.Controls.Add(tableLayoutPanel6, 0, 7);
-            tableLayoutPanel4.Controls.Add(label6, 0, 8);
-            tableLayoutPanel4.Controls.Add(tableLayoutPanel7, 0, 9);
-            tableLayoutPanel4.Controls.Add(tableLayoutPanel8, 0, 10);
-            tableLayoutPanel4.Controls.Add(pnlCartArea, 0, 1);
-            tableLayoutPanel4.Controls.Add(lblDiscount, 0, 5);
-            tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(0, 0);
-            tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 11;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 7.919213F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 30.69705F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5.93941F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5.93941F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5.93941F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5.60321665F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 8.093536F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 7.91921425F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5.93941F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 7.91921425F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 8.090909F));
-            tableLayoutPanel4.Size = new Size(292, 477);
-            tableLayoutPanel4.TabIndex = 0;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Dock = DockStyle.Fill;
-            label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(3, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(286, 37);
-            label2.TabIndex = 0;
-            label2.Text = "Current Invoice";
-            label2.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Dock = DockStyle.Fill;
-            label3.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(3, 183);
-            label3.Name = "label3";
-            label3.Size = new Size(286, 28);
-            label3.TabIndex = 2;
-            label3.Text = "Discount (%)";
-            // 
-            // discount
-            // 
-            discount.AutoSize = true;
-            discount.Dock = DockStyle.Fill;
-            discount.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            discount.Location = new Point(3, 211);
-            discount.Name = "discount";
-            discount.Size = new Size(286, 28);
-            discount.TabIndex = 3;
-            discount.Text = "0";
-            // 
-            // member
-            // 
-            member.AutoSize = true;
-            member.Dock = DockStyle.Fill;
-            member.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            member.Location = new Point(3, 239);
-            member.Name = "member";
-            member.Size = new Size(286, 28);
-            member.TabIndex = 4;
-            member.Text = "Member Number";
-            // 
-            // tableLayoutPanel5
-            // 
-            tableLayoutPanel5.ColumnCount = 2;
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.Controls.Add(label5, 0, 0);
-            tableLayoutPanel5.Controls.Add(lblsubtotal, 1, 0);
-            tableLayoutPanel5.Dock = DockStyle.Fill;
-            tableLayoutPanel5.Location = new Point(3, 296);
-            tableLayoutPanel5.Name = "tableLayoutPanel5";
-            tableLayoutPanel5.RowCount = 1;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.Size = new Size(286, 32);
-            tableLayoutPanel5.TabIndex = 7;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Dock = DockStyle.Fill;
-            label5.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(3, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(137, 32);
-            label5.TabIndex = 0;
-            label5.Text = "Subtotal";
-            label5.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblsubtotal
-            // 
-            lblsubtotal.AutoSize = true;
-            lblsubtotal.Dock = DockStyle.Fill;
-            lblsubtotal.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblsubtotal.Location = new Point(146, 0);
-            lblsubtotal.Name = "lblsubtotal";
-            lblsubtotal.Size = new Size(137, 32);
-            lblsubtotal.TabIndex = 1;
-            lblsubtotal.Text = "0";
-            lblsubtotal.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // tableLayoutPanel6
-            // 
-            tableLayoutPanel6.ColumnCount = 2;
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel6.Controls.Add(total1, 0, 0);
-            tableLayoutPanel6.Controls.Add(lbltotal, 1, 0);
-            tableLayoutPanel6.Dock = DockStyle.Fill;
-            tableLayoutPanel6.Location = new Point(3, 334);
-            tableLayoutPanel6.Name = "tableLayoutPanel6";
-            tableLayoutPanel6.RowCount = 1;
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel6.Size = new Size(286, 31);
-            tableLayoutPanel6.TabIndex = 8;
-            // 
-            // total1
-            // 
-            total1.AutoSize = true;
-            total1.Dock = DockStyle.Fill;
-            total1.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            total1.Location = new Point(3, 0);
-            total1.Name = "total1";
-            total1.Size = new Size(137, 31);
-            total1.TabIndex = 0;
-            total1.Text = "Total";
-            total1.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lbltotal
-            // 
-            lbltotal.AutoSize = true;
-            lbltotal.Dock = DockStyle.Fill;
-            lbltotal.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbltotal.Location = new Point(146, 0);
-            lbltotal.Name = "lbltotal";
-            lbltotal.Size = new Size(137, 31);
-            lbltotal.TabIndex = 1;
-            lbltotal.Text = "0";
-            lbltotal.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Dock = DockStyle.Fill;
-            label6.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(3, 368);
-            label6.Name = "label6";
-            label6.Size = new Size(286, 28);
-            label6.TabIndex = 9;
-            label6.Text = "Payment Method";
-            label6.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel7
-            // 
-            tableLayoutPanel7.ColumnCount = 3;
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34F));
-            tableLayoutPanel7.Controls.Add(cash, 0, 0);
-            tableLayoutPanel7.Controls.Add(button2, 1, 0);
-            tableLayoutPanel7.Controls.Add(button3, 2, 0);
-            tableLayoutPanel7.Dock = DockStyle.Fill;
-            tableLayoutPanel7.Location = new Point(3, 399);
-            tableLayoutPanel7.Name = "tableLayoutPanel7";
-            tableLayoutPanel7.RowCount = 1;
-            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel7.Size = new Size(286, 31);
-            tableLayoutPanel7.TabIndex = 10;
-            // 
-            // cash
-            // 
-            cash.Dock = DockStyle.Fill;
-            cash.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cash.Location = new Point(3, 3);
-            cash.Name = "cash";
-            cash.Size = new Size(88, 25);
-            cash.TabIndex = 0;
-            cash.Text = "Cash";
-            cash.UseVisualStyleBackColor = true;
-            cash.Click += cash_Click;
-            // 
-            // button2
-            // 
-            button2.Dock = DockStyle.Fill;
-            button2.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.Location = new Point(97, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(88, 25);
-            button2.TabIndex = 1;
-            button2.Text = "Bank";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // button3
-            // 
-            button3.Dock = DockStyle.Fill;
-            button3.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button3.Location = new Point(191, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(92, 25);
-            button3.TabIndex = 2;
-            button3.Text = "E-Wallet";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
-            // tableLayoutPanel8
-            // 
-            tableLayoutPanel8.ColumnCount = 2;
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.Controls.Add(checkout, 1, 0);
-            tableLayoutPanel8.Dock = DockStyle.Fill;
-            tableLayoutPanel8.Location = new Point(3, 436);
-            tableLayoutPanel8.Name = "tableLayoutPanel8";
-            tableLayoutPanel8.RowCount = 1;
-            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel8.Size = new Size(286, 38);
-            tableLayoutPanel8.TabIndex = 11;
-            // 
-            // checkout
-            // 
-            checkout.Dock = DockStyle.Fill;
-            checkout.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            checkout.Location = new Point(146, 3);
-            checkout.Name = "checkout";
-            checkout.Size = new Size(137, 32);
-            checkout.TabIndex = 1;
-            checkout.Text = "Checkout";
-            checkout.UseVisualStyleBackColor = true;
-            checkout.Click += checkout_Click;
-            // 
-            // pnlCartArea
-            // 
-            pnlCartArea.Controls.Add(lblEmptyCart);
-            pnlCartArea.Controls.Add(flowCartItems);
-            pnlCartArea.Dock = DockStyle.Fill;
-            pnlCartArea.Location = new Point(3, 40);
-            pnlCartArea.Name = "pnlCartArea";
-            pnlCartArea.Size = new Size(286, 140);
-            pnlCartArea.TabIndex = 12;
-            // 
-            // lblEmptyCart
-            // 
-            lblEmptyCart.Dock = DockStyle.Top;
-            lblEmptyCart.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblEmptyCart.ForeColor = SystemColors.ControlDarkDark;
-            lblEmptyCart.Location = new Point(0, 0);
-            lblEmptyCart.Name = "lblEmptyCart";
-            lblEmptyCart.Size = new Size(286, 69);
-            lblEmptyCart.TabIndex = 0;
-            lblEmptyCart.Text = "Cart is empty";
-            lblEmptyCart.TextAlign = ContentAlignment.BottomCenter;
-            // 
-            // flowCartItems
-            // 
-            flowCartItems.Dock = DockStyle.Fill;
-            flowCartItems.Location = new Point(0, 0);
-            flowCartItems.Name = "flowCartItems";
-            flowCartItems.Size = new Size(286, 140);
-            flowCartItems.TabIndex = 1;
-            // 
-            // lblDiscount
-            // 
-            lblDiscount.Dock = DockStyle.Fill;
-            lblDiscount.Location = new Point(3, 270);
-            lblDiscount.Name = "lblDiscount";
-            lblDiscount.Size = new Size(286, 27);
-            lblDiscount.TabIndex = 13;
-            lblDiscount.TextChanged += lblDiscount_TextChanged;
-            // 
-            // CreateInvoice
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(tableLayoutPanel1);
-            Name = "CreateInvoice";
-            Size = new Size(851, 483);
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel2.ResumeLayout(false);
-            tableLayoutPanel2.PerformLayout();
-            tableLayoutPanel3.ResumeLayout(false);
-            tableLayoutPanel3.PerformLayout();
-            panel1.ResumeLayout(false);
-            tableLayoutPanel4.ResumeLayout(false);
-            tableLayoutPanel4.PerformLayout();
-            tableLayoutPanel5.ResumeLayout(false);
-            tableLayoutPanel5.PerformLayout();
-            tableLayoutPanel6.ResumeLayout(false);
-            tableLayoutPanel6.PerformLayout();
-            tableLayoutPanel7.ResumeLayout(false);
-            tableLayoutPanel8.ResumeLayout(false);
-            pnlCartArea.ResumeLayout(false);
-            ResumeLayout(false);
-        }
+		/// <summary> 
+		/// Required method for Designer support - do not modify 
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			tableLayoutPanel1 = new TableLayoutPanel();
+			tableLayoutPanel2 = new TableLayoutPanel();
+			label1 = new Label();
+			tableLayoutPanel3 = new TableLayoutPanel();
+			Search = new Button();
+			textBox1 = new TextBox();
+			pnlContent = new FlowLayoutPanel();
+			panel1 = new Panel();
+			tableLayoutPanel4 = new TableLayoutPanel();
+			label2 = new Label();
+			label3 = new Label();
+			discount = new Label();
+			member = new Label();
+			tableLayoutPanel5 = new TableLayoutPanel();
+			label5 = new Label();
+			lblsubtotal = new Label();
+			tableLayoutPanel6 = new TableLayoutPanel();
+			total1 = new Label();
+			lbltotal = new Label();
+			label6 = new Label();
+			tableLayoutPanel7 = new TableLayoutPanel();
+			cash = new Button();
+			button2 = new Button();
+			button3 = new Button();
+			tableLayoutPanel8 = new TableLayoutPanel();
+			checkout = new Button();
+			pnlCartArea = new Panel();
+			lblEmptyCart = new Label();
+			flowCartItems = new Panel();
+			lblDiscount = new TextBox();
+			tableLayoutPanel1.SuspendLayout();
+			tableLayoutPanel2.SuspendLayout();
+			tableLayoutPanel3.SuspendLayout();
+			panel1.SuspendLayout();
+			tableLayoutPanel4.SuspendLayout();
+			tableLayoutPanel5.SuspendLayout();
+			tableLayoutPanel6.SuspendLayout();
+			tableLayoutPanel7.SuspendLayout();
+			tableLayoutPanel8.SuspendLayout();
+			pnlCartArea.SuspendLayout();
+			SuspendLayout();
+			// 
+			// tableLayoutPanel1
+			// 
+			tableLayoutPanel1.ColumnCount = 2;
+			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65F));
+			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
+			tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
+			tableLayoutPanel1.Controls.Add(panel1, 1, 0);
+			tableLayoutPanel1.Dock = DockStyle.Fill;
+			tableLayoutPanel1.Location = new Point(0, 0);
+			tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
+			tableLayoutPanel1.Name = "tableLayoutPanel1";
+			tableLayoutPanel1.RowCount = 1;
+			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+			tableLayoutPanel1.Size = new Size(745, 362);
+			tableLayoutPanel1.TabIndex = 0;
+			// 
+			// tableLayoutPanel2
+			// 
+			tableLayoutPanel2.ColumnCount = 1;
+			tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			tableLayoutPanel2.Controls.Add(label1, 0, 0);
+			tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 1);
+			tableLayoutPanel2.Controls.Add(pnlContent, 0, 2);
+			tableLayoutPanel2.Dock = DockStyle.Fill;
+			tableLayoutPanel2.Location = new Point(3, 2);
+			tableLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
+			tableLayoutPanel2.Name = "tableLayoutPanel2";
+			tableLayoutPanel2.RowCount = 3;
+			tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10.8534288F));
+			tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10.2968454F));
+			tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 78.8497238F));
+			tableLayoutPanel2.Size = new Size(478, 358);
+			tableLayoutPanel2.TabIndex = 0;
+			// 
+			// label1
+			// 
+			label1.AutoSize = true;
+			label1.Dock = DockStyle.Fill;
+			label1.Font = new Font("Times New Roman", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			label1.Location = new Point(3, 0);
+			label1.Name = "label1";
+			label1.Size = new Size(472, 38);
+			label1.TabIndex = 0;
+			label1.Text = "Products";
+			label1.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// tableLayoutPanel3
+			// 
+			tableLayoutPanel3.ColumnCount = 2;
+			tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90F));
+			tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+			tableLayoutPanel3.Controls.Add(Search, 1, 0);
+			tableLayoutPanel3.Controls.Add(textBox1, 0, 0);
+			tableLayoutPanel3.Dock = DockStyle.Fill;
+			tableLayoutPanel3.Location = new Point(3, 40);
+			tableLayoutPanel3.Margin = new Padding(3, 2, 3, 2);
+			tableLayoutPanel3.Name = "tableLayoutPanel3";
+			tableLayoutPanel3.RowCount = 1;
+			tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+			tableLayoutPanel3.Size = new Size(472, 32);
+			tableLayoutPanel3.TabIndex = 1;
+			// 
+			// Search
+			// 
+			Search.Dock = DockStyle.Fill;
+			Search.Location = new Point(427, 2);
+			Search.Margin = new Padding(3, 2, 3, 2);
+			Search.Name = "Search";
+			Search.Size = new Size(42, 28);
+			Search.TabIndex = 0;
+			Search.Text = "Search";
+			Search.UseVisualStyleBackColor = true;
+			// 
+			// textBox1
+			// 
+			textBox1.Dock = DockStyle.Fill;
+			textBox1.Location = new Point(3, 2);
+			textBox1.Margin = new Padding(3, 2, 3, 2);
+			textBox1.Name = "textBox1";
+			textBox1.PlaceholderText = "Search products...";
+			textBox1.Size = new Size(418, 23);
+			textBox1.TabIndex = 1;
+			// 
+			// pnlContent
+			// 
+			pnlContent.AutoScroll = true;
+			pnlContent.Dock = DockStyle.Fill;
+			pnlContent.Location = new Point(3, 76);
+			pnlContent.Margin = new Padding(3, 2, 3, 2);
+			pnlContent.Name = "pnlContent";
+			pnlContent.Size = new Size(472, 280);
+			pnlContent.TabIndex = 2;
+			// 
+			// panel1
+			// 
+			panel1.Controls.Add(tableLayoutPanel4);
+			panel1.Dock = DockStyle.Fill;
+			panel1.Location = new Point(487, 2);
+			panel1.Margin = new Padding(3, 2, 3, 2);
+			panel1.Name = "panel1";
+			panel1.Size = new Size(255, 358);
+			panel1.TabIndex = 1;
+			// 
+			// tableLayoutPanel4
+			// 
+			tableLayoutPanel4.ColumnCount = 1;
+			tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			tableLayoutPanel4.Controls.Add(label2, 0, 0);
+			tableLayoutPanel4.Controls.Add(label3, 0, 2);
+			tableLayoutPanel4.Controls.Add(discount, 0, 3);
+			tableLayoutPanel4.Controls.Add(member, 0, 4);
+			tableLayoutPanel4.Controls.Add(tableLayoutPanel5, 0, 6);
+			tableLayoutPanel4.Controls.Add(tableLayoutPanel6, 0, 7);
+			tableLayoutPanel4.Controls.Add(label6, 0, 8);
+			tableLayoutPanel4.Controls.Add(tableLayoutPanel7, 0, 9);
+			tableLayoutPanel4.Controls.Add(tableLayoutPanel8, 0, 10);
+			tableLayoutPanel4.Controls.Add(pnlCartArea, 0, 1);
+			tableLayoutPanel4.Controls.Add(lblDiscount, 0, 5);
+			tableLayoutPanel4.Dock = DockStyle.Fill;
+			tableLayoutPanel4.Location = new Point(0, 0);
+			tableLayoutPanel4.Margin = new Padding(3, 2, 3, 2);
+			tableLayoutPanel4.Name = "tableLayoutPanel4";
+			tableLayoutPanel4.RowCount = 11;
+			tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 7.919213F));
+			tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 30.69705F));
+			tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5.93941F));
+			tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5.93941F));
+			tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5.93941F));
+			tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5.60321665F));
+			tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 8.093536F));
+			tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 7.91921425F));
+			tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5.93941F));
+			tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 7.91921425F));
+			tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 8.090909F));
+			tableLayoutPanel4.Size = new Size(255, 358);
+			tableLayoutPanel4.TabIndex = 0;
+			// 
+			// label2
+			// 
+			label2.AutoSize = true;
+			label2.Dock = DockStyle.Fill;
+			label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			label2.Location = new Point(3, 0);
+			label2.Name = "label2";
+			label2.Size = new Size(249, 28);
+			label2.TabIndex = 0;
+			label2.Text = "Current Invoice";
+			label2.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// label3
+			// 
+			label3.AutoSize = true;
+			label3.Dock = DockStyle.Fill;
+			label3.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			label3.Location = new Point(3, 137);
+			label3.Name = "label3";
+			label3.Size = new Size(249, 21);
+			label3.TabIndex = 2;
+			label3.Text = "Discount (%)";
+			// 
+			// discount
+			// 
+			discount.AutoSize = true;
+			discount.Dock = DockStyle.Fill;
+			discount.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			discount.Location = new Point(3, 158);
+			discount.Name = "discount";
+			discount.Size = new Size(249, 21);
+			discount.TabIndex = 3;
+			discount.Text = "0";
+			// 
+			// member
+			// 
+			member.AutoSize = true;
+			member.Dock = DockStyle.Fill;
+			member.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			member.Location = new Point(3, 179);
+			member.Name = "member";
+			member.Size = new Size(249, 21);
+			member.TabIndex = 4;
+			member.Text = "Member Number";
+			// 
+			// tableLayoutPanel5
+			// 
+			tableLayoutPanel5.ColumnCount = 2;
+			tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+			tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+			tableLayoutPanel5.Controls.Add(label5, 0, 0);
+			tableLayoutPanel5.Controls.Add(lblsubtotal, 1, 0);
+			tableLayoutPanel5.Dock = DockStyle.Fill;
+			tableLayoutPanel5.Location = new Point(3, 222);
+			tableLayoutPanel5.Margin = new Padding(3, 2, 3, 2);
+			tableLayoutPanel5.Name = "tableLayoutPanel5";
+			tableLayoutPanel5.RowCount = 1;
+			tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+			tableLayoutPanel5.Size = new Size(249, 24);
+			tableLayoutPanel5.TabIndex = 7;
+			// 
+			// label5
+			// 
+			label5.AutoSize = true;
+			label5.Dock = DockStyle.Fill;
+			label5.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			label5.Location = new Point(3, 0);
+			label5.Name = "label5";
+			label5.Size = new Size(118, 24);
+			label5.TabIndex = 0;
+			label5.Text = "Subtotal";
+			label5.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// lblsubtotal
+			// 
+			lblsubtotal.AutoSize = true;
+			lblsubtotal.Dock = DockStyle.Fill;
+			lblsubtotal.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			lblsubtotal.Location = new Point(127, 0);
+			lblsubtotal.Name = "lblsubtotal";
+			lblsubtotal.Size = new Size(119, 24);
+			lblsubtotal.TabIndex = 1;
+			lblsubtotal.Text = "0";
+			lblsubtotal.TextAlign = ContentAlignment.MiddleRight;
+			// 
+			// tableLayoutPanel6
+			// 
+			tableLayoutPanel6.ColumnCount = 2;
+			tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+			tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+			tableLayoutPanel6.Controls.Add(total1, 0, 0);
+			tableLayoutPanel6.Controls.Add(lbltotal, 1, 0);
+			tableLayoutPanel6.Dock = DockStyle.Fill;
+			tableLayoutPanel6.Location = new Point(3, 250);
+			tableLayoutPanel6.Margin = new Padding(3, 2, 3, 2);
+			tableLayoutPanel6.Name = "tableLayoutPanel6";
+			tableLayoutPanel6.RowCount = 1;
+			tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+			tableLayoutPanel6.Size = new Size(249, 24);
+			tableLayoutPanel6.TabIndex = 8;
+			// 
+			// total1
+			// 
+			total1.AutoSize = true;
+			total1.Dock = DockStyle.Fill;
+			total1.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+			total1.Location = new Point(3, 0);
+			total1.Name = "total1";
+			total1.Size = new Size(118, 24);
+			total1.TabIndex = 0;
+			total1.Text = "Total";
+			total1.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// lbltotal
+			// 
+			lbltotal.AutoSize = true;
+			lbltotal.Dock = DockStyle.Fill;
+			lbltotal.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			lbltotal.Location = new Point(127, 0);
+			lbltotal.Name = "lbltotal";
+			lbltotal.Size = new Size(119, 24);
+			lbltotal.TabIndex = 1;
+			lbltotal.Text = "0";
+			lbltotal.TextAlign = ContentAlignment.MiddleRight;
+			// 
+			// label6
+			// 
+			label6.AutoSize = true;
+			label6.Dock = DockStyle.Fill;
+			label6.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			label6.Location = new Point(3, 276);
+			label6.Name = "label6";
+			label6.Size = new Size(249, 21);
+			label6.TabIndex = 9;
+			label6.Text = "Payment Method";
+			label6.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// tableLayoutPanel7
+			// 
+			tableLayoutPanel7.ColumnCount = 3;
+			tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
+			tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
+			tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34F));
+			tableLayoutPanel7.Controls.Add(cash, 0, 0);
+			tableLayoutPanel7.Controls.Add(button2, 1, 0);
+			tableLayoutPanel7.Controls.Add(button3, 2, 0);
+			tableLayoutPanel7.Dock = DockStyle.Fill;
+			tableLayoutPanel7.Location = new Point(3, 299);
+			tableLayoutPanel7.Margin = new Padding(3, 2, 3, 2);
+			tableLayoutPanel7.Name = "tableLayoutPanel7";
+			tableLayoutPanel7.RowCount = 1;
+			tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+			tableLayoutPanel7.Size = new Size(249, 24);
+			tableLayoutPanel7.TabIndex = 10;
+			// 
+			// cash
+			// 
+			cash.Dock = DockStyle.Fill;
+			cash.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			cash.Location = new Point(3, 2);
+			cash.Margin = new Padding(3, 2, 3, 2);
+			cash.Name = "cash";
+			cash.Size = new Size(76, 20);
+			cash.TabIndex = 0;
+			cash.Text = "Cash";
+			cash.UseVisualStyleBackColor = true;
+			cash.Click += cash_Click;
+			// 
+			// button2
+			// 
+			button2.Dock = DockStyle.Fill;
+			button2.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			button2.Location = new Point(85, 2);
+			button2.Margin = new Padding(3, 2, 3, 2);
+			button2.Name = "button2";
+			button2.Size = new Size(76, 20);
+			button2.TabIndex = 1;
+			button2.Text = "Bank";
+			button2.UseVisualStyleBackColor = true;
+			button2.Click += button2_Click;
+			// 
+			// button3
+			// 
+			button3.Dock = DockStyle.Fill;
+			button3.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			button3.Location = new Point(167, 2);
+			button3.Margin = new Padding(3, 2, 3, 2);
+			button3.Name = "button3";
+			button3.Size = new Size(79, 20);
+			button3.TabIndex = 2;
+			button3.Text = "E-Wallet";
+			button3.UseVisualStyleBackColor = true;
+			button3.Click += button3_Click;
+			// 
+			// tableLayoutPanel8
+			// 
+			tableLayoutPanel8.ColumnCount = 2;
+			tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+			tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+			tableLayoutPanel8.Controls.Add(checkout, 1, 0);
+			tableLayoutPanel8.Dock = DockStyle.Fill;
+			tableLayoutPanel8.Location = new Point(3, 327);
+			tableLayoutPanel8.Margin = new Padding(3, 2, 3, 2);
+			tableLayoutPanel8.Name = "tableLayoutPanel8";
+			tableLayoutPanel8.RowCount = 1;
+			tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+			tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+			tableLayoutPanel8.Size = new Size(249, 29);
+			tableLayoutPanel8.TabIndex = 11;
+			// 
+			// checkout
+			// 
+			checkout.Dock = DockStyle.Fill;
+			checkout.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			checkout.Location = new Point(127, 2);
+			checkout.Margin = new Padding(3, 2, 3, 2);
+			checkout.Name = "checkout";
+			checkout.Size = new Size(119, 25);
+			checkout.TabIndex = 1;
+			checkout.Text = "Checkout";
+			checkout.UseVisualStyleBackColor = true;
+			checkout.Click += checkout_Click;
+			// 
+			// pnlCartArea
+			// 
+			pnlCartArea.Controls.Add(lblEmptyCart);
+			pnlCartArea.Controls.Add(flowCartItems);
+			pnlCartArea.Dock = DockStyle.Fill;
+			pnlCartArea.Location = new Point(3, 30);
+			pnlCartArea.Margin = new Padding(3, 2, 3, 2);
+			pnlCartArea.Name = "pnlCartArea";
+			pnlCartArea.Size = new Size(249, 105);
+			pnlCartArea.TabIndex = 12;
+			// 
+			// lblEmptyCart
+			// 
+			lblEmptyCart.Dock = DockStyle.Top;
+			lblEmptyCart.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			lblEmptyCart.ForeColor = SystemColors.ControlDarkDark;
+			lblEmptyCart.Location = new Point(0, 0);
+			lblEmptyCart.Name = "lblEmptyCart";
+			lblEmptyCart.Size = new Size(249, 52);
+			lblEmptyCart.TabIndex = 0;
+			lblEmptyCart.Text = "Cart is empty";
+			lblEmptyCart.TextAlign = ContentAlignment.BottomCenter;
+			// 
+			// flowCartItems
+			// 
+			flowCartItems.Dock = DockStyle.Fill;
+			flowCartItems.Location = new Point(0, 0);
+			flowCartItems.Margin = new Padding(3, 2, 3, 2);
+			flowCartItems.Name = "flowCartItems";
+			flowCartItems.Size = new Size(249, 105);
+			flowCartItems.TabIndex = 1;
+			// 
+			// lblDiscount
+			// 
+			lblDiscount.Dock = DockStyle.Fill;
+			lblDiscount.Location = new Point(3, 202);
+			lblDiscount.Margin = new Padding(3, 2, 3, 2);
+			lblDiscount.Name = "lblDiscount";
+			lblDiscount.Size = new Size(249, 23);
+			lblDiscount.TabIndex = 13;
+			lblDiscount.TextChanged += lblDiscount_TextChanged;
+			// 
+			// CreateInvoice
+			// 
+			AutoScaleDimensions = new SizeF(7F, 15F);
+			AutoScaleMode = AutoScaleMode.Font;
+			Controls.Add(tableLayoutPanel1);
+			Margin = new Padding(3, 2, 3, 2);
+			Name = "CreateInvoice";
+			Size = new Size(745, 362);
+			tableLayoutPanel1.ResumeLayout(false);
+			tableLayoutPanel2.ResumeLayout(false);
+			tableLayoutPanel2.PerformLayout();
+			tableLayoutPanel3.ResumeLayout(false);
+			tableLayoutPanel3.PerformLayout();
+			panel1.ResumeLayout(false);
+			tableLayoutPanel4.ResumeLayout(false);
+			tableLayoutPanel4.PerformLayout();
+			tableLayoutPanel5.ResumeLayout(false);
+			tableLayoutPanel5.PerformLayout();
+			tableLayoutPanel6.ResumeLayout(false);
+			tableLayoutPanel6.PerformLayout();
+			tableLayoutPanel7.ResumeLayout(false);
+			tableLayoutPanel8.ResumeLayout(false);
+			pnlCartArea.ResumeLayout(false);
+			ResumeLayout(false);
+		}
 
-        #endregion
+		#endregion
 
-        private TableLayoutPanel tableLayoutPanel1;
+		private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
         private Label label1;
         private TableLayoutPanel tableLayoutPanel3;
