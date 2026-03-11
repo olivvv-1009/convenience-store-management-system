@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace convenience_store_management_system.Models
 {
-    internal class Customer
+    public class Customer
     {
+        public int id { get; set; }
+        public string phoneNumber { get; set; }
+        public string memberLevel { get; set; }
+        public double loyaltyPoints { get; set; }
+
     }
 }
