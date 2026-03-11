@@ -58,7 +58,7 @@
 			// 
 			panel1.Location = new Point(14, 114);
 			panel1.Name = "panel1";
-			panel1.Size = new Size(788, 249);
+			panel1.Size = new Size(703, 249);
 			panel1.TabIndex = 2;
 			// 
 			// PromotionForm
