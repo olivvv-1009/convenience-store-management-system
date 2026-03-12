@@ -1,53 +1,32 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
-using CSMS.Core.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using convenience_store_management_system.Models;
 
-namespace CSMS.Core.Repositories
+namespace convenience_store_management_system.Repositories
 {
-    public class UserRepository
+    internal class UserRepository
     {
-        private readonly string connectionString =
-        "Server=LAPTOP-7A534JGV\\SQLEXPRESS;Database=CSMS_DB;Trusted_Connection=True;TrustServerCertificate=True;";
+        private List<User> users = new List<User>();
 
-        public User? GetUserByUsername(string username)
+        public User GetUserByUsername(string username)
         {
-            if (string.IsNullOrWhiteSpace(username))
-                return null;
+            return users.FirstOrDefault(u => u.Username == username);
+        }
 
-            User? user = null;
+        public bool UpdatePassword(int userId, string newPassword)
+        {
+            var user = users.FirstOrDefault(u => u.UserId == userId);
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            if (user != null)
             {
-                conn.Open();
-
-                string query = @"
-                    SELECT u.UserId, u.Username, u.PasswordHash, r.RoleName, u.IsLocked
-                    FROM Users u
-                    JOIN Roles r ON u.RoleId = r.RoleId
-                    WHERE u.Username = @Username";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Username", username);
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            user = new User
-                            {
-                                Id = Convert.ToInt32(reader["UserId"]),
-                                Username = reader["Username"]?.ToString() ?? "",
-                                Password = reader["PasswordHash"]?.ToString() ?? "",
-                                Role = reader["RoleName"]?.ToString() ?? "",
-                                IsActive = !Convert.ToBoolean(reader["IsLocked"])
-                            };
-                        }
-                    }
-                }
+                user.PasswordHash = newPassword;
+                return true;
             }
 
-            return user;
+            return false;
         }
     }
 }
