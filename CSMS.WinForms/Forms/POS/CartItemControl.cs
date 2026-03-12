@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSMS.WinForms.Controls
+namespace CSMS.WinForms.Forms.POS
 {
-    public partial class ProductItemControl : UserControl
+    public partial class CartItemControl : UserControl
     {
-        public ProductItemControl()
+        public CartItemControl()
         {
             InitializeComponent();
-        }
-
-        private void ProductItemControl_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

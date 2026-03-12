@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSMS.WinForms.Controls
+namespace CSMS.WinForms.Forms.Main
 {
-    public partial class ProductItemControl : UserControl
+    public partial class MainForm_Admin : Form
     {
-        public ProductItemControl()
+        public MainForm_Admin()
         {
             InitializeComponent();
-        }
-
-        private void ProductItemControl_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSMS.WinForms.Controls
+namespace CSMS.WinForms.Forms.Employees
 {
-    public partial class ProductItemControl : UserControl
+    public partial class Employees : UserControl
     {
-        public ProductItemControl()
+        public Employees()
         {
             InitializeComponent();
-        }
-
-        private void ProductItemControl_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -9,7 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Forms\Customer\Customer.cs" />
+    <Compile Remove="Forms\Customer\Customer.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Forms\Customer\Customer.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\convenience-store-management-system\convenience-store-management-system.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Forms\Customer\" />
   </ItemGroup>
 
 </Project>
