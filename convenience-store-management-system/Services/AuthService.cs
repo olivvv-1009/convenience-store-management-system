@@ -1,34 +1,37 @@
-﻿using CSMS.Core.Models;
-using CSMS.Core.Repositories;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using convenience_store_management_system.Models;
+using convenience_store_management_system.Repositories;
 
-namespace CSMS.Core.Services
+namespace convenience_store_management_system.Services
 {
-    public class AuthService
+    internal class AuthService
     {
-        private readonly UserRepository userRepository;
+        private readonly UserRepository _userRepo;
 
         public AuthService()
         {
-            userRepository = new UserRepository();
+            _userRepo = new UserRepository();
         }
 
-        public User? Login(string username, string password)
+        public User Login(string username, string password)
         {
-            // lấy user từ database
-            var user = userRepository.GetUserByUsername(username);
+            var user = _userRepo.GetUserByUsername(username);
 
-            if (user == null)
-                return null;
+            if (user != null && user.PasswordHash == password)
+            {
+                return user;
+            }
 
-            // kiểm tra password
-            if (user.Password != password)
-                return null;
+            return null;
+        }
 
-            // kiểm tra user có hoạt động không
-            if (!user.IsActive)
-                return null;
-
-            return user;
+        public bool ChangePassword(int userId, string newPassword)
+        {
+            return _userRepo.UpdatePassword(userId, newPassword);
         }
     }
 }

@@ -1,31 +1,35 @@
-﻿using CSMS.Models;
-using CSMS.Repositories;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using convenience_store_management_system.Models;
+using convenience_store_management_system.Repositories;
 
-namespace CSMS.Services
+namespace convenience_store_management_system.Services
 {
-    public class ProductService
+    internal class ProductService
     {
-        private ProductRepository productRepo = new ProductRepository();
+        private ProductRepository repo = new ProductRepository();
 
-        public List<Product> GetProducts()
+        public List<Product> GetAllProducts()
         {
-            return productRepo.GetAllProducts();
+            return repo.GetAll();
         }
 
         public void CreateProduct(Product product)
         {
-            productRepo.AddProduct(product);
+            repo.Add(product);
         }
 
         public void UpdateProduct(Product product)
         {
-            productRepo.UpdateProduct(product);
+            repo.Update(product);
         }
 
         public void DeleteProduct(int id)
         {
-            productRepo.DeleteProduct(id);
+            repo.Delete(id);
         }
     }
 }

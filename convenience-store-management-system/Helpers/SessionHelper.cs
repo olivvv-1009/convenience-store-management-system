@@ -1,9 +1,12 @@
-﻿using CSMS.Core.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CSMS.Core.Helpers
+namespace convenience_store_management_system.Helpers
 {
-    public static class SessionHelper
+    internal class SessionHelper
     {
-        public static User? CurrentUser { get; set; }
     }
 }

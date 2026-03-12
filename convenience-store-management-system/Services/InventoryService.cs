@@ -1,26 +1,24 @@
-﻿using CSMS.Models;
-using CSMS.Repositories;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using convenience_store_management_system.Repositories;
 
-namespace CSMS.Services
+namespace convenience_store_management_system.Services
 {
-    public class InventoryService
+    internal class InventoryService
     {
-        private InventoryRepository inventoryRepo = new InventoryRepository();
+        private InventoryRepository repo = new InventoryRepository();
 
-        public List<Inventory> GetInventory()
+        public int CheckStock(int productId)
         {
-            return inventoryRepo.GetInventory();
-        }
-
-        public Inventory GetByProductId(int productId)
-        {
-            return inventoryRepo.GetByProductId(productId);
+            return repo.GetQuantity(productId);
         }
 
         public void UpdateStock(int productId, int quantity)
         {
-            inventoryRepo.UpdateStock(productId, quantity);
+            repo.UpdateStock(productId, quantity);
         }
     }
 }

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSMS.WinForms.Forms.Inventory
+namespace CSMS.WinForms.Forms.Main
 {
-    public partial class ImportGood : UserControl
+    public partial class MainForm : Form
     {
-        public ImportGood()
+        public MainForm()
         {
             InitializeComponent();
         }
