@@ -15,6 +15,12 @@ namespace CSMS.WinForms.Forms.Customer
         public CustomerForm()
         {
             InitializeComponent();
+            this.Dock = DockStyle.Fill;
+        }
+
+        private void CustomerForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

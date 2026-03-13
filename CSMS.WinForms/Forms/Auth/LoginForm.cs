@@ -6,7 +6,6 @@ using CSMS.WinForms.Forms.Main;
 
 namespace CSMS.WinForms.Forms.Auth
 {
-<<<<<<< Updated upstream
 	public partial class LoginForm : Form
 	{
 		public LoginForm()
@@ -58,13 +57,4 @@ namespace CSMS.WinForms.Forms.Auth
 
 		}
 	}
-=======
-    public partial class LoginForm : Form
-    {
-        public LoginForm()
-        {
-            InitializeComponent();
-        }
-    }
->>>>>>> Stashed changes
 }

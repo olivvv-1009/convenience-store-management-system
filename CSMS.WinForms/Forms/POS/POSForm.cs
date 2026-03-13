@@ -19,6 +19,9 @@ namespace CSMS.WinForms.Forms.POS
         public POSForm()
         {
             InitializeComponent();
+            CreateInvoice uc = new CreateInvoice();
+            uc.Dock = DockStyle.Fill;
+            pnlContent.Controls.Add(uc);
         }
 
         private void CreateInvoice_Click(object sender, EventArgs e)

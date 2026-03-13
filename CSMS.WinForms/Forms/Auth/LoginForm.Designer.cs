@@ -58,7 +58,6 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanel1.Size = new Size(643, 361);
             tableLayoutPanel1.TabIndex = 3;
-            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
             // panel1
             // 
@@ -77,7 +76,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(253, 212);
             panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
             // 
             // btnlogin
             // 
@@ -110,7 +108,6 @@
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(177, 27);
             txtUsername.TabIndex = 5;
-            txtUsername.TextChanged += textBox1_TextChanged;
             // 
             // label5
             // 
@@ -123,7 +120,6 @@
             label5.Size = new Size(76, 20);
             label5.TabIndex = 4;
             label5.Text = "Password";
-            label5.Click += label5_Click;
             // 
             // label3
             // 
@@ -135,7 +131,6 @@
             label3.Size = new Size(80, 20);
             label3.TabIndex = 2;
             label3.Text = "Username";
-            label3.Click += label3_Click;
             // 
             // label2
             // 
@@ -149,7 +144,6 @@
             label2.Size = new Size(229, 19);
             label2.TabIndex = 1;
             label2.Text = "The text associated with the control.";
-            label2.Click += label2_Click;
             // 
             // label1
             // 
@@ -165,7 +159,6 @@
             label1.TabIndex = 0;
             label1.Text = "StorePOS Login";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            label1.Click += label1_Click;
             // 
             // LoginForm
             // 
@@ -186,35 +179,15 @@
             panel1.PerformLayout();
             ResumeLayout(false);
         }
-
-<<<<<<< Updated upstream
-		private Panel panel1;
-		private Label label1;
-		private Label label2;
-		private TextBox usernameTB;
-		private Label label3;
-		private TextBox passwordTB;
-		private Label label4;
-		private CheckBox rememberCB;
-		private Label label6;
-		private Button loginBtn;
-	}
-=======
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "LoginForm";
-        }
-
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel1;
+        private Button btnlogin;
+        private TextBox txtPassword;
+        private TextBox txtUsername;
+        private Label label5;
+        private Label label3;
+        private Label label2;
+        private Label label1;
         #endregion
     }
->>>>>>> Stashed changes
 }
