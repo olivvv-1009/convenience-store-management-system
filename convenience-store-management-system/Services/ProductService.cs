@@ -9,7 +9,7 @@ namespace CSMS.Services
     {
         private ProductRepository productRepo = new ProductRepository();
 
-        public List<Product> GetProducts()
+        public List<Product> GetAllProducts()
         {
             return productRepo.GetAllProducts();
         }
@@ -24,7 +24,7 @@ namespace CSMS.Services
             productRepo.UpdateProduct(product);
         }
 
-        public void DeleteProduct(int id)
+        public void DeleteProduct(string id)
         {
             productRepo.DeleteProduct(id);
         }

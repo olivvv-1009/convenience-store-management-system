@@ -28,31 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            panelProduct = new Panel();
+            lblCode = new Label();
+            panelProduct.SuspendLayout();
             SuspendLayout();
             // 
-            // button1
+            // panelProduct
             // 
-            button1.Location = new Point(45, 359);
-            button1.Name = "button1";
-            button1.Size = new Size(183, 43);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            panelProduct.BackColor = SystemColors.ControlLightLight;
+            panelProduct.BorderStyle = BorderStyle.FixedSingle;
+            panelProduct.Controls.Add(lblCode);
+            panelProduct.Dock = DockStyle.Fill;
+            panelProduct.Location = new Point(0, 0);
+            panelProduct.Name = "panelProduct";
+            panelProduct.Size = new Size(1385, 762);
+            panelProduct.TabIndex = 1;
+            panelProduct.Paint += panel1_Paint;
+            // 
+            // lblCode
+            // 
+            lblCode.AutoSize = true;
+            lblCode.Location = new Point(393, 69);
+            lblCode.Name = "lblCode";
+            lblCode.Size = new Size(41, 20);
+            lblCode.TabIndex = 0;
+            lblCode.Text = "P001";
             // 
             // ProductItemControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(button1);
+            Controls.Add(panelProduct);
             Name = "ProductItemControl";
-            Size = new Size(605, 423);
-            Load += ProductItemControl_Load;
+            Size = new Size(1385, 762);
+            panelProduct.ResumeLayout(false);
+            panelProduct.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
+        private Panel panelProduct;
+        private Label lblCode;
     }
 }
