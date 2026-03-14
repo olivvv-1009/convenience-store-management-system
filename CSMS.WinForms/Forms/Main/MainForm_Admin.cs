@@ -25,6 +25,18 @@ namespace CSMS.WinForms.Forms.Main
         public MainForm_Admin()
         {
             InitializeComponent();
+
+        }
+        private void LoadForm(Form form)
+        {
+            pnlContent.Controls.Clear();
+
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+
+            pnlContent.Controls.Add(form);
+            form.Show();
         }
         private void LoadUserControl(UserControl uc)
         {
