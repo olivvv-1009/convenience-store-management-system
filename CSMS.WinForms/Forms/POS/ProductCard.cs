@@ -18,6 +18,7 @@ namespace CSMS.WinForms.Forms.POS
 
             // ⭐ HIỂN THỊ DỮ LIỆU
             NameProduct.Text = p.ProductName;
+            Id.Text = p.ProductId.ToString();
             price.Text = "$" + p.Price.ToString("N2");
             stock.AutoSize = true;
             stock.Text = p.Stock.ToString();

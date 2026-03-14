@@ -15,7 +15,8 @@ namespace CSMS.WinForms.Forms.Promotion
 		public PromotionForm()
 		{
 			InitializeComponent();
-		}
+            this.Dock = DockStyle.Fill;
+        }
 
 		private void createPromo_Click(object sender, EventArgs e)
 		{

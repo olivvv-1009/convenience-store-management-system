@@ -7,7 +7,7 @@ namespace CSMS.Core.Repositories
     public class UserRepository
     {
         private readonly string connectionString =
-        "Server=localhost\\SQLEXPRESS;Database=CSMS_DB;Trusted_Connection=True;TrustServerCertificate=True;";
+    "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CSMS_DB;Integrated Security=True";
 
         public User? GetUserByUsername(string username)
         {

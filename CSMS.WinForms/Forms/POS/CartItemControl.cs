@@ -7,8 +7,8 @@ namespace CSMS.WinForms.Forms.POS
 {
     public partial class CartItemControl : UserControl
     {
-        public int ProductId;
-        private int quantity = 1;
+        public string ProductId;
+        public int quantity = 1;
         private decimal unitPrice;
 
         public event Action<CartItemControl>? OnRemove;

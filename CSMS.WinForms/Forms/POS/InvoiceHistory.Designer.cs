@@ -34,7 +34,7 @@
             pnlResults = new Panel();
             tableLayoutPanel5 = new TableLayoutPanel();
             tableLayoutPanel6 = new TableLayoutPanel();
-            label7 = new Label();
+            lblInvoiceResults = new Label();
             export = new Button();
             dgvInvoices = new DataGridView();
             panel1 = new Panel();
@@ -48,13 +48,11 @@
             label6 = new Label();
             label8 = new Label();
             label9 = new Label();
-            label10 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
-            cboStatus = new ComboBox();
+            txtPhone = new TextBox();
+            txtName = new TextBox();
+            txtId = new TextBox();
+            datefrom = new DateTimePicker();
+            dateto = new DateTimePicker();
             search = new Button();
             tableLayoutPanel1.SuspendLayout();
             pnlResults.SuspendLayout();
@@ -144,7 +142,7 @@
             tableLayoutPanel6.ColumnCount = 2;
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel6.Controls.Add(label7, 0, 0);
+            tableLayoutPanel6.Controls.Add(lblInvoiceResults, 0, 0);
             tableLayoutPanel6.Controls.Add(export, 1, 0);
             tableLayoutPanel6.Dock = DockStyle.Fill;
             tableLayoutPanel6.Location = new Point(3, 3);
@@ -155,17 +153,17 @@
             tableLayoutPanel6.Size = new Size(852, 33);
             tableLayoutPanel6.TabIndex = 0;
             // 
-            // label7
+            // lblInvoiceResults
             // 
-            label7.AutoSize = true;
-            label7.Dock = DockStyle.Fill;
-            label7.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(3, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(675, 33);
-            label7.TabIndex = 0;
-            label7.Text = "Invoice Results (0 found)";
-            label7.TextAlign = ContentAlignment.MiddleLeft;
+            lblInvoiceResults.AutoSize = true;
+            lblInvoiceResults.Dock = DockStyle.Fill;
+            lblInvoiceResults.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblInvoiceResults.Location = new Point(3, 0);
+            lblInvoiceResults.Name = "lblInvoiceResults";
+            lblInvoiceResults.Size = new Size(675, 33);
+            lblInvoiceResults.TabIndex = 0;
+            lblInvoiceResults.Text = "Invoice Results (0 found)";
+            lblInvoiceResults.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // export
             // 
@@ -242,6 +240,7 @@
             resetfilter.TabIndex = 0;
             resetfilter.Text = "Reset Filter";
             resetfilter.UseVisualStyleBackColor = true;
+            resetfilter.Click += resetfilter_Click;
             // 
             // label3
             // 
@@ -267,13 +266,11 @@
             tableLayoutPanel4.Controls.Add(label6, 2, 0);
             tableLayoutPanel4.Controls.Add(label8, 0, 2);
             tableLayoutPanel4.Controls.Add(label9, 1, 2);
-            tableLayoutPanel4.Controls.Add(label10, 2, 2);
-            tableLayoutPanel4.Controls.Add(textBox1, 0, 1);
-            tableLayoutPanel4.Controls.Add(textBox2, 1, 1);
-            tableLayoutPanel4.Controls.Add(textBox3, 2, 1);
-            tableLayoutPanel4.Controls.Add(dateTimePicker1, 0, 3);
-            tableLayoutPanel4.Controls.Add(dateTimePicker2, 1, 3);
-            tableLayoutPanel4.Controls.Add(cboStatus, 2, 3);
+            tableLayoutPanel4.Controls.Add(txtPhone, 0, 1);
+            tableLayoutPanel4.Controls.Add(txtName, 1, 1);
+            tableLayoutPanel4.Controls.Add(txtId, 2, 1);
+            tableLayoutPanel4.Controls.Add(datefrom, 0, 3);
+            tableLayoutPanel4.Controls.Add(dateto, 1, 3);
             tableLayoutPanel4.Controls.Add(search, 3, 3);
             tableLayoutPanel4.Dock = DockStyle.Bottom;
             tableLayoutPanel4.Location = new Point(3, 38);
@@ -345,76 +342,54 @@
             label9.TabIndex = 5;
             label9.Text = "Date To";
             label9.TextAlign = ContentAlignment.MiddleLeft;
-            label9.Click += label9_Click;
             // 
-            // label10
+            // txtPhone
             // 
-            label10.AutoSize = true;
-            label10.Dock = DockStyle.Fill;
-            label10.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(429, 48);
-            label10.Name = "label10";
-            label10.Size = new Size(207, 21);
-            label10.TabIndex = 6;
-            label10.Text = "Invoice Status";
-            label10.TextAlign = ContentAlignment.MiddleLeft;
+            txtPhone.Dock = DockStyle.Fill;
+            txtPhone.Location = new Point(3, 24);
+            txtPhone.Name = "txtPhone";
+            txtPhone.Size = new Size(207, 27);
+            txtPhone.TabIndex = 7;
             // 
-            // textBox1
+            // txtName
             // 
-            textBox1.Location = new Point(3, 24);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 7;
+            txtName.Dock = DockStyle.Fill;
+            txtName.Location = new Point(216, 24);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(207, 27);
+            txtName.TabIndex = 8;
             // 
-            // textBox2
+            // txtId
             // 
-            textBox2.Location = new Point(216, 24);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 8;
+            txtId.Dock = DockStyle.Fill;
+            txtId.Location = new Point(429, 24);
+            txtId.Name = "txtId";
+            txtId.Size = new Size(207, 27);
+            txtId.TabIndex = 9;
             // 
-            // textBox3
+            // datefrom
             // 
-            textBox3.Location = new Point(429, 24);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 9;
+            datefrom.CalendarFont = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            datefrom.CustomFormat = "MM/dd/yyyy";
+            datefrom.Dock = DockStyle.Fill;
+            datefrom.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            datefrom.Format = DateTimePickerFormat.Custom;
+            datefrom.Location = new Point(3, 72);
+            datefrom.Name = "datefrom";
+            datefrom.Size = new Size(207, 28);
+            datefrom.TabIndex = 10;
             // 
-            // dateTimePicker1
+            // dateto
             // 
-            dateTimePicker1.CalendarFont = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTimePicker1.CustomFormat = "MM/dd/yyyy";
-            dateTimePicker1.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(3, 72);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(205, 28);
-            dateTimePicker1.TabIndex = 10;
-            // 
-            // dateTimePicker2
-            // 
-            dateTimePicker2.CalendarFont = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTimePicker2.CustomFormat = "MM/dd/yyyy";
-            dateTimePicker2.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.Location = new Point(216, 72);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(205, 28);
-            dateTimePicker2.TabIndex = 11;
-            // 
-            // cboStatus
-            // 
-            cboStatus.Dock = DockStyle.Fill;
-            cboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboStatus.FlatStyle = FlatStyle.Flat;
-            cboStatus.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cboStatus.FormattingEnabled = true;
-            cboStatus.Items.AddRange(new object[] { "All Status", "Paid", "Cancelled", "Refunded" });
-            cboStatus.Location = new Point(429, 72);
-            cboStatus.Name = "cboStatus";
-            cboStatus.RightToLeft = RightToLeft.No;
-            cboStatus.Size = new Size(207, 28);
-            cboStatus.TabIndex = 12;
+            dateto.CalendarFont = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateto.CustomFormat = "MM/dd/yyyy";
+            dateto.Dock = DockStyle.Fill;
+            dateto.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateto.Format = DateTimePickerFormat.Custom;
+            dateto.Location = new Point(216, 72);
+            dateto.Name = "dateto";
+            dateto.Size = new Size(207, 28);
+            dateto.TabIndex = 11;
             // 
             // search
             // 
@@ -426,6 +401,7 @@
             search.TabIndex = 13;
             search.Text = "Search";
             search.UseVisualStyleBackColor = true;
+            search.Click += search_Click;
             // 
             // InvoiceHistory
             // 
@@ -467,17 +443,15 @@
         private Label label6;
         private Label label8;
         private Label label9;
-        private Label label10;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
-        private ComboBox cboStatus;
+        private TextBox txtPhone;
+        private TextBox txtName;
+        private TextBox txtId;
+        private DateTimePicker datefrom;
+        private DateTimePicker dateto;
         private Button search;
         private TableLayoutPanel tableLayoutPanel5;
         private TableLayoutPanel tableLayoutPanel6;
-        private Label label7;
+        private Label lblInvoiceResults;
         private Button export;
         private DataGridView dgvInvoices;
     }

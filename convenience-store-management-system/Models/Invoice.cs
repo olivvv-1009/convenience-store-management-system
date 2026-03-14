@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace convenience_store_management_system.Models
 {
-    internal class Invoice
+    public class Invoice
     {
         public int InvoiceId { get; set; }
         public DateTime CreatedAt { get; set; }

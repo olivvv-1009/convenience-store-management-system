@@ -12,15 +12,24 @@ namespace CSMS.WinForms.Forms.POS
     {
         private ProductService productService = new ProductService();
         private InvoiceService invoiceService = new InvoiceService();
+        private MemberService memberService = new MemberService();
+
         private List<CartItem> cartItems = new List<CartItem>();
+
         private string paymentMethod = "Cash";
         private decimal manualDiscount = 0;
+
+        private int? memberId = null;
 
         public CreateInvoice()
         {
             InitializeComponent();
+
             flowCartItems.BringToFront();
-            pnlContent.Resize += (s, e) => ReloadProductLayout(); // ⭐ chỉ gắn 1 lần
+            pnlContent.Resize += (s, e) => ReloadProductLayout();
+
+            txtMemberPhone.TextChanged += (s, e) => FindMember();
+
             LoadProducts();
         }
 
@@ -39,23 +48,49 @@ namespace CSMS.WinForms.Forms.POS
                 card.Height = 180;
                 card.Margin = new Padding(15);
                 card.OnProductSelected += AddToCart;
+
                 pnlContent.Controls.Add(card);
             }
 
-            ReloadProductLayout(); // ⭐ tránh card bị co nhỏ
+            ReloadProductLayout();
+        }
+
+        // ================= TÌM MEMBER =================
+        private void FindMember()
+        {
+            string phone = txtMemberPhone.Text.Trim();
+
+            if (string.IsNullOrEmpty(phone))
+            {
+                memberId = null;
+                lblCustomerName.Text = "N/A";
+                return;
+            }
+
+            var member = memberService.GetMemberByPhone(phone);
+
+            if (member != null)
+            {
+                memberId = member.MemberId;
+                lblCustomerName.Text = member.FullName;
+            }
+            else
+            {
+                memberId = null;
+                lblCustomerName.Text = "N/A";
+            }
         }
 
         // ================= THÊM VÀO GIỎ =================
         private void AddToCart(ProductPOS product)
         {
-            // Nếu đã có → tăng số lượng
             foreach (Control ctrl in flowCartItems.Controls)
             {
                 if (ctrl is CartItemControl item && item.ProductId == product.ProductId)
                 {
                     item.IncreaseQuantity();
 
-                    var cartItem = cartItems.First(x => x.ProductId == product.ProductId);
+                    var cartItem = cartItems.First(x => x.ProductId == item.ProductId);
                     cartItem.Quantity = item.Quantity;
 
                     UpdateSubTotal();
@@ -63,7 +98,6 @@ namespace CSMS.WinForms.Forms.POS
                 }
             }
 
-            // Nếu chưa có → thêm mới
             CartItemControl newItem = new CartItemControl(product);
             newItem.OnRemove += RemoveCartItem;
             newItem.OnQuantityChanged += CartItemQuantityChanged;
@@ -83,11 +117,12 @@ namespace CSMS.WinForms.Forms.POS
             UpdateCartStatus();
         }
 
-        // ================= CẬP NHẬT KHI ĐỔI SỐ LƯỢNG =================
+        // ================= ĐỔI SỐ LƯỢNG =================
         private void CartItemQuantityChanged(CartItemControl item)
         {
             var cartItem = cartItems.First(x => x.ProductId == item.ProductId);
             cartItem.Quantity = item.Quantity;
+
             UpdateSubTotal();
         }
 
@@ -101,11 +136,13 @@ namespace CSMS.WinForms.Forms.POS
             UpdateCartStatus();
         }
 
-        // ================= TỔNG TIỀN =================
+        // ================= TÍNH TIỀN =================
         private void UpdateSubTotal()
         {
             decimal subtotal = cartItems.Sum(x => x.Price * x.Quantity);
+
             lblsubtotal.Text = "$" + subtotal.ToString("0.00");
+
             UpdateTotal(subtotal);
         }
 
@@ -120,7 +157,10 @@ namespace CSMS.WinForms.Forms.POS
         private decimal GetCurrentTotal()
         {
             decimal subtotal = cartItems.Sum(x => x.Price * x.Quantity);
-            if (manualDiscount > subtotal) manualDiscount = subtotal;
+
+            if (manualDiscount > subtotal)
+                manualDiscount = subtotal;
+
             return subtotal - manualDiscount;
         }
 
@@ -141,42 +181,57 @@ namespace CSMS.WinForms.Forms.POS
 
             decimal totalAmount = GetCurrentTotal();
 
-            if (paymentMethod == "Cash") ProcessInvoice();
-            else if (paymentMethod == "Bank") ShowQRCode("bank", totalAmount);
-            else if (paymentMethod == "EWallet") ShowQRCode("ewallet", totalAmount);
+            if (paymentMethod == "Cash")
+                ProcessInvoice();
+
+            else if (paymentMethod == "Bank")
+                ShowQRCode("bank", totalAmount);
+
+            else if (paymentMethod == "EWallet")
+                ShowQRCode("ewallet", totalAmount);
         }
 
         private void ShowQRCode(string type, decimal amount)
         {
             PaymentQRForm qrForm = new PaymentQRForm(type, amount);
+
             qrForm.ShowDialog();
-            if (qrForm.PaymentConfirmed) ProcessInvoice();
+
+            if (qrForm.PaymentConfirmed)
+                ProcessInvoice();
         }
 
+        // ================= TẠO HÓA ĐƠN =================
         private void ProcessInvoice()
         {
-            invoiceService.CreateInvoice(cartItems); // ⭐ trừ kho ở đây
+            invoiceService.CreateInvoice(cartItems, paymentMethod, memberId);
 
             MessageBox.Show("Thanh toán thành công!");
 
             cartItems.Clear();
+
             RefreshCartUI();
-            LoadProducts(); // ⭐ load lại stock mới
+            LoadProducts();
         }
 
+        // ================= RESET UI =================
         private void RefreshCartUI()
         {
             flowCartItems.Controls.Clear();
+
             lblsubtotal.Text = "$0.00";
-            lblDiscount.Text = "$0.00";
             lbltotal.Text = "$0.00";
+
+            txtMemberPhone.Text = "";
+            lblCustomerName.Text = "N/A";
+
             UpdateCartStatus();
         }
 
         // ================= DISCOUNT =================
         private void lblDiscount_TextChanged(object sender, EventArgs e)
         {
-            if (decimal.TryParse(lblDiscount.Text.Replace(",", ""), out decimal money))
+            if (decimal.TryParse(txtMemberPhone.Text.Replace(",", ""), out decimal money))
                 manualDiscount = Math.Abs(money);
             else
                 manualDiscount = 0;
@@ -184,7 +239,7 @@ namespace CSMS.WinForms.Forms.POS
             UpdateSubTotal();
         }
 
-        // ================= PAYMENT METHOD =================
+        // ================= PAYMENT =================
         private void cash_Click(object sender, EventArgs e) => paymentMethod = "Cash";
         private void button2_Click(object sender, EventArgs e) => paymentMethod = "Bank";
         private void button3_Click(object sender, EventArgs e) => paymentMethod = "EWallet";
@@ -199,5 +254,6 @@ namespace CSMS.WinForms.Forms.POS
                 if (ctrl is ProductCard card)
                     card.Width = cardWidth;
         }
+
     }
 }
