@@ -24,24 +24,25 @@ CREATE TABLE Users (
 
 CREATE TABLE Categories (
     CategoryId INT IDENTITY(1,1) PRIMARY KEY,
-    CategoryName NVARCHAR(200)
+    CategoryName NVARCHAR(200) NOT NULL
 )
 
 CREATE TABLE Products (
-    ProductId INT IDENTITY(1,1) PRIMARY KEY,
+    ProductId NVARCHAR(20) PRIMARY KEY,
     ProductName NVARCHAR(200) NOT NULL,
-    Barcode NVARCHAR(100),
-    Price DECIMAL(10,2) NOT NULL,
+    --Barcode NVARCHAR(100),
+    Price FLOAT,
     CategoryId INT,
-    CreatedAt DATETIME DEFAULT GETDATE(),
+    ExpiryDate DATE,
+    Status NVARCHAR(50),
 
     FOREIGN KEY (CategoryId) REFERENCES Categories(CategoryId)
 )
 
 CREATE TABLE Inventory (
     InventoryId INT IDENTITY(1,1) PRIMARY KEY,
-    ProductId INT NOT NULL,
-    Quantity INT NOT NULL,
+    ProductId NVARCHAR(20),
+    Quantity INT,
     MinimumStock INT DEFAULT 10,
     LastUpdated DATETIME DEFAULT GETDATE(),
 
@@ -78,7 +79,7 @@ CREATE TABLE Invoices (
 CREATE TABLE InvoiceDetails (
     InvoiceDetailId INT IDENTITY(1,1) PRIMARY KEY,
     InvoiceId INT,
-    ProductId INT,
+    ProductId NVARCHAR(20),
     Quantity INT,
     UnitPrice DECIMAL(10,2),
     SubTotal DECIMAL(12,2),
@@ -109,21 +110,24 @@ VALUES
 
 INSERT INTO Categories(CategoryName)
 VALUES
-('Drink'),
-('Snack'),
-('Food')
+('Dairy'),
+('Bakery'),
+('Frozen'),
+('Beverages')
 
-INSERT INTO Products(ProductName,Barcode,Price,CategoryId)
+INSERT INTO Products(ProductId,ProductName,Price,CategoryId,ExpiryDate,Status)
 VALUES
-('Coca Cola','111111',10000,1),
-('Pepsi','222222',10000,1),
-('Potato Chips','333333',15000,2)
+('P001','Milk',15000,1,'2026-10-10','Active'),
+('P002','Bread',10000,2,'2026-10-05','Active'),
+('P003','Ice Cream',25000,3,'2026-05-01','Active'),
+('P004','Coca Cola',12000,4,'2027-05-01','Active')
 
 INSERT INTO Inventory(ProductId,Quantity)
 VALUES
-(1,50),
-(2,40),
-(3,30)
+('P001',50),
+('P002',40),
+('P003',30),
+('P004',60)
 
 INSERT INTO Members(FullName,Phone)
 VALUES

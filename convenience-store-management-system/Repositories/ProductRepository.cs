@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using convenience_store_management_system.Models;
+﻿using convenience_store_management_system.Models;
 using CSMS.Database;
 using CSMS.Models;
 using Microsoft.Data.SqlClient;
+using System;
+using System.Collections.Generic;
 
 namespace CSMS.Repositories
 {
@@ -12,6 +11,7 @@ namespace CSMS.Repositories
     {
         private DbConnectionHelper db = new DbConnectionHelper();
 
+        // Lấy tất cả sản phẩm
         public List<Product> GetAllProducts()
         {
             List<Product> list = new List<Product>();
@@ -20,7 +20,24 @@ namespace CSMS.Repositories
             {
                 conn.Open();
 
-                string query = "SELECT * FROM Products";
+                string query = @"
+        SELECT 
+            p.ProductId,
+            p.ProductName,
+            p.Price,
+            p.CategoryId,
+            p.ExpiryDate,
+            ISNULL(i.Quantity,0) AS Stock,
+
+            CASE
+                WHEN p.ExpiryDate < GETDATE() THEN 'Expired'
+                WHEN i.Quantity <= i.MinimumStock THEN 'LowStock'
+                ELSE 'Active'
+            END AS Status
+
+        FROM Products p
+        LEFT JOIN Inventory i 
+        ON p.ProductId = i.ProductId";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -28,15 +45,15 @@ namespace CSMS.Repositories
 
                     while (reader.Read())
                     {
-                        Product p = new Product
-                        {
-                            ProductId = Convert.ToInt32(reader["ProductId"]),
-                            ProductName = reader["ProductName"].ToString(),
-                            Barcode = reader["Barcode"].ToString(),
-                            Price = Convert.ToDecimal(reader["Price"]),
-                            CategoryId = Convert.ToInt32(reader["CategoryId"]),
-                            CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
-                        };
+                        Product p = new Product();
+
+                        p.ProductId = reader["ProductId"].ToString();
+                        p.ProductName = reader["ProductName"].ToString();
+                        p.Price = Convert.ToDouble(reader["Price"]);
+                        p.Category = reader["CategoryName"].ToString();
+                        p.ExpiryDate = Convert.ToDateTime(reader["ExpiryDate"]);
+                        p.Stock = Convert.ToInt32(reader["Stock"]);
+                        p.Status = reader["Status"].ToString();
 
                         list.Add(p);
                     }
@@ -46,56 +63,58 @@ namespace CSMS.Repositories
             return list;
         }
 
+        // Thêm sản phẩm
         public void AddProduct(Product product)
         {
             using (SqlConnection conn = db.GetConnection())
             {
                 conn.Open();
 
-                string query = @"INSERT INTO Products
-                                (ProductName,Barcode,Price,CategoryId)
-                                VALUES
-                                (@name,@barcode,@price,@category)";
+                string query =
+                "INSERT INTO Products(ProductId,ProductName,Price,CategoryId,ExpiryDate,Status) " +
+                "VALUES(@id,@name,@price,@category,@expiry,@status)";
 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = product.ProductName;
-                    cmd.Parameters.Add("@barcode", SqlDbType.NVarChar).Value = product.Barcode;
-                    cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = product.Price;
-                    cmd.Parameters.Add("@category", SqlDbType.Int).Value = product.CategoryId;
+                SqlCommand cmd = new SqlCommand(query, conn);
 
-                    cmd.ExecuteNonQuery();
-                }
+                cmd.Parameters.AddWithValue("@id", product.ProductId);
+                cmd.Parameters.AddWithValue("@name", product.ProductName);
+                cmd.Parameters.AddWithValue("@price", product.Price);
+                cmd.Parameters.AddWithValue("@category", product.CategoryId);
+                cmd.Parameters.AddWithValue("@expiry", product.ExpiryDate);
+                cmd.Parameters.AddWithValue("@status", product.Status);
+
+                cmd.ExecuteNonQuery();
             }
         }
 
+        // Cập nhật sản phẩm
         public void UpdateProduct(Product product)
         {
             using (SqlConnection conn = db.GetConnection())
             {
                 conn.Open();
 
-                string query = @"UPDATE Products
-                                 SET ProductName=@name,
-                                     Barcode=@barcode,
-                                     Price=@price,
-                                     CategoryId=@category
-                                 WHERE ProductId=@id";
+                string query =
+                "UPDATE Products SET " +
+                "ProductName=@name, Price=@price, CategoryId=@category, " +
+                "ExpiryDate=@expiry, Status=@status " +
+                "WHERE ProductId=@id";
 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = product.ProductName;
-                    cmd.Parameters.Add("@barcode", SqlDbType.NVarChar).Value = product.Barcode;
-                    cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = product.Price;
-                    cmd.Parameters.Add("@category", SqlDbType.Int).Value = product.CategoryId;
-                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = product.ProductId;
+                SqlCommand cmd = new SqlCommand(query, conn);
 
-                    cmd.ExecuteNonQuery();
-                }
+                cmd.Parameters.AddWithValue("@id", product.ProductId);
+                cmd.Parameters.AddWithValue("@name", product.ProductName);
+                cmd.Parameters.AddWithValue("@price", product.Price);
+                cmd.Parameters.AddWithValue("@category", product.CategoryId);
+                cmd.Parameters.AddWithValue("@expiry", product.ExpiryDate);
+                cmd.Parameters.AddWithValue("@status", product.Status);
+
+                cmd.ExecuteNonQuery();
             }
         }
 
-        public void DeleteProduct(int id)
+        // Xóa sản phẩm
+        public void DeleteProduct(string productId)
         {
             using (SqlConnection conn = db.GetConnection())
             {
@@ -103,14 +122,14 @@ namespace CSMS.Repositories
 
                 string query = "DELETE FROM Products WHERE ProductId=@id";
 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id", productId);
 
-                    cmd.ExecuteNonQuery();
-                }
+                cmd.ExecuteNonQuery();
             }
         }
+
+        // Lấy sản phẩm cho POS (có Stock + Status)
         public List<ProductPOS> GetProductsForPOS()
         {
             List<ProductPOS> list = new List<ProductPOS>();
@@ -119,50 +138,52 @@ namespace CSMS.Repositories
             {
                 conn.Open();
 
-                string query = @"
-            SELECT p.ProductId, p.ProductName, p.Barcode, p.Price,
-                   ISNULL(i.Quantity,0) AS Stock
-            FROM Products p
-            LEFT JOIN Inventory i ON p.ProductId = i.ProductId";
+                string query =
+                @"SELECT p.ProductId, p.ProductName, p.Price,
+                  ISNULL(i.Quantity,0) AS Stock,
+                  CASE
+                    WHEN p.ExpiryDate < GETDATE() THEN 'Expired'
+                    WHEN i.Quantity <= i.MinimumStock THEN 'LowStock'
+                    ELSE 'Active'
+                  END AS Status
+                  FROM Products p
+                  LEFT JOIN Inventory i ON p.ProductId = i.ProductId";
 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    ProductPOS p = new ProductPOS();
 
-                    while (reader.Read())
-                    {
-                        list.Add(new ProductPOS
-                        {
-                            ProductId = Convert.ToInt32(reader["ProductId"]),
-                            ProductName = reader["ProductName"].ToString(),
-                            Barcode = reader["Barcode"].ToString(),
-                            Price = Convert.ToDecimal(reader["Price"]),
-                            Stock = Convert.ToInt32(reader["Stock"])
-                        });
-                    }
+                    p.ProductId = reader["ProductId"].ToString();
+                    p.ProductName = reader["ProductName"].ToString();
+                    p.Price = Convert.ToDecimal(reader["Price"]);
+                    p.Stock = Convert.ToInt32(reader["Stock"]);
+
+                    list.Add(p);
                 }
             }
 
             return list;
         }
 
-        public void UpdateStock(int productId, int quantitySold)
+        // Cập nhật tồn kho sau khi bán
+        public void UpdateStock(string productId, int quantitySold)
         {
-            string query = @"
-        UPDATE Inventory
-        SET Quantity = Quantity - @quantitySold
-        WHERE ProductId = @productId";
-
             using (SqlConnection conn = db.GetConnection())
             {
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@quantitySold", quantitySold);
-                    cmd.Parameters.AddWithValue("@productId", productId);
-                    cmd.ExecuteNonQuery();
-                }
+                string query =
+                "UPDATE Inventory SET Quantity = Quantity - @qty WHERE ProductId=@id";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@qty", quantitySold);
+                cmd.Parameters.AddWithValue("@id", productId);
+
+                cmd.ExecuteNonQuery();
             }
         }
     }
