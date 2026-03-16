@@ -30,10 +30,8 @@ CREATE TABLE Categories (
 CREATE TABLE Products (
     ProductId NVARCHAR(20) PRIMARY KEY,
     ProductName NVARCHAR(200) NOT NULL,
-    --Barcode NVARCHAR(100),
-    Price FLOAT,
+    Price DECIMAL(10,2),
     CategoryId INT,
-    ExpiryDate DATE,
     Status NVARCHAR(50),
 
     FOREIGN KEY (CategoryId) REFERENCES Categories(CategoryId)
@@ -45,6 +43,17 @@ CREATE TABLE Inventory (
     Quantity INT,
     MinimumStock INT DEFAULT 10,
     LastUpdated DATETIME DEFAULT GETDATE(),
+
+    FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
+)
+
+CREATE TABLE Batches (
+    BatchId INT IDENTITY(1,1) PRIMARY KEY,
+    ProductId NVARCHAR(20) NOT NULL,
+    UnitCost DECIMAL(10,2) NOT NULL,
+    Quantity INT NOT NULL,
+    ExpiryDate DATE,
+    ImportedDate DATETIME DEFAULT GETDATE(),
 
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 )
@@ -115,12 +124,12 @@ VALUES
 ('Frozen'),
 ('Beverages')
 
-INSERT INTO Products(ProductId,ProductName,Price,CategoryId,ExpiryDate,Status)
+INSERT INTO Products(ProductId,ProductName,Price,CategoryId,Status)
 VALUES
-('P001','Milk',15000,1,'2026-10-10','Active'),
-('P002','Bread',10000,2,'2026-10-05','Active'),
-('P003','Ice Cream',25000,3,'2026-05-01','Active'),
-('P004','Coca Cola',12000,4,'2027-05-01','Active')
+('P001','Milk',15000,1,'Active'),
+('P002','Bread',10000,2,'Active'),
+('P003','Ice Cream',25000,3,'Active'),
+('P004','Coca Cola',12000,4,'Active')
 
 INSERT INTO Inventory(ProductId,Quantity)
 VALUES
@@ -129,7 +138,25 @@ VALUES
 ('P003',30),
 ('P004',60)
 
+INSERT INTO Batches(ProductId,UnitCost,Quantity,ExpiryDate)
+VALUES
+('P001',12000,30,'2026-10-10'),
+('P001',12500,20,'2026-11-01'),
+('P002',7000,40,'2026-10-05'),
+('P003',18000,30,'2026-05-01'),
+('P004',9000,60,'2027-05-01')
+
 INSERT INTO Members(FullName,Phone)
 VALUES
 ('Nguyen Van A','0900000001'),
 ('Tran Thi B','0900000002')
+
+ALTER TABLE Batches
+ADD Supplier NVARCHAR(200)
+
+ALTER TABLE Batches
+ADD BatchNumber NVARCHAR(50)
+
+UPDATE Batches
+SET BatchNumber = 'BATCH-' + ProductId + '-' + FORMAT(ExpiryDate,'yyyyMMdd')
+WHERE BatchNumber IS NULL

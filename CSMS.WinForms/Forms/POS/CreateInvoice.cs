@@ -229,9 +229,9 @@ namespace CSMS.WinForms.Forms.POS
         }
 
         // ================= DISCOUNT =================
-        private void lblDiscount_TextChanged(object sender, EventArgs e)
+        private void txtDiscount_TextChanged(object sender, EventArgs e)
         {
-            if (decimal.TryParse(txtMemberPhone.Text.Replace(",", ""), out decimal money))
+            if (decimal.TryParse(discount.Text.Replace(",", ""), out decimal money))
                 manualDiscount = Math.Abs(money);
             else
                 manualDiscount = 0;

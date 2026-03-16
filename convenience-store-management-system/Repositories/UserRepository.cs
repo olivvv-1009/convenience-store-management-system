@@ -1,14 +1,13 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
 using CSMS.Core.Models;
+using CSMS.Database;
+using Microsoft.Data.SqlClient;
 
 namespace CSMS.Core.Repositories
 {
     public class UserRepository
     {
-        private readonly string connectionString =
-    "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CSMS_DB;Integrated Security=True";
-
+        DbConnectionHelper db = new DbConnectionHelper();
         public User? GetUserByUsername(string username)
         {
             if (string.IsNullOrWhiteSpace(username))
@@ -16,7 +15,7 @@ namespace CSMS.Core.Repositories
 
             User? user = null;
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = db.GetConnection())
             {
                 conn.Open();
 

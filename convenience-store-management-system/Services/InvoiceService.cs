@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using convenience_store_management_system.Models;
+using CSMS.Database;
 using CSMS.Repositories;
+
 
 public class InvoiceService
 {
     private ProductRepository productRepository = new ProductRepository();
 
-    string connectionString =
-        "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CSMS_DB;Integrated Security=True";
+    DbConnectionHelper db = new DbConnectionHelper();
 
     public void UpdateStockAfterInvoice(List<CartItem> cartItems)
     {
@@ -21,7 +22,7 @@ public class InvoiceService
 
     public void CreateInvoice(List<CartItem> items, string paymentMethod, int? memberId)
     {
-        using (SqlConnection conn = new SqlConnection(connectionString))
+        using (SqlConnection conn = db.GetConnection())
         {
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();

@@ -19,6 +19,7 @@ namespace CSMS.WinForms.Forms.Main
         public MainForm_Staff()
         {
             InitializeComponent();
+            LoadUserControl(new DashBoardForm());
         }
         private void LoadUserControl(UserControl uc)
         {

@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using convenience_store_management_system.Models;
-using System.Data.SqlClient;
+using CSMS.Database;
 
 namespace convenience_store_management_system.Repositories
 {
     public class InvoiceRepository
     {
-        Database db = new Database();
+        DbConnectionHelper db = new DbConnectionHelper();
         private List<Invoice> invoices = new List<Invoice>();
 
         public void Save(Invoice invoice)

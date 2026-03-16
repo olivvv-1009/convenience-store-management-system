@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using convenience_store_management_system.Repositories;
+using CSMS.Database;
 
 namespace CSMS.WinForms.Forms.POS
 {
     public partial class InvoiceHistory : UserControl
     {
-        string connectionString =
-            "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CSMS_DB;Integrated Security=True";
+        DbConnectionHelper db = new DbConnectionHelper();
 
         public InvoiceHistory()
         {
             InitializeComponent();
 
             this.Load += InvoiceHistory_Load;
-
             dgvInvoices.CellDoubleClick += dgvInvoices_CellDoubleClick;
         }
 
@@ -38,7 +37,7 @@ namespace CSMS.WinForms.Forms.POS
                     LEFT JOIN Members m ON i.MemberId = m.MemberId
                     ORDER BY i.CreatedAt DESC";
 
-            using SqlConnection conn = new SqlConnection(connectionString);
+            using SqlConnection conn = db.GetConnection();
 
             SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
             DataTable dt = new DataTable();
@@ -47,14 +46,12 @@ namespace CSMS.WinForms.Forms.POS
 
             dgvInvoices.DataSource = dt;
 
-            // đổi tên cột
             dgvInvoices.Columns["InvoiceId"].HeaderText = "Invoice ID";
             dgvInvoices.Columns["CreatedAt"].HeaderText = "Created Date";
             dgvInvoices.Columns["CustomerName"].HeaderText = "Customer Name";
             dgvInvoices.Columns["Phone"].HeaderText = "Phone Number";
             dgvInvoices.Columns["TotalAmount"].HeaderText = "Total Amount";
 
-            // style bảng
             dgvInvoices.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvInvoices.RowHeadersVisible = false;
             dgvInvoices.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -70,7 +67,6 @@ namespace CSMS.WinForms.Forms.POS
             lblInvoiceResults.Text = $"Invoice Results ({dt.Rows.Count} found)";
         }
 
-        // double click mở chi tiết hóa đơn
         private void dgvInvoices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)

@@ -30,5 +30,9 @@ namespace CSMS.Models
             ExpiryDate = expiry;
             Status = status;
         }
+        public string DisplayName
+        {
+            get { return ProductId + " - " + ProductName; }
+        }
     }
 }

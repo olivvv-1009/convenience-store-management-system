@@ -137,7 +137,6 @@
             lblFullName.Size = new Size(59, 25);
             lblFullName.TabIndex = 1;
             lblFullName.Text = "label3";
-            lblFullName.Click += label3_Click;
             // 
             // lblAvatar
             // 
@@ -150,7 +149,6 @@
             lblAvatar.TabIndex = 0;
             lblAvatar.Text = "JA";
             lblAvatar.TextAlign = ContentAlignment.MiddleCenter;
-            lblAvatar.Click += label2_Click;
             // 
             // button8
             // 
@@ -166,7 +164,6 @@
             button8.Text = "Reports";
             button8.TextAlign = ContentAlignment.MiddleLeft;
             button8.UseVisualStyleBackColor = false;
-            button8.Click += button8_Click;
             // 
             // button7
             // 
@@ -182,7 +179,6 @@
             button7.Text = "Employees";
             button7.TextAlign = ContentAlignment.MiddleLeft;
             button7.UseVisualStyleBackColor = false;
-            button7.Click += button7_Click;
             // 
             // button6
             // 
@@ -332,7 +328,6 @@
             flowCards.Padding = new Padding(20, 20, 0, 0);
             flowCards.Size = new Size(1124, 180);
             flowCards.TabIndex = 0;
-            flowCards.Paint += flowLayoutPanel1_Paint;
             // 
             // pnlCard1
             // 
@@ -526,7 +521,6 @@
             pnlChartArea.Name = "pnlChartArea";
             pnlChartArea.Size = new Size(800, 300);
             pnlChartArea.TabIndex = 1;
-            pnlChartArea.Paint += panel6_Paint;
             // 
             // DashBoardForm
             // 
@@ -537,7 +531,6 @@
             Controls.Add(pnlSidebar);
             Name = "DashBoardForm";
             Size = new Size(1400, 800);
-            Load += DashBoardForm_Load;
             pnlSidebar.ResumeLayout(false);
             pnlMenu.ResumeLayout(false);
             panel1.ResumeLayout(false);

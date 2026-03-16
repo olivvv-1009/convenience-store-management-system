@@ -25,6 +25,7 @@ namespace CSMS.WinForms.Forms.Main
         public MainForm_Admin()
         {
             InitializeComponent();
+            LoadUserControl(new DashBoardForm());
 
         }
         private void LoadForm(Form form)

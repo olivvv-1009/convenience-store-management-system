@@ -234,7 +234,7 @@
             label3.Name = "label3";
             label3.Size = new Size(286, 34);
             label3.TabIndex = 2;
-            label3.Text = "Discount (%)";
+            label3.Text = "Discount ";
             // 
             // discount
             // 
@@ -350,7 +350,6 @@
             txtMemberPhone.Name = "txtMemberPhone";
             txtMemberPhone.Size = new Size(286, 30);
             txtMemberPhone.TabIndex = 13;
-            txtMemberPhone.TextChanged += lblDiscount_TextChanged;
             // 
             // label6
             // 

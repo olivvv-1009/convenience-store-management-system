@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
-using System.Data.SqlTypes;
+using Microsoft.Data.SqlClient;
 using System.Windows.Forms;
+using CSMS.Database;
 
 namespace CSMS.WinForms.Forms.POS
 {
     public partial class InvoiceDetailForm : Form
     {
         int invoiceId;
-
-        string connectionString =
-            "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CSMS_DB;Integrated Security=True";
+        DbConnectionHelper db = new DbConnectionHelper();
 
         public InvoiceDetailForm(int id)
         {
@@ -19,11 +17,10 @@ namespace CSMS.WinForms.Forms.POS
 
             invoiceId = id;
 
-            LoadInvoiceInfo();   // thông tin đơn hàng
-            LoadInvoiceItems();  // danh sách sản phẩm
+            LoadInvoiceInfo();
+            LoadInvoiceItems();
         }
 
-        // ⭐ Lấy thông tin đơn hàng
         private void LoadInvoiceInfo()
         {
             string query = @"SELECT 
@@ -38,9 +35,9 @@ namespace CSMS.WinForms.Forms.POS
                             LEFT JOIN Payments p ON i.InvoiceId = p.InvoiceId
                             WHERE i.InvoiceId = @InvoiceId";
 
-            using SqlConnection conn = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand(query, conn);
+            using SqlConnection conn = db.GetConnection();
 
+            SqlCommand cmd = new SqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@InvoiceId", invoiceId);
 
             conn.Open();
@@ -49,28 +46,23 @@ namespace CSMS.WinForms.Forms.POS
 
             if (reader.Read())
             {
-                lblNameInvoice.Text = "Complete information for INV-" + reader["InvoiceId"].ToString();
-                lblInvoiceIdValue.Text = "INV-" + reader["InvoiceId"].ToString();
+                lblNameInvoice.Text = "Complete information for INV-" + reader["InvoiceId"];
+                lblInvoiceIdValue.Text = "INV-" + reader["InvoiceId"];
 
                 lblDateTimeValue.Text = Convert.ToDateTime(reader["CreatedAt"])
                     .ToString("yyyy-MM-dd HH:mm");
 
                 lblCustomerName.Text = reader["CustomerName"].ToString();
-
                 lblPhoneNumber.Text = reader["Phone"].ToString();
 
                 lblPaymentMethod.Text = reader["PaymentMethod"] == DBNull.Value
                     ? "N/A"
                     : reader["PaymentMethod"].ToString();
 
-                lblTotal.Text = Convert.ToDecimal(reader["TotalAmount"])
-                    .ToString("C");
+                lblTotal.Text = Convert.ToDecimal(reader["TotalAmount"]).ToString("C");
             }
-
-            conn.Close();
         }
 
-        // ⭐ Lấy danh sách sản phẩm trong hóa đơn
         private void LoadInvoiceItems()
         {
             string query = @"SELECT
@@ -82,7 +74,7 @@ namespace CSMS.WinForms.Forms.POS
                             JOIN Products p ON d.ProductId = p.ProductId
                             WHERE d.InvoiceId = @InvoiceId";
 
-            using SqlConnection conn = new SqlConnection(connectionString);
+            using SqlConnection conn = db.GetConnection();
 
             SqlCommand cmd = new SqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@InvoiceId", invoiceId);
@@ -93,40 +85,16 @@ namespace CSMS.WinForms.Forms.POS
             adapter.Fill(dt);
 
             dgvItems.DataSource = dt;
-
-            // style bảng
-            dgvItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvItems.RowHeadersVisible = false;
-            dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvItems.AllowUserToAddRows = false;
-
-            dgvItems.Columns["ProductName"].HeaderText = "Product Name";
-            dgvItems.Columns["Quantity"].HeaderText = "Quantity";
-            dgvItems.Columns["UnitPrice"].HeaderText = "Unit Price";
-            dgvItems.Columns["SubTotal"].HeaderText = "Total";
-
-            // ⭐ tính subtotal
-            decimal subtotal = 0;
-
-            foreach (DataGridViewRow row in dgvItems.Rows)
-            {
-                if (row.Cells["SubTotal"].Value != null)
-                {
-                    subtotal += Convert.ToDecimal(row.Cells["SubTotal"].Value);
-                }
-            }
-
-            lblSubTotal.Text = subtotal.ToString("C");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btPrint_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
-        "Đã in hóa đơn thành công!",
-        "Thông báo",
-        MessageBoxButtons.OK,
-        MessageBoxIcon.Information
-    );
+                "Hóa đơn đã được in thành công!",
+                "Thông báo",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
         }
     }
 }

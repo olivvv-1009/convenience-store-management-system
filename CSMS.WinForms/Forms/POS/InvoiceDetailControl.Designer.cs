@@ -428,7 +428,7 @@
             btPrint.TabIndex = 8;
             btPrint.Text = "Print";
             btPrint.UseVisualStyleBackColor = true;
-            btPrint.Click += button1_Click;
+            btPrint.Click += btPrint_Click;
             // 
             // InvoiceDetailForm
             // 

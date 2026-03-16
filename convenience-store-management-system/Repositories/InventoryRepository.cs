@@ -1,101 +1,172 @@
-﻿using CSMS.Database;
+﻿using convenience_store_management_system.Models;
+using CSMS.Database;
 using CSMS.Models;
-using System;
-using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
-using System.Data;
 
 namespace CSMS.Repositories
 {
     public class InventoryRepository
     {
-        private DbConnectionHelper db = new DbConnectionHelper();
+        private DbConnectionHelper dbHelper = new DbConnectionHelper();
 
-        public List<Inventory> GetInventory()
+        public void ImportStock(InventoryItem inventory)
         {
-            List<Inventory> list = new List<Inventory>();
-
-            using (SqlConnection conn = db.GetConnection())
+            using (SqlConnection conn = dbHelper.GetConnection())
             {
                 conn.Open();
 
-                string query = "SELECT * FROM Inventory";
+                SqlTransaction transaction = conn.BeginTransaction();
 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                try
                 {
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    string insertBatch = @"
+INSERT INTO Batches(ProductId,UnitCost,Quantity,ExpiryDate,Supplier,BatchNumber)
+VALUES(@ProductId,@UnitCost,@Quantity,@ExpiryDate,@Supplier,@BatchNumber)";
 
-                    while (reader.Read())
+                    SqlCommand cmdBatch = new SqlCommand(insertBatch, conn, transaction);
+
+                    cmdBatch.Parameters.AddWithValue("@ProductId", inventory.ProductId);
+                    cmdBatch.Parameters.AddWithValue("@UnitCost", inventory.UnitCost);
+                    cmdBatch.Parameters.AddWithValue("@Quantity", inventory.Quantity);
+                    cmdBatch.Parameters.AddWithValue("@ExpiryDate", inventory.ExpiryDate);
+                    cmdBatch.Parameters.AddWithValue("@Supplier", inventory.Supplier);
+                    cmdBatch.Parameters.AddWithValue("@BatchNumber", inventory.BatchNumber);
+
+                    cmdBatch.ExecuteNonQuery();
+
+                    string updateInventory = @"
+                    UPDATE Inventory
+                    SET Quantity = Quantity + @Quantity,
+                        LastUpdated = GETDATE()
+                    WHERE ProductId = @ProductId";
+
+                    SqlCommand cmdInventory = new SqlCommand(updateInventory, conn, transaction);
+                    cmdInventory.Parameters.AddWithValue("@ProductId", inventory.ProductId);
+                    cmdInventory.Parameters.AddWithValue("@Quantity", inventory.Quantity);
+
+                    cmdInventory.ExecuteNonQuery();
+
+                    transaction.Commit();
+                }
+                catch
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        public decimal? GetLastUnitCost(string productId, string supplier)
+        {
+            using (SqlConnection conn = dbHelper.GetConnection())
+            {
+                string query = @"
+        SELECT TOP 1 UnitCost
+        FROM Batches
+        WHERE ProductId = @ProductId
+        AND Supplier = @Supplier
+        ORDER BY ImportedDate DESC";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@ProductId", productId);
+                cmd.Parameters.AddWithValue("@Supplier", supplier);
+
+                conn.Open();
+
+                var result = cmd.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                    return Convert.ToDecimal(result);
+
+                return null;
+            }
+        }
+        public List<StockView> GetStockList()
+        {
+            List<StockView> list = new List<StockView>();
+
+            using (SqlConnection conn = dbHelper.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"SELECT 
+                        p.ProductId,
+                        p.ProductName,
+                        c.CategoryName,
+                        i.Quantity,
+                        i.MinimumStock
+                        FROM Products p
+                        JOIN Categories c ON p.CategoryId = c.CategoryId
+                        JOIN Inventory i ON p.ProductId = i.ProductId";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int current = Convert.ToInt32(reader["Quantity"]);
+                    int min = Convert.ToInt32(reader["MinimumStock"]);
+
+                    list.Add(new StockView
                     {
-                        Inventory inv = new Inventory
-                        {
-                            InventoryId = Convert.ToInt32(reader["InventoryId"]),
-                            ProductId = Convert.ToInt32(reader["ProductId"]),
-                            Quantity = Convert.ToInt32(reader["Quantity"]),
-                            MinimumStock = Convert.ToInt32(reader["MinimumStock"]),
-                            LastUpdated = Convert.ToDateTime(reader["LastUpdated"])
-                        };
+                        ProductCode = reader["ProductId"].ToString(),
+                        ProductName = reader["ProductName"].ToString(),
+                        Category = reader["CategoryName"].ToString(),
+                        CurrentStock = current,
+                        MinStock = min,
+                        Status = current < min ? "Low Stock" : "Active"
+                    });
+                }
+            }
 
-                        list.Add(inv);
-                    }
+            return list;
+        }
+        public List<ExpiredProduct> GetExpiredProducts()
+        {
+            List<ExpiredProduct> list = new List<ExpiredProduct>();
+
+            using (SqlConnection conn = dbHelper.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+SELECT
+b.BatchNumber,
+p.ProductId,
+p.ProductName,
+c.CategoryName AS Category,
+b.Quantity AS Stock,
+b.ExpiryDate,
+DATEDIFF(DAY, b.ExpiryDate, GETDATE()) AS DaysOverdue,
+'Expired' AS Status
+FROM Batches b
+JOIN Products p ON b.ProductId = p.ProductId
+JOIN Categories c ON p.CategoryId = c.CategoryId
+WHERE b.ExpiryDate <= GETDATE()
+";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(new ExpiredProduct
+                    {
+                        BatchNumber = reader["BatchNumber"].ToString(),
+                        ProductCode = reader["ProductId"].ToString(),
+                        ProductName = reader["ProductName"].ToString(),
+                        Category = reader["Category"].ToString(),
+                        Stock = Convert.ToInt32(reader["Stock"]),
+                        ExpiryDate = Convert.ToDateTime(reader["ExpiryDate"]),
+                        DaysOverdue = Convert.ToInt32(reader["DaysOverdue"]),
+                        Status = reader["Status"].ToString()
+                    });
                 }
             }
 
             return list;
         }
 
-        public Inventory GetByProductId(int productId)
-        {
-            Inventory inv = null;
-
-            using (SqlConnection conn = db.GetConnection())
-            {
-                conn.Open();
-
-                string query = "SELECT * FROM Inventory WHERE ProductId=@productId";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.Add("@productId", SqlDbType.Int).Value = productId;
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
-                    {
-                        inv = new Inventory
-                        {
-                            InventoryId = Convert.ToInt32(reader["InventoryId"]),
-                            ProductId = Convert.ToInt32(reader["ProductId"]),
-                            Quantity = Convert.ToInt32(reader["Quantity"]),
-                            MinimumStock = Convert.ToInt32(reader["MinimumStock"]),
-                            LastUpdated = Convert.ToDateTime(reader["LastUpdated"])
-                        };
-                    }
-                }
-            }
-
-            return inv;
-        }
-
-        public void UpdateStock(int productId, int quantity)
-        {
-            using (SqlConnection conn = db.GetConnection())
-            {
-                conn.Open();
-
-                string query = @"UPDATE Inventory
-                                 SET Quantity = Quantity + @qty,
-                                     LastUpdated = GETDATE()
-                                 WHERE ProductId=@productId";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.Add("@qty", SqlDbType.Int).Value = quantity;
-                    cmd.Parameters.Add("@productId", SqlDbType.Int).Value = productId;
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
     }
 }

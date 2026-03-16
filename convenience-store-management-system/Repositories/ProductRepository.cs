@@ -22,22 +22,35 @@ namespace CSMS.Repositories
 
                 string query = @"
         SELECT 
-            p.ProductId,
-            p.ProductName,
-            p.Price,
-            p.CategoryId,
-            p.ExpiryDate,
-            ISNULL(i.Quantity,0) AS Stock,
+    p.ProductId,
+    p.ProductName,
+    p.Price,
+    c.CategoryName,
+    p.ExpiryDate,
 
-            CASE
-                WHEN p.ExpiryDate < GETDATE() THEN 'Expired'
-                WHEN i.Quantity <= i.MinimumStock THEN 'LowStock'
-                ELSE 'Active'
-            END AS Status
+    ISNULL(s.TotalStock,0) AS Stock,
 
-        FROM Products p
-        LEFT JOIN Inventory i 
-        ON p.ProductId = i.ProductId";
+    CASE
+        WHEN p.ExpiryDate < GETDATE() THEN 'Expired'
+        WHEN ISNULL(s.TotalStock,0) <= i.MinimumStock THEN 'LowStock'
+        ELSE 'Active'
+    END AS Status
+
+FROM Products p
+
+LEFT JOIN Categories c
+ON p.CategoryId = c.CategoryId
+
+LEFT JOIN
+(
+    SELECT ProductId, SUM(Quantity) AS TotalStock
+    FROM Inventory
+    GROUP BY ProductId
+) s
+ON p.ProductId = s.ProductId
+
+LEFT JOIN Inventory i
+ON p.ProductId = i.ProductId";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -49,10 +62,10 @@ namespace CSMS.Repositories
 
                         p.ProductId = reader["ProductId"].ToString();
                         p.ProductName = reader["ProductName"].ToString();
-                        p.Price = Convert.ToDouble(reader["Price"]);
                         p.Category = reader["CategoryName"].ToString();
-                        p.ExpiryDate = Convert.ToDateTime(reader["ExpiryDate"]);
+                        p.Price = Convert.ToDouble(reader["Price"]);
                         p.Stock = Convert.ToInt32(reader["Stock"]);
+                        p.ExpiryDate = Convert.ToDateTime(reader["ExpiryDate"]);
                         p.Status = reader["Status"].ToString();
 
                         list.Add(p);
