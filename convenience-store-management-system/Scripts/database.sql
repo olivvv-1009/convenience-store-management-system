@@ -113,7 +113,8 @@ VALUES
 ('Dairy'),
 ('Bakery'),
 ('Frozen'),
-('Beverages')
+('Beverages'),
+('All Categories')
 
 INSERT INTO Products(ProductId,ProductName,Price,CategoryId,ExpiryDate,Status)
 VALUES

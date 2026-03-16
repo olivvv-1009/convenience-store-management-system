@@ -1,4 +1,5 @@
 ﻿using convenience_store_management_system.Models;
+using convenience_store_management_system.Services;
 using CSMS.Models;
 using CSMS.Services;
 using CSMS.WinForms.Controls;
@@ -16,23 +17,27 @@ namespace CSMS.WinForms.Forms.ProductUI
 {
     public partial class ProductForm : UserControl
     {
-            List<Product> products = new List<Product>();
+        string connectionString =
+            "Server=LAPTOP-7A534JGV\\SQLEXPRESS;Database=CSMS_DB;Trusted_Connection=True;TrustServerCertificate=True";
+        List<Product> products = new List<Product>();
 
-            public ProductForm()
-            {
-                InitializeComponent();
-
-                LoadProducts();
-                LoadCategories();
-                BindCategories();
+        public ProductForm()
+        {
+            InitializeComponent();
+            dgvProducts.AutoGenerateColumns = false;
+            LoadProducts();
+            LoadCategories();
+            BindCategories();
             //ShowProducts();
+            dgvProducts.Visible = true;
+            dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         ProductService service = new ProductService();
 
         private void LoadProducts()
         {
-            List<Product> products = service.GetAllProducts();
+            products = service.GetAllProducts();
 
             dgvProducts.DataSource = null;
             dgvProducts.DataSource = products;
@@ -49,18 +54,18 @@ namespace CSMS.WinForms.Forms.ProductUI
                 }
             }*/
         List<Category> categories = new List<Category>();
+        CategoryService categoryService = new CategoryService();
         private void LoadCategories()
         {
-            categories.Add(new Category(0, "All Categories"));
-            categories.Add(new Category(1, "Beverages"));
-            categories.Add(new Category(2, "Snacks"));
-            categories.Add(new Category(3, "Frozen"));
-            categories.Add(new Category(4, "Dairy"));
-            categories.Add(new Category(5, "Bakery"));
+            categories = categoryService.GetAllCategories();
+
+            categories.Insert(0, new Category(0, "All Categories"));
         }
         private void BindCategories()
         {
+            cbCategory.DataSource = null;
             cbCategory.DataSource = categories;
+
             cbCategory.DisplayMember = "Name";
             cbCategory.ValueMember = "Id";
         }
@@ -68,26 +73,102 @@ namespace CSMS.WinForms.Forms.ProductUI
         {
             Category selected = (Category)cbCategory.SelectedItem;
 
-            MessageBox.Show("Category: " + selected.Name);
+            if (selected != null)
+            {
+                MessageBox.Show("Category: " + selected.Name);
+            }
         }
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = txtSearch.Text.ToLower();
+
+            var filtered = products
+                .Where(p => p.ProductName.ToLower().Contains(keyword))
+                .ToList();
+
+            dgvProducts.DataSource = null;
+            dgvProducts.DataSource = filtered;
+        }
+        private void ShowProducts()
+        {
+            flowProducts.Controls.Clear();
+
+            foreach (var p in products)
+            {
+                ProductItemControl item = new ProductItemControl(p);
+                flowProducts.Controls.Add(item);
+            }
+        }
+        private void ReturnToProductScreen()
+        {
+            LoadProducts();
+            dgvProducts.Visible = true;// ẩn card
+
+            flowProducts.Controls.Clear();
+        }
+        private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-        }
+            if (e.RowIndex < 0) return;
+            if (dgvProducts.Columns[e.ColumnIndex].Name == "Edit")
+            {
+                Product p = (Product)dgvProducts.Rows[e.RowIndex].DataBoundItem;
 
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
+                ProductItemControl card = new ProductItemControl(p);
 
+                card.OnClose += ReturnToProductScreen;
+
+                dgvProducts.Visible = false;
+
+                flowProducts.Controls.Clear();
+                flowProducts.Controls.Add(card);
+            }
+            if (dgvProducts.Columns[e.ColumnIndex].Name == "Delete")
+            {
+                Product p = (Product)dgvProducts.Rows[e.RowIndex].DataBoundItem;
+
+                DialogResult result = MessageBox.Show(
+                    "Delete this product?",
+                    "Confirm",
+                    MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    service.DeleteProduct(p.ProductId);
+
+                    LoadProducts();
+                }
+            }
         }
 
         private void cbCategory_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            Category selected = (Category)cbCategory.SelectedItem;
 
+            if (selected.Id == 0)
+            {
+                dgvProducts.DataSource = null;
+                dgvProducts.DataSource = products;
+            }
+            else
+            {
+                var filtered = products
+                    .Where(p => p.Category.Trim().ToLower() == selected.Name.Trim().ToLower())
+                    .ToList();
+
+                dgvProducts.DataSource = null;
+                dgvProducts.DataSource = filtered;
+            }
         }
 
-        private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnAddProduct_Click(object sender, EventArgs e)
         {
-
+            Product newProduct = new Product();
+            ProductItemControl card = new ProductItemControl(newProduct);
+            card.OnClose += ReturnToProductScreen;
+            dgvProducts.Visible = false;
+            flowProducts.Controls.Clear();
+            flowProducts.Controls.Add(card);
         }
     }
-}
+}  

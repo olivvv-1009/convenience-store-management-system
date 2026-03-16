@@ -43,8 +43,8 @@
             Stock = new DataGridViewTextBoxColumn();
             ExpiryDate = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
-            Edit = new DataGridViewTextBoxColumn();
-            Delete = new DataGridViewTextBoxColumn();
+            Edit = new DataGridViewButtonColumn();
+            Delete = new DataGridViewButtonColumn();
             flowProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
@@ -81,6 +81,7 @@
             btnAddProduct.TabIndex = 2;
             btnAddProduct.Text = "+   Add Product";
             btnAddProduct.UseVisualStyleBackColor = false;
+            btnAddProduct.Click += btnAddProduct_Click;
             // 
             // flowProducts
             // 
@@ -120,6 +121,7 @@
             cbCategory.TabIndex = 2;
             cbCategory.Text = "All Categories";
             cbCategory.SelectedIndexChanged += cbCategory_SelectedIndexChanged_1;
+            cbCategory.Click += cbCategory_SelectedIndexChanged_1;
             // 
             // txtSearch
             // 
@@ -128,8 +130,7 @@
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(924, 30);
             txtSearch.TabIndex = 1;
-            txtSearch.Text = "🔍 Search by product name or code...";
-            txtSearch.TextChanged += textBox1_TextChanged_1;
+            txtSearch.Click += txtSearch_TextChanged;
             // 
             // lblProduct
             // 
@@ -191,17 +192,19 @@
             // 
             // Edit
             // 
-            Edit.DataPropertyName = "Edit ✏";
-            Edit.HeaderText = "Edit ✏";
+            Edit.HeaderText = "Edit ";
             Edit.MinimumWidth = 6;
             Edit.Name = "Edit";
+            Edit.Resizable = DataGridViewTriState.True;
+            Edit.UseColumnTextForButtonValue = true;
             // 
             // Delete
             // 
-            Delete.DataPropertyName = "Delete 🗑";
-            Delete.HeaderText = "Delete 🗑";
+            Delete.HeaderText = "Delete";
             Delete.MinimumWidth = 6;
             Delete.Name = "Delete";
+            Delete.Resizable = DataGridViewTriState.True;
+            Delete.UseColumnTextForButtonValue = true;
             // 
             // ProductForm
             // 
@@ -239,7 +242,7 @@
         private DataGridViewTextBoxColumn Stock;
         private DataGridViewTextBoxColumn ExpiryDate;
         private DataGridViewTextBoxColumn Status;
-        private DataGridViewTextBoxColumn Edit;
-        private DataGridViewTextBoxColumn Delete;
+        private DataGridViewButtonColumn Edit;
+        private DataGridViewButtonColumn Delete;
     }
 }

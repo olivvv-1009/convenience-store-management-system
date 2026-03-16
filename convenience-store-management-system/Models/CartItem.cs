@@ -8,7 +8,7 @@ namespace convenience_store_management_system.Models
 {
     public class CartItem
     {
-        public int ProductId { get; set; }
+        public string ProductId { get; set; }
 
         public string Name { get; set; }
         public decimal Price { get; set; }

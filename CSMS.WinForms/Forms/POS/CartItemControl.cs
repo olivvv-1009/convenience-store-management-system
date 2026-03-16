@@ -7,7 +7,7 @@ namespace CSMS.WinForms.Forms.POS
 {
     public partial class CartItemControl : UserControl
     {
-        public int ProductId;
+        public string ProductId;
         private int quantity = 1;
         private decimal unitPrice;
 

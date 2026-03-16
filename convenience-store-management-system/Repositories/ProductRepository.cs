@@ -21,47 +21,48 @@ namespace CSMS.Repositories
                 conn.Open();
 
                 string query = @"
-        SELECT 
-            p.ProductId,
-            p.ProductName,
-            p.Price,
-            p.CategoryId,
-            p.ExpiryDate,
-            ISNULL(i.Quantity,0) AS Stock,
+SELECT 
+    p.ProductId,
+    p.ProductName,
+    c.CategoryName,
+    p.Price,
+    p.ExpiryDate,
+    ISNULL(i.Quantity,0) AS Stock,
 
-            CASE
-                WHEN p.ExpiryDate < GETDATE() THEN 'Expired'
-                WHEN i.Quantity <= i.MinimumStock THEN 'LowStock'
-                ELSE 'Active'
-            END AS Status
+    CASE
+        WHEN p.ExpiryDate < GETDATE() THEN 'Expired'
+        WHEN ISNULL(i.Quantity,0) <= ISNULL(i.MinimumStock,0) THEN 'LowStock'
+        ELSE 'Active'
+    END AS Status
 
-        FROM Products p
-        LEFT JOIN Inventory i 
-        ON p.ProductId = i.ProductId";
+FROM Products p
+LEFT JOIN Categories c 
+ON p.CategoryId = c.CategoryId
+LEFT JOIN Inventory i 
+ON p.ProductId = i.ProductId";
 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    Product p = new Product();
 
-                    while (reader.Read())
-                    {
-                        Product p = new Product();
+                    p.ProductId = reader["ProductId"].ToString();
+                    p.ProductName = reader["ProductName"].ToString();
+                    p.Category = reader["CategoryName"].ToString();
+                    p.Price = Convert.ToDouble(reader["Price"]);
+                    p.Stock = Convert.ToInt32(reader["Stock"]);
+                    p.ExpiryDate = Convert.ToDateTime(reader["ExpiryDate"]);
+                    p.Status = reader["Status"].ToString();
 
-                        p.ProductId = reader["ProductId"].ToString();
-                        p.ProductName = reader["ProductName"].ToString();
-                        p.Price = Convert.ToDouble(reader["Price"]);
-                        p.Category = reader["CategoryName"].ToString();
-                        p.ExpiryDate = Convert.ToDateTime(reader["ExpiryDate"]);
-                        p.Stock = Convert.ToInt32(reader["Stock"]);
-                        p.Status = reader["Status"].ToString();
-
-                        list.Add(p);
-                    }
+                    list.Add(p);
                 }
             }
 
             return list;
         }
+
 
         // Thêm sản phẩm
         public void AddProduct(Product product)
@@ -70,20 +71,41 @@ namespace CSMS.Repositories
             {
                 conn.Open();
 
-                string query =
-                "INSERT INTO Products(ProductId,ProductName,Price,CategoryId,ExpiryDate,Status) " +
-                "VALUES(@id,@name,@price,@category,@expiry,@status)";
+                SqlTransaction tran = conn.BeginTransaction();
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+                try
+                {
+                    string query1 =
+                    @"INSERT INTO Products(ProductId,ProductName,Price,CategoryId,ExpiryDate)
+                 VALUES(@id,@name,@price,@category,@expiry)";
 
-                cmd.Parameters.AddWithValue("@id", product.ProductId);
-                cmd.Parameters.AddWithValue("@name", product.ProductName);
-                cmd.Parameters.AddWithValue("@price", product.Price);
-                cmd.Parameters.AddWithValue("@category", product.CategoryId);
-                cmd.Parameters.AddWithValue("@expiry", product.ExpiryDate);
-                cmd.Parameters.AddWithValue("@status", product.Status);
+                    SqlCommand cmd1 = new SqlCommand(query1, conn, tran);
 
-                cmd.ExecuteNonQuery();
+                    cmd1.Parameters.AddWithValue("@id", product.ProductId);
+                    cmd1.Parameters.AddWithValue("@name", product.ProductName);
+                    cmd1.Parameters.AddWithValue("@price", product.Price);
+                    cmd1.Parameters.AddWithValue("@category", product.CategoryId);
+                    cmd1.Parameters.AddWithValue("@expiry", product.ExpiryDate);
+
+                    cmd1.ExecuteNonQuery();
+
+                    string query2 =
+                    @"INSERT INTO Inventory(ProductId, Quantity)
+                 VALUES(@id,@stock)";
+
+                    SqlCommand cmd2 = new SqlCommand(query2, conn, tran);
+
+                    cmd2.Parameters.AddWithValue("@id", product.ProductId);
+                    cmd2.Parameters.AddWithValue("@stock", product.Stock);
+
+                    cmd2.ExecuteNonQuery();
+
+                    tran.Commit();
+                }
+                catch
+                {
+                    tran.Rollback();
+                }
             }
         }
 
@@ -94,22 +116,45 @@ namespace CSMS.Repositories
             {
                 conn.Open();
 
-                string query =
-                "UPDATE Products SET " +
-                "ProductName=@name, Price=@price, CategoryId=@category, " +
-                "ExpiryDate=@expiry, Status=@status " +
-                "WHERE ProductId=@id";
+                SqlTransaction tran = conn.BeginTransaction();
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+                try
+                {
+                    string query1 = @"UPDATE Products
+                              SET ProductName = @name,
+                                  Price = @price,
+                                  CategoryId = @category,
+                                  ExpiryDate = @expiry
+                              WHERE ProductId = @id";
 
-                cmd.Parameters.AddWithValue("@id", product.ProductId);
-                cmd.Parameters.AddWithValue("@name", product.ProductName);
-                cmd.Parameters.AddWithValue("@price", product.Price);
-                cmd.Parameters.AddWithValue("@category", product.CategoryId);
-                cmd.Parameters.AddWithValue("@expiry", product.ExpiryDate);
-                cmd.Parameters.AddWithValue("@status", product.Status);
+                    SqlCommand cmd1 = new SqlCommand(query1, conn, tran);
 
-                cmd.ExecuteNonQuery();
+                    cmd1.Parameters.AddWithValue("@id", product.ProductId);
+                    cmd1.Parameters.AddWithValue("@name", product.ProductName);
+                    cmd1.Parameters.AddWithValue("@price", product.Price);
+                    cmd1.Parameters.AddWithValue("@category", product.CategoryId);
+                    cmd1.Parameters.AddWithValue("@expiry", product.ExpiryDate);
+
+                    cmd1.ExecuteNonQuery();
+
+                    string query2 = @"UPDATE Inventory
+                              SET Quantity = @stock
+                              WHERE ProductId = @id";
+
+                    SqlCommand cmd2 = new SqlCommand(query2, conn, tran);
+
+                    cmd2.Parameters.AddWithValue("@id", product.ProductId);
+                    cmd2.Parameters.AddWithValue("@stock", product.Stock);
+
+                    cmd2.ExecuteNonQuery();
+
+                    tran.Commit();
+                }
+                catch
+                {
+                    tran.Rollback();
+                    throw;
+                }
             }
         }
 
@@ -119,13 +164,48 @@ namespace CSMS.Repositories
             using (SqlConnection conn = db.GetConnection())
             {
                 conn.Open();
+                SqlTransaction tran = conn.BeginTransaction();
 
-                string query = "DELETE FROM Products WHERE ProductId=@id";
+                try
+                {
+                    string query1 = "DELETE FROM Inventory WHERE ProductId = @id";
+
+                    SqlCommand cmd1 = new SqlCommand(query1, conn, tran);
+
+                    cmd1.Parameters.AddWithValue("@id", productId);
+
+                    cmd1.ExecuteNonQuery();
+
+                    string query2 = "DELETE FROM Products WHERE ProductId = @id";
+                    SqlCommand cmd2 = new SqlCommand(query2, conn, tran);
+
+                    cmd2.Parameters.AddWithValue("@id", productId);
+
+                    cmd2.ExecuteNonQuery();
+
+                    tran.Commit();
+                }
+                catch 
+                {
+                    tran.Rollback();
+                }
+                }
+        }
+
+        public bool Exists(string productId)
+        {
+            using (SqlConnection conn = db.GetConnection())
+            {
+                conn.Open();
+
+                string query = "SELECT COUNT(*) FROM Products WHERE ProductId = @id";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@id", productId);
 
-                cmd.ExecuteNonQuery();
+                int count = (int)cmd.ExecuteScalar();
+
+                return count > 0;
             }
         }
 
@@ -139,7 +219,7 @@ namespace CSMS.Repositories
                 conn.Open();
 
                 string query =
-                @"SELECT p.ProductId, p.ProductName, p.Price,
+                @"SELECT p.ProductId, p.ProductName, p.Price, c.CategoryName, p.CategoryId, p.ExpiryDate,
                   ISNULL(i.Quantity,0) AS Stock,
                   CASE
                     WHEN p.ExpiryDate < GETDATE() THEN 'Expired'
@@ -147,7 +227,8 @@ namespace CSMS.Repositories
                     ELSE 'Active'
                   END AS Status
                   FROM Products p
-                  LEFT JOIN Inventory i ON p.ProductId = i.ProductId";
+                  LEFT JOIN Inventory i ON p.ProductId = i.ProductId
+                  LEFT JOIN Categories c ON p.CategoryId = c.CategoryId";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
