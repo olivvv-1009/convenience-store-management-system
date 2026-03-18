@@ -32,5 +32,9 @@ namespace CSMS.Services
         {
             return productRepo.GetProductsForPOS();
         }
+        public bool Exists(string productId)
+        {
+            return productRepo.Exists(productId);
+        }
     }
 }
