@@ -18,44 +18,68 @@ namespace CSMS.WinForms.Forms.POS
 
         private string paymentMethod = "Cash";
         private decimal manualDiscount = 0;
-
         private int? memberId = null;
 
         public CreateInvoice()
         {
             InitializeComponent();
 
+            pnlContent.Dock = DockStyle.Left;
+            pnlContent.Width = 950;
+
+            pnlContent.AutoScroll = true;
+            pnlContent.WrapContents = true;
+            pnlContent.FlowDirection = FlowDirection.LeftToRight;
+
             flowCartItems.BringToFront();
-            pnlContent.Resize += (s, e) => ReloadProductLayout();
 
             txtMemberPhone.TextChanged += (s, e) => FindMember();
 
             LoadProducts();
         }
 
-        // ================= LOAD SẢN PHẨM =================
+        // ================= LOAD PRODUCTS =================
         private void LoadProducts()
         {
             var products = productService.GetProductsForPOS();
 
             pnlContent.Controls.Clear();
-            pnlContent.AutoScroll = true;
 
             foreach (var p in products)
             {
-                ProductCard card = new ProductCard(p);
-                card.Width = 300;
-                card.Height = 180;
-                card.Margin = new Padding(15);
+                var posProduct = new ProductPOS
+                {
+                    ProductId = p.ProductId,
+                    ProductName = p.ProductName,
+                    Price = p.Price
+                };
+
+                ProductCard card = new ProductCard(posProduct);
                 card.OnProductSelected += AddToCart;
 
                 pnlContent.Controls.Add(card);
             }
 
-            ReloadProductLayout();
+            ApplyGridLayout();
         }
 
-        // ================= TÌM MEMBER =================
+        // ================= GRID =================
+        private void ApplyGridLayout()
+        {
+            int spacing = 30;
+            int cardWidth = 270;
+
+            foreach (Control ctrl in pnlContent.Controls)
+            {
+                if (ctrl is ProductCard card)
+                {
+                    card.Width = cardWidth;
+                    card.Margin = new Padding(spacing / 2);
+                }
+            }
+        }
+
+        // ================= MEMBER =================
         private void FindMember()
         {
             string phone = txtMemberPhone.Text.Trim();
@@ -81,7 +105,7 @@ namespace CSMS.WinForms.Forms.POS
             }
         }
 
-        // ================= THÊM VÀO GIỎ =================
+        // ================= ADD TO CART =================
         private void AddToCart(ProductPOS product)
         {
             foreach (Control ctrl in flowCartItems.Controls)
@@ -117,7 +141,6 @@ namespace CSMS.WinForms.Forms.POS
             UpdateCartStatus();
         }
 
-        // ================= ĐỔI SỐ LƯỢNG =================
         private void CartItemQuantityChanged(CartItemControl item)
         {
             var cartItem = cartItems.First(x => x.ProductId == item.ProductId);
@@ -126,7 +149,6 @@ namespace CSMS.WinForms.Forms.POS
             UpdateSubTotal();
         }
 
-        // ================= XÓA KHỎI GIỎ =================
         private void RemoveCartItem(CartItemControl item)
         {
             flowCartItems.Controls.Remove(item);
@@ -136,11 +158,10 @@ namespace CSMS.WinForms.Forms.POS
             UpdateCartStatus();
         }
 
-        // ================= TÍNH TIỀN =================
+        // ================= CALCULATION =================
         private void UpdateSubTotal()
         {
             decimal subtotal = cartItems.Sum(x => x.Price * x.Quantity);
-
             lblsubtotal.Text = "$" + subtotal.ToString("0.00");
 
             UpdateTotal(subtotal);
@@ -151,7 +172,8 @@ namespace CSMS.WinForms.Forms.POS
             if (manualDiscount > subtotal)
                 manualDiscount = subtotal;
 
-            lbltotal.Text = "$" + (subtotal - manualDiscount).ToString("0.00");
+            decimal total = subtotal - manualDiscount;
+            lbltotal.Text = "$" + total.ToString("0.00");
         }
 
         private decimal GetCurrentTotal()
@@ -164,13 +186,13 @@ namespace CSMS.WinForms.Forms.POS
             return subtotal - manualDiscount;
         }
 
-        // ================= TRẠNG THÁI GIỎ =================
+        // ================= CART STATUS =================
         private void UpdateCartStatus()
         {
             lblEmptyCart.Visible = flowCartItems.Controls.Count == 0;
         }
 
-        // ================= THANH TOÁN =================
+        // ================= CHECKOUT =================
         private void checkout_Click(object sender, EventArgs e)
         {
             if (!cartItems.Any())
@@ -183,10 +205,8 @@ namespace CSMS.WinForms.Forms.POS
 
             if (paymentMethod == "Cash")
                 ProcessInvoice();
-
             else if (paymentMethod == "Bank")
                 ShowQRCode("bank", totalAmount);
-
             else if (paymentMethod == "EWallet")
                 ShowQRCode("ewallet", totalAmount);
         }
@@ -194,14 +214,13 @@ namespace CSMS.WinForms.Forms.POS
         private void ShowQRCode(string type, decimal amount)
         {
             PaymentQRForm qrForm = new PaymentQRForm(type, amount);
-
             qrForm.ShowDialog();
 
             if (qrForm.PaymentConfirmed)
                 ProcessInvoice();
         }
 
-        // ================= TẠO HÓA ĐƠN =================
+        // ================= CREATE INVOICE =================
         private void ProcessInvoice()
         {
             invoiceService.CreateInvoice(cartItems, paymentMethod, memberId);
@@ -214,7 +233,7 @@ namespace CSMS.WinForms.Forms.POS
             LoadProducts();
         }
 
-        // ================= RESET UI =================
+        // ================= RESET =================
         private void RefreshCartUI()
         {
             flowCartItems.Controls.Clear();
@@ -243,17 +262,5 @@ namespace CSMS.WinForms.Forms.POS
         private void cash_Click(object sender, EventArgs e) => paymentMethod = "Cash";
         private void button2_Click(object sender, EventArgs e) => paymentMethod = "Bank";
         private void button3_Click(object sender, EventArgs e) => paymentMethod = "EWallet";
-
-        // ================= LAYOUT =================
-        private void ReloadProductLayout()
-        {
-            int panelWidth = pnlContent.ClientSize.Width;
-            int cardWidth = (panelWidth / 2) - 30;
-
-            foreach (Control ctrl in pnlContent.Controls)
-                if (ctrl is ProductCard card)
-                    card.Width = cardWidth;
-        }
-
     }
 }

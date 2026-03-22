@@ -49,7 +49,7 @@ namespace CSMS.WinForms.Forms.Inventory
             // đổi tên header
             dgvStock.Columns["ProductCode"].HeaderText = "Product Code";
             dgvStock.Columns["ProductName"].HeaderText = "Product Name";
-            dgvStock.Columns["Category"].HeaderText = "Category";
+            dgvStock.Columns["CategoryName"].HeaderText = "Category";
             dgvStock.Columns["CurrentStock"].HeaderText = "Current Stock";
             dgvStock.Columns["MinStock"].HeaderText = "Min Stock";
             dgvStock.Columns["Status"].HeaderText = "Status";

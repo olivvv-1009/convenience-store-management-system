@@ -7,8 +7,9 @@ namespace convenience_store_management_system.Repositories
 {
     public class CategoryRepository
     {
-        DbConnectionHelper db = new DbConnectionHelper();
+        private readonly DbConnectionHelper db = new DbConnectionHelper();
 
+        // ================= GET ALL =================
         public List<Category> GetAllCategories()
         {
             List<Category> list = new List<Category>();
@@ -17,23 +18,77 @@ namespace convenience_store_management_system.Repositories
             {
                 conn.Open();
 
-                string query = "SELECT CategoryId, CategoryName FROM Categories";
+                string query = @"SELECT CategoryId, CategoryName FROM Categories";
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Category c = new Category();
+                    while (reader.Read())
+                    {
+                        list.Add(new Category
+                        {
+                            Id = reader["CategoryId"] != DBNull.Value
+                                ? Convert.ToInt32(reader["CategoryId"])
+                                : 0,
 
-                    c.Id = (int)reader["CategoryId"];
-                    c.Name = reader["CategoryName"].ToString();
-
-                    list.Add(c);
+                            Name = reader["CategoryName"] != DBNull.Value
+                                ? reader["CategoryName"].ToString()
+                                : ""
+                        });
+                    }
                 }
             }
 
             return list;
+        }
+
+        // ================= GET BY ID =================
+        public Category GetById(int id)
+        {
+            using (SqlConnection conn = db.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"SELECT CategoryId, CategoryName 
+                                 FROM Categories 
+                                 WHERE CategoryId = @id";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Category
+                            {
+                                Id = Convert.ToInt32(reader["CategoryId"]),
+                                Name = reader["CategoryName"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        // ================= EXISTS =================
+        public bool Exists(int id)
+        {
+            using (SqlConnection conn = db.GetConnection())
+            {
+                conn.Open();
+
+                string query = "SELECT COUNT(*) FROM Categories WHERE CategoryId = @id";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    return (int)cmd.ExecuteScalar() > 0;
+                }
+            }
         }
     }
 }

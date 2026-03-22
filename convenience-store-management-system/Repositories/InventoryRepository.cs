@@ -112,7 +112,7 @@ VALUES(@ProductId,@UnitCost,@Quantity,@ExpiryDate,@Supplier,@BatchNumber)";
                     {
                         ProductCode = reader["ProductId"].ToString(),
                         ProductName = reader["ProductName"].ToString(),
-                        Category = reader["CategoryName"].ToString(),
+                        CategoryName = reader["CategoryName"].ToString(),
                         CurrentStock = current,
                         MinStock = min,
                         Status = current < min ? "Low Stock" : "Active"
@@ -135,7 +135,7 @@ SELECT
 b.BatchNumber,
 p.ProductId,
 p.ProductName,
-c.CategoryName AS Category,
+c.CategoryNameName AS CategoryName,
 b.Quantity AS Stock,
 b.ExpiryDate,
 DATEDIFF(DAY, b.ExpiryDate, GETDATE()) AS DaysOverdue,
@@ -156,7 +156,7 @@ WHERE b.ExpiryDate <= GETDATE()
                         BatchNumber = reader["BatchNumber"].ToString(),
                         ProductCode = reader["ProductId"].ToString(),
                         ProductName = reader["ProductName"].ToString(),
-                        Category = reader["Category"].ToString(),
+                        CategoryName = reader["CategoryName"].ToString(),
                         Stock = Convert.ToInt32(reader["Stock"]),
                         ExpiryDate = Convert.ToDateTime(reader["ExpiryDate"]),
                         DaysOverdue = Convert.ToInt32(reader["DaysOverdue"]),

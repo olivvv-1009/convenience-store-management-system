@@ -28,42 +28,67 @@ namespace CSMS.WinForms.Forms.POS
         private void LoadInvoices()
         {
             string query = @"SELECT 
-                    i.InvoiceId,
-                    i.CreatedAt,
-                    m.FullName AS CustomerName,
-                    m.Phone,
-                    i.TotalAmount
-                    FROM Invoices i
-                    LEFT JOIN Members m ON i.MemberId = m.MemberId
-                    ORDER BY i.CreatedAt DESC";
+            i.InvoiceId,
+            i.CreatedAt,
+            m.FullName AS CustomerName,
+            m.Phone,
+            i.TotalAmount
+        FROM Invoices i
+        LEFT JOIN Members m ON i.MemberId = m.MemberId
+        ORDER BY i.CreatedAt DESC";
 
             using SqlConnection conn = db.GetConnection();
 
             SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
             DataTable dt = new DataTable();
-
             adapter.Fill(dt);
 
             dgvInvoices.DataSource = dt;
 
+            // ===== ĐỔI TÊN CỘT =====
             dgvInvoices.Columns["InvoiceId"].HeaderText = "Invoice ID";
             dgvInvoices.Columns["CreatedAt"].HeaderText = "Created Date";
             dgvInvoices.Columns["CustomerName"].HeaderText = "Customer Name";
             dgvInvoices.Columns["Phone"].HeaderText = "Phone Number";
             dgvInvoices.Columns["TotalAmount"].HeaderText = "Total Amount";
 
+            // ===== SIZE & BEHAVIOR =====
             dgvInvoices.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvInvoices.RowHeadersVisible = false;
             dgvInvoices.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvInvoices.AllowUserToAddRows = false;
+            dgvInvoices.ReadOnly = true;
 
+            // ===== FONT CHUẨN =====
             dgvInvoices.EnableHeadersVisualStyles = false;
-            dgvInvoices.ColumnHeadersDefaultCellStyle.BackColor = Color.WhiteSmoke;
-            dgvInvoices.ColumnHeadersDefaultCellStyle.Font =
-                new Font("Segoe UI", 10, FontStyle.Bold);
 
+            dgvInvoices.ColumnHeadersDefaultCellStyle.Font =
+                new Font("Times New Roman", 12, FontStyle.Bold);
+
+            dgvInvoices.DefaultCellStyle.Font =
+                new Font("Times New Roman", 11, FontStyle.Regular);
+
+            // ===== STYLE HEADER =====
+            dgvInvoices.ColumnHeadersDefaultCellStyle.BackColor = Color.WhiteSmoke;
+            dgvInvoices.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
             dgvInvoices.ColumnHeadersHeight = 40;
 
+            // ===== STYLE ROW =====
+            dgvInvoices.DefaultCellStyle.SelectionBackColor = Color.LightBlue;
+            dgvInvoices.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Zebra row (xịn hơn)
+            dgvInvoices.AlternatingRowsDefaultCellStyle.BackColor = Color.Gainsboro;
+
+            // ===== FORMAT DỮ LIỆU =====
+            dgvInvoices.Columns["TotalAmount"].DefaultCellStyle.Format = "N0";
+            dgvInvoices.Columns["CreatedAt"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
+
+            // ===== ALIGN =====
+            dgvInvoices.Columns["TotalAmount"].DefaultCellStyle.Alignment =
+                DataGridViewContentAlignment.MiddleRight;
+
+            // ===== LABEL =====
             lblInvoiceResults.Text = $"Invoice Results ({dt.Rows.Count} found)";
         }
 

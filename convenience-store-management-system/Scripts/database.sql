@@ -160,3 +160,40 @@ ADD BatchNumber NVARCHAR(50)
 UPDATE Batches
 SET BatchNumber = 'BATCH-' + ProductId + '-' + FORMAT(ExpiryDate,'yyyyMMdd')
 WHERE BatchNumber IS NULL
+
+ALTER TABLE Products
+ADD ExpiryDate DATE
+
+-- Unique Inventory
+ALTER TABLE Inventory
+ADD CONSTRAINT UQ_Inventory_Product UNIQUE(ProductId)
+
+-- Payment status
+ALTER TABLE Payments
+ADD Status NVARCHAR(50) DEFAULT 'Paid'
+
+-- Promotion mapping
+CREATE TABLE PromotionProducts (
+    PromotionId INT,
+    ProductId NVARCHAR(20),
+
+    PRIMARY KEY (PromotionId, ProductId),
+    FOREIGN KEY (PromotionId) REFERENCES Promotions(PromotionId),
+    FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
+)
+
+-- Index
+CREATE INDEX idx_product_CategoryName ON Products(CategoryId)
+CREATE INDEX idx_inventory_product ON Inventory(ProductId)
+
+ALTER TABLE Batches
+ADD CONSTRAINT FK_Batches_Product
+FOREIGN KEY (ProductId)
+REFERENCES Products(ProductId)
+ON DELETE CASCADE
+
+ALTER TABLE dbo.Inventory
+ADD CONSTRAINT FK_Inventory_Product
+FOREIGN KEY (ProductId)
+REFERENCES Products(ProductId)
+ON DELETE CASCADE

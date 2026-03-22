@@ -24,6 +24,8 @@
 
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             dgvItems = new DataGridView();
             tableLayoutPanel1 = new TableLayoutPanel();
             label1 = new Label();
@@ -52,7 +54,7 @@
             lblTotal = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
             label7 = new Label();
-            lblSubTotal = new Label();
+            lblSubtotal = new Label();
             btPrint = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvItems).BeginInit();
             tableLayoutPanel1.SuspendLayout();
@@ -69,7 +71,23 @@
             // 
             // dgvItems
             // 
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvItems.DefaultCellStyle = dataGridViewCellStyle2;
             dgvItems.Dock = DockStyle.Fill;
             dgvItems.Location = new Point(3, 233);
             dgvItems.Name = "dgvItems";
@@ -385,7 +403,7 @@
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.Controls.Add(label7, 0, 0);
-            tableLayoutPanel4.Controls.Add(lblSubTotal, 1, 0);
+            tableLayoutPanel4.Controls.Add(lblSubtotal, 1, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(3, 333);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -406,17 +424,17 @@
             label7.Text = "SubTotal";
             label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // lblSubTotal
+            // lblSubtotal
             // 
-            lblSubTotal.AutoSize = true;
-            lblSubTotal.Dock = DockStyle.Fill;
-            lblSubTotal.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSubTotal.Location = new Point(353, 0);
-            lblSubTotal.Name = "lblSubTotal";
-            lblSubTotal.Size = new Size(344, 34);
-            lblSubTotal.TabIndex = 1;
-            lblSubTotal.Text = "label9";
-            lblSubTotal.TextAlign = ContentAlignment.MiddleRight;
+            lblSubtotal.AutoSize = true;
+            lblSubtotal.Dock = DockStyle.Fill;
+            lblSubtotal.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubtotal.Location = new Point(353, 0);
+            lblSubtotal.Name = "lblSubtotal";
+            lblSubtotal.Size = new Size(344, 34);
+            lblSubtotal.TabIndex = 1;
+            lblSubtotal.Text = "label9";
+            lblSubtotal.TextAlign = ContentAlignment.MiddleRight;
             // 
             // btPrint
             // 
@@ -490,7 +508,7 @@
         private Label lblTotal;
         private TableLayoutPanel tableLayoutPanel4;
         private Label label7;
-        private Label lblSubTotal;
+        private Label lblSubtotal;
         private Button btPrint;
     }
 }
