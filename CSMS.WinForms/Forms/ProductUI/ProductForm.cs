@@ -1,174 +1,198 @@
-﻿using convenience_store_management_system.Models;
-using convenience_store_management_system.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using convenience_store_management_system.Models;
 using CSMS.Models;
 using CSMS.Services;
-using CSMS.WinForms.Controls;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CSMS.WinForms.Forms.ProductUI
 {
     public partial class ProductForm : UserControl
     {
-        string connectionString =
-            "Server=LAPTOP-7A534JGV\\SQLEXPRESS;Database=CSMS_DB;Trusted_Connection=True;TrustServerCertificate=True";
-        List<Product> products = new List<Product>();
+        private List<Product> products = new List<Product>();
+        private ProductService service = new ProductService();
+        private CategoryService categoryService = new CategoryService();
+        private List<Category> categories = new List<Category>();
 
         public ProductForm()
         {
             InitializeComponent();
-            dgvProducts.AutoGenerateColumns = false;
-            LoadProducts();
+
+            SetupUI();
             LoadCategories();
             BindCategories();
-            //ShowProducts();
-            dgvProducts.Visible = true;
-            dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            LoadProducts();
         }
 
-        ProductService service = new ProductService();
+        // ================= UI =================
+        private void SetupUI()
+        {
+            dgvProducts.Dock = DockStyle.Fill;
+            dgvProducts.AutoGenerateColumns = false;
 
+            dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProducts.ReadOnly = true;
+            dgvProducts.AllowUserToAddRows = false;
+            dgvProducts.RowHeadersVisible = false;
+            dgvProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgvProducts.CellContentClick += dgvProducts_CellContentClick;
+        }
+
+        // ================= LOAD PRODUCTS =================
         private void LoadProducts()
         {
             products = service.GetAllProducts();
 
-            dgvProducts.DataSource = null;
+            dgvProducts.Columns.Clear();
+            SetupColumns();
+
             dgvProducts.DataSource = products;
         }
 
-        /*private void ShowProducts()
+        // ================= SETUP COLUMNS =================
+        private void SetupColumns()
+        {
+            dgvProducts.Columns.Add(new DataGridViewTextBoxColumn
             {
-                flowProducts.Controls.Clear();
+                Name = "ProductId",
+                HeaderText = "ID",
+                DataPropertyName = "ProductId"
+            });
 
-                foreach (var p in products)
-                {
-                    ProductItemControl item = new ProductItemControl(p);
-                    flowProducts.Controls.Add(item);
-                }
-            }*/
-        List<Category> categories = new List<Category>();
-        CategoryService categoryService = new CategoryService();
+            dgvProducts.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "ProductName",
+                HeaderText = "Name",
+                DataPropertyName = "ProductName"
+            });
+
+            dgvProducts.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Category",
+                HeaderText = "Category",
+                DataPropertyName = "CategoryName"
+            });
+
+            dgvProducts.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Price",
+                HeaderText = "Price",
+                DataPropertyName = "Price",
+                DefaultCellStyle = { Format = "C2" } // decimal hiển thị đẹp
+            });
+
+            dgvProducts.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Stock",
+                HeaderText = "Stock",
+                DataPropertyName = "Stock"
+            });
+
+            dgvProducts.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Status",
+                HeaderText = "Status",
+                DataPropertyName = "Status"
+            });
+
+            dgvProducts.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "Edit",
+                HeaderText = "",
+                Text = "✏ Edit",
+                UseColumnTextForButtonValue = true
+            });
+
+            dgvProducts.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "Delete",
+                HeaderText = "",
+                Text = "🗑 Delete",
+                UseColumnTextForButtonValue = true
+            });
+        }
+
+        // ================= CATEGORY =================
         private void LoadCategories()
         {
             categories = categoryService.GetAllCategories();
-
             categories.Insert(0, new Category(0, "All Categories"));
         }
+
         private void BindCategories()
         {
-            cbCategory.DataSource = null;
             cbCategory.DataSource = categories;
-
             cbCategory.DisplayMember = "Name";
             cbCategory.ValueMember = "Id";
         }
-        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Category selected = (Category)cbCategory.SelectedItem;
 
-            if (selected != null)
-            {
-                MessageBox.Show("Category: " + selected.Name);
-            }
-        }
+        // ================= SEARCH =================
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text.ToLower();
 
-            var filtered = products
-                .Where(p => p.ProductName.ToLower().Contains(keyword))
+            dgvProducts.DataSource = products
+                .Where(p => (p.ProductName ?? "").ToLower().Contains(keyword)
+                         || (p.ProductId ?? "").ToLower().Contains(keyword))
                 .ToList();
-
-            dgvProducts.DataSource = null;
-            dgvProducts.DataSource = filtered;
         }
-        private void ShowProducts()
+
+        // ================= FILTER =================
+        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            flowProducts.Controls.Clear();
+            var selected = (Category)cbCategory.SelectedItem;
 
-            foreach (var p in products)
-            {
-                ProductItemControl item = new ProductItemControl(p);
-                flowProducts.Controls.Add(item);
-            }
+            if (selected.Id == 0)
+                dgvProducts.DataSource = products;
+            else
+                dgvProducts.DataSource = products
+                    .Where(p => (p.CategoryName ?? "").ToLower() == selected.Name.ToLower())
+                    .ToList();
         }
-        private void ReturnToProductScreen()
-        {
-            LoadProducts();
-            dgvProducts.Visible = true;// ẩn card
 
-            flowProducts.Controls.Clear();
-        }
+        // ================= ACTION (EDIT / DELETE) =================
         private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (e.RowIndex < 0) return;
+
+            var p = (Product)dgvProducts.Rows[e.RowIndex].DataBoundItem;
+
+            // EDIT
             if (dgvProducts.Columns[e.ColumnIndex].Name == "Edit")
             {
-                Product p = (Product)dgvProducts.Rows[e.RowIndex].DataBoundItem;
+                ProductEditForm form = new ProductEditForm(p.ProductId);
+                form.ShowDialog();
 
-                ProductItemControl card = new ProductItemControl(p);
-
-                card.OnClose += ReturnToProductScreen;
-
-                dgvProducts.Visible = false;
-
-                flowProducts.Controls.Clear();
-                flowProducts.Controls.Add(card);
+                LoadProducts();
             }
+
+            // DELETE
             if (dgvProducts.Columns[e.ColumnIndex].Name == "Delete")
             {
-                Product p = (Product)dgvProducts.Rows[e.RowIndex].DataBoundItem;
-
-                DialogResult result = MessageBox.Show(
+                var confirm = MessageBox.Show(
                     "Delete this product?",
                     "Confirm",
-                    MessageBoxButtons.YesNo);
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
 
-                if (result == DialogResult.Yes)
+                if (confirm == DialogResult.Yes)
                 {
                     service.DeleteProduct(p.ProductId);
-
                     LoadProducts();
                 }
             }
         }
 
-        private void cbCategory_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            Category selected = (Category)cbCategory.SelectedItem;
-
-            if (selected.Id == 0)
-            {
-                dgvProducts.DataSource = null;
-                dgvProducts.DataSource = products;
-            }
-            else
-            {
-                var filtered = products
-                    .Where(p => p.Category.Trim().ToLower() == selected.Name.Trim().ToLower())
-                    .ToList();
-
-                dgvProducts.DataSource = null;
-                dgvProducts.DataSource = filtered;
-            }
-        }
-
+        // ================= ADD =================
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            Product newProduct = new Product();
-            ProductItemControl card = new ProductItemControl(newProduct);
-            card.OnClose += ReturnToProductScreen;
-            dgvProducts.Visible = false;
-            flowProducts.Controls.Clear();
-            flowProducts.Controls.Add(card);
+            ProductEditForm form = new ProductEditForm();
+            form.ShowDialog();
+
+            LoadProducts();
         }
     }
-}  
+}

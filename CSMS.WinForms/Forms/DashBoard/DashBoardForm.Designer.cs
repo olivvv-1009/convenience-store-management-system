@@ -28,567 +28,445 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnlSidebar = new Panel();
-            pnlMenu = new Panel();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
-            lblRole = new Label();
-            lblFullName = new Label();
-            lblAvatar = new Label();
-            button8 = new Button();
-            button7 = new Button();
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
-            pnlUser = new Panel();
+            pnlchartRevenue = new TableLayoutPanel();
             label1 = new Label();
-            pnlMainContent = new Panel();
-            pnlScrollBody = new Panel();
-            flowCards = new FlowLayoutPanel();
-            pnlCard1 = new Panel();
             label2 = new Label();
-            label4 = new Label();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            panel2 = new Panel();
+            tableLayoutPanel3 = new TableLayoutPanel();
             label3 = new Label();
-            panel5 = new Panel();
-            label11 = new Label();
-            label12 = new Label();
-            label13 = new Label();
-            panel4 = new Panel();
-            label8 = new Label();
-            label9 = new Label();
-            label10 = new Label();
+            lblrevenuecomp = new Label();
+            lblRevenue = new Label();
             panel3 = new Panel();
-            label5 = new Label();
+            tableLayoutPanel4 = new TableLayoutPanel();
             label6 = new Label();
             label7 = new Label();
-            panel2 = new Panel();
-            pnlChartArea = new Panel();
-            pnlSidebar.SuspendLayout();
-            pnlMenu.SuspendLayout();
+            lblTotalProduct = new Label();
+            panel4 = new Panel();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            label9 = new Label();
+            lblLowStock = new Label();
+            label11 = new Label();
+            panel5 = new Panel();
+            tableLayoutPanel6 = new TableLayoutPanel();
+            label12 = new Label();
+            lblOrders = new Label();
+            label14 = new Label();
+            chartRevenue = new System.Windows.Forms.DataVisualization.Charting.Chart();
             panel1.SuspendLayout();
-            pnlUser.SuspendLayout();
-            pnlMainContent.SuspendLayout();
-            pnlScrollBody.SuspendLayout();
-            flowCards.SuspendLayout();
-            pnlCard1.SuspendLayout();
-            panel5.SuspendLayout();
-            panel4.SuspendLayout();
+            pnlchartRevenue.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            panel2.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
             panel3.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
+            panel4.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
+            panel5.SuspendLayout();
+            tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chartRevenue).BeginInit();
             SuspendLayout();
-            // 
-            // pnlSidebar
-            // 
-            pnlSidebar.BackColor = Color.White;
-            pnlSidebar.Controls.Add(pnlMenu);
-            pnlSidebar.Controls.Add(pnlUser);
-            pnlSidebar.Dock = DockStyle.Left;
-            pnlSidebar.Location = new Point(0, 0);
-            pnlSidebar.Name = "pnlSidebar";
-            pnlSidebar.Size = new Size(250, 800);
-            pnlSidebar.TabIndex = 0;
-            // 
-            // pnlMenu
-            // 
-            pnlMenu.Controls.Add(panel1);
-            pnlMenu.Controls.Add(button8);
-            pnlMenu.Controls.Add(button7);
-            pnlMenu.Controls.Add(button6);
-            pnlMenu.Controls.Add(button5);
-            pnlMenu.Controls.Add(button4);
-            pnlMenu.Controls.Add(button3);
-            pnlMenu.Controls.Add(button2);
-            pnlMenu.Controls.Add(button1);
-            pnlMenu.Dock = DockStyle.Fill;
-            pnlMenu.Location = new Point(0, 70);
-            pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(250, 730);
-            pnlMenu.TabIndex = 1;
             // 
             // panel1
             // 
-            panel1.Controls.Add(lblRole);
-            panel1.Controls.Add(lblFullName);
-            panel1.Controls.Add(lblAvatar);
-            panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 660);
+            panel1.AutoScroll = true;
+            panel1.Controls.Add(pnlchartRevenue);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(250, 70);
-            panel1.TabIndex = 8;
+            panel1.Padding = new Padding(15);
+            panel1.Size = new Size(667, 421);
+            panel1.TabIndex = 0;
             // 
-            // lblRole
+            // pnlchartRevenue
             // 
-            lblRole.AutoSize = true;
-            lblRole.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblRole.ForeColor = Color.DimGray;
-            lblRole.Location = new Point(83, 38);
-            lblRole.Name = "lblRole";
-            lblRole.Size = new Size(52, 21);
-            lblRole.TabIndex = 2;
-            lblRole.Text = "label3";
-            // 
-            // lblFullName
-            // 
-            lblFullName.AutoSize = true;
-            lblFullName.ForeColor = Color.Black;
-            lblFullName.Location = new Point(83, 13);
-            lblFullName.Name = "lblFullName";
-            lblFullName.Size = new Size(59, 25);
-            lblFullName.TabIndex = 1;
-            lblFullName.Text = "label3";
-            // 
-            // lblAvatar
-            // 
-            lblAvatar.BackColor = Color.FromArgb(28, 98, 242);
-            lblAvatar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblAvatar.ForeColor = Color.White;
-            lblAvatar.Location = new Point(22, 16);
-            lblAvatar.Name = "lblAvatar";
-            lblAvatar.Size = new Size(40, 40);
-            lblAvatar.TabIndex = 0;
-            lblAvatar.Text = "JA";
-            lblAvatar.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // button8
-            // 
-            button8.BackColor = Color.White;
-            button8.Dock = DockStyle.Top;
-            button8.FlatAppearance.BorderSize = 0;
-            button8.ForeColor = Color.Black;
-            button8.Location = new Point(0, 350);
-            button8.Name = "button8";
-            button8.Padding = new Padding(20, 0, 0, 0);
-            button8.Size = new Size(250, 50);
-            button8.TabIndex = 7;
-            button8.Text = "Reports";
-            button8.TextAlign = ContentAlignment.MiddleLeft;
-            button8.UseVisualStyleBackColor = false;
-            // 
-            // button7
-            // 
-            button7.BackColor = Color.White;
-            button7.Dock = DockStyle.Top;
-            button7.FlatAppearance.BorderSize = 0;
-            button7.ForeColor = Color.Black;
-            button7.Location = new Point(0, 300);
-            button7.Name = "button7";
-            button7.Padding = new Padding(20, 0, 0, 0);
-            button7.Size = new Size(250, 50);
-            button7.TabIndex = 6;
-            button7.Text = "Employees";
-            button7.TextAlign = ContentAlignment.MiddleLeft;
-            button7.UseVisualStyleBackColor = false;
-            // 
-            // button6
-            // 
-            button6.BackColor = Color.White;
-            button6.Dock = DockStyle.Top;
-            button6.FlatAppearance.BorderSize = 0;
-            button6.ForeColor = Color.Black;
-            button6.Location = new Point(0, 250);
-            button6.Name = "button6";
-            button6.Padding = new Padding(20, 0, 0, 0);
-            button6.Size = new Size(250, 50);
-            button6.TabIndex = 5;
-            button6.Text = "Promotions";
-            button6.TextAlign = ContentAlignment.MiddleLeft;
-            button6.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            button5.BackColor = Color.White;
-            button5.Dock = DockStyle.Top;
-            button5.FlatAppearance.BorderSize = 0;
-            button5.ForeColor = Color.Black;
-            button5.Location = new Point(0, 200);
-            button5.Name = "button5";
-            button5.Padding = new Padding(20, 0, 0, 0);
-            button5.Size = new Size(250, 50);
-            button5.TabIndex = 4;
-            button5.Text = "Customers";
-            button5.TextAlign = ContentAlignment.MiddleLeft;
-            button5.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            button4.BackColor = Color.White;
-            button4.Dock = DockStyle.Top;
-            button4.FlatAppearance.BorderSize = 0;
-            button4.ForeColor = Color.Black;
-            button4.Location = new Point(0, 150);
-            button4.Name = "button4";
-            button4.Padding = new Padding(20, 0, 0, 0);
-            button4.Size = new Size(250, 50);
-            button4.TabIndex = 3;
-            button4.Text = "Inventory";
-            button4.TextAlign = ContentAlignment.MiddleLeft;
-            button4.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            button3.BackColor = Color.White;
-            button3.Dock = DockStyle.Top;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.ForeColor = Color.Black;
-            button3.Location = new Point(0, 100);
-            button3.Name = "button3";
-            button3.Padding = new Padding(20, 0, 0, 0);
-            button3.Size = new Size(250, 50);
-            button3.TabIndex = 2;
-            button3.Text = "Product";
-            button3.TextAlign = ContentAlignment.MiddleLeft;
-            button3.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.White;
-            button2.Dock = DockStyle.Top;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.ForeColor = Color.Black;
-            button2.Location = new Point(0, 50);
-            button2.Name = "button2";
-            button2.Padding = new Padding(20, 0, 0, 0);
-            button2.Size = new Size(250, 50);
-            button2.TabIndex = 1;
-            button2.Text = "POS";
-            button2.TextAlign = ContentAlignment.MiddleLeft;
-            button2.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.FromArgb(28, 98, 242);
-            button1.Dock = DockStyle.Top;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(0, 0);
-            button1.Name = "button1";
-            button1.Padding = new Padding(20, 0, 0, 0);
-            button1.Size = new Size(250, 50);
-            button1.TabIndex = 0;
-            button1.Text = "Dashboard";
-            button1.TextAlign = ContentAlignment.MiddleLeft;
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // pnlUser
-            // 
-            pnlUser.Controls.Add(label1);
-            pnlUser.Dock = DockStyle.Top;
-            pnlUser.Location = new Point(0, 0);
-            pnlUser.Name = "pnlUser";
-            pnlUser.Size = new Size(250, 70);
-            pnlUser.TabIndex = 0;
+            pnlchartRevenue.ColumnCount = 1;
+            pnlchartRevenue.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            pnlchartRevenue.Controls.Add(label1, 0, 0);
+            pnlchartRevenue.Controls.Add(label2, 0, 1);
+            pnlchartRevenue.Controls.Add(tableLayoutPanel2, 0, 2);
+            pnlchartRevenue.Controls.Add(chartRevenue, 0, 3);
+            pnlchartRevenue.Dock = DockStyle.Fill;
+            pnlchartRevenue.Location = new Point(15, 15);
+            pnlchartRevenue.Name = "pnlchartRevenue";
+            pnlchartRevenue.RowCount = 4;
+            pnlchartRevenue.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            pnlchartRevenue.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            pnlchartRevenue.RowStyles.Add(new RowStyle(SizeType.Absolute, 150F));
+            pnlchartRevenue.RowStyles.Add(new RowStyle(SizeType.Absolute, 300F));
+            pnlchartRevenue.Size = new Size(637, 391);
+            pnlchartRevenue.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.BorderStyle = BorderStyle.FixedSingle;
-            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            label1.ForeColor = Color.FromArgb(28, 98, 242);
-            label1.Location = new Point(56, 10);
+            label1.Dock = DockStyle.Fill;
+            label1.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(140, 47);
+            label1.Size = new Size(631, 60);
             label1.TabIndex = 0;
-            label1.Text = "StorePOS";
-            label1.UseCompatibleTextRendering = true;
-            // 
-            // pnlMainContent
-            // 
-            pnlMainContent.AutoScroll = true;
-            pnlMainContent.BackColor = Color.FromArgb(240, 245, 250);
-            pnlMainContent.Controls.Add(pnlScrollBody);
-            pnlMainContent.Controls.Add(panel2);
-            pnlMainContent.Dock = DockStyle.Fill;
-            pnlMainContent.Location = new Point(250, 0);
-            pnlMainContent.Name = "pnlMainContent";
-            pnlMainContent.Size = new Size(1150, 800);
-            pnlMainContent.TabIndex = 1;
-            // 
-            // pnlScrollBody
-            // 
-            pnlScrollBody.AutoScroll = true;
-            pnlScrollBody.Controls.Add(pnlChartArea);
-            pnlScrollBody.Controls.Add(flowCards);
-            pnlScrollBody.Dock = DockStyle.Top;
-            pnlScrollBody.Location = new Point(0, 60);
-            pnlScrollBody.Name = "pnlScrollBody";
-            pnlScrollBody.Size = new Size(1124, 1500);
-            pnlScrollBody.TabIndex = 1;
-            // 
-            // flowCards
-            // 
-            flowCards.BackColor = Color.White;
-            flowCards.Controls.Add(pnlCard1);
-            flowCards.Controls.Add(panel5);
-            flowCards.Controls.Add(panel4);
-            flowCards.Controls.Add(panel3);
-            flowCards.Dock = DockStyle.Top;
-            flowCards.Location = new Point(0, 0);
-            flowCards.Name = "flowCards";
-            flowCards.Padding = new Padding(20, 20, 0, 0);
-            flowCards.Size = new Size(1124, 180);
-            flowCards.TabIndex = 0;
-            // 
-            // pnlCard1
-            // 
-            pnlCard1.Controls.Add(label2);
-            pnlCard1.Controls.Add(label4);
-            pnlCard1.Controls.Add(label3);
-            pnlCard1.Location = new Point(23, 23);
-            pnlCard1.Margin = new Padding(3, 3, 20, 3);
-            pnlCard1.Name = "pnlCard1";
-            pnlCard1.Size = new Size(250, 140);
-            pnlCard1.TabIndex = 3;
+            label1.Text = "Dashboard";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label2.ForeColor = Color.Gray;
-            label2.Location = new Point(5, 12);
+            label2.Dock = DockStyle.Fill;
+            label2.Font = new Font("Times New Roman", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.ControlDarkDark;
+            label2.Location = new Point(3, 60);
             label2.Name = "label2";
-            label2.Size = new Size(229, 45);
-            label2.TabIndex = 0;
-            label2.Text = "Total Revenue";
+            label2.Size = new Size(631, 50);
+            label2.TabIndex = 1;
+            label2.Text = "Welcome back, Administrator! Here's what's happening today.";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // tableLayoutPanel2
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 8F);
-            label4.ForeColor = Color.Green;
-            label4.Location = new Point(33, 116);
-            label4.Name = "label4";
-            label4.Size = new Size(180, 21);
-            label4.TabIndex = 2;
-            label4.Text = "+20.1% from last month";
+            tableLayoutPanel2.ColumnCount = 4;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.Controls.Add(panel2, 0, 0);
+            tableLayoutPanel2.Controls.Add(panel3, 1, 0);
+            tableLayoutPanel2.Controls.Add(panel4, 2, 0);
+            tableLayoutPanel2.Controls.Add(panel5, 3, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(3, 113);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel2.Size = new Size(631, 144);
+            tableLayoutPanel2.TabIndex = 2;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(tableLayoutPanel3);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(3, 3);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(151, 138);
+            panel2.TabIndex = 0;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 1;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.Controls.Add(label3, 0, 0);
+            tableLayoutPanel3.Controls.Add(lblrevenuecomp, 0, 2);
+            tableLayoutPanel3.Controls.Add(lblRevenue, 0, 1);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(0, 0);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 3;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel3.Size = new Size(151, 138);
+            tableLayoutPanel3.TabIndex = 0;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label3.ForeColor = Color.Black;
-            label3.Location = new Point(31, 57);
+            label3.Dock = DockStyle.Fill;
+            label3.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(3, 0);
             label3.Name = "label3";
-            label3.Size = new Size(182, 45);
-            label3.TabIndex = 1;
-            label3.Text = "$45,231.89";
+            label3.Size = new Size(145, 48);
+            label3.TabIndex = 0;
+            label3.Text = "Total Revenue";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // panel5
+            // lblrevenuecomp
             // 
-            panel5.Controls.Add(label11);
-            panel5.Controls.Add(label12);
-            panel5.Controls.Add(label13);
-            panel5.Location = new Point(296, 23);
-            panel5.Margin = new Padding(3, 3, 20, 3);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(250, 140);
-            panel5.TabIndex = 6;
+            lblrevenuecomp.AutoSize = true;
+            lblrevenuecomp.Dock = DockStyle.Fill;
+            lblrevenuecomp.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblrevenuecomp.Location = new Point(3, 103);
+            lblrevenuecomp.Name = "lblrevenuecomp";
+            lblrevenuecomp.Size = new Size(145, 35);
+            lblrevenuecomp.TabIndex = 1;
+            lblrevenuecomp.Text = "label4";
             // 
-            // label11
+            // lblRevenue
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label11.ForeColor = Color.Gray;
-            label11.Location = new Point(5, 12);
-            label11.Name = "label11";
-            label11.Size = new Size(229, 45);
-            label11.TabIndex = 0;
-            label11.Text = "Total Revenue";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 8F);
-            label12.ForeColor = Color.Green;
-            label12.Location = new Point(33, 116);
-            label12.Name = "label12";
-            label12.Size = new Size(180, 21);
-            label12.TabIndex = 2;
-            label12.Text = "+20.1% from last month";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label13.ForeColor = Color.Black;
-            label13.Location = new Point(31, 57);
-            label13.Name = "label13";
-            label13.Size = new Size(182, 45);
-            label13.TabIndex = 1;
-            label13.Text = "$45,231.89";
-            // 
-            // panel4
-            // 
-            panel4.Controls.Add(label8);
-            panel4.Controls.Add(label9);
-            panel4.Controls.Add(label10);
-            panel4.Location = new Point(569, 23);
-            panel4.Margin = new Padding(3, 3, 20, 3);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(250, 140);
-            panel4.TabIndex = 5;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label8.ForeColor = Color.Gray;
-            label8.Location = new Point(5, 12);
-            label8.Name = "label8";
-            label8.Size = new Size(229, 45);
-            label8.TabIndex = 0;
-            label8.Text = "Total Revenue";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 8F);
-            label9.ForeColor = Color.Green;
-            label9.Location = new Point(33, 116);
-            label9.Name = "label9";
-            label9.Size = new Size(180, 21);
-            label9.TabIndex = 2;
-            label9.Text = "+20.1% from last month";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label10.ForeColor = Color.Black;
-            label10.Location = new Point(31, 57);
-            label10.Name = "label10";
-            label10.Size = new Size(182, 45);
-            label10.TabIndex = 1;
-            label10.Text = "$45,231.89";
+            lblRevenue.AutoSize = true;
+            lblRevenue.Dock = DockStyle.Fill;
+            lblRevenue.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRevenue.Location = new Point(3, 48);
+            lblRevenue.Name = "lblRevenue";
+            lblRevenue.Size = new Size(145, 55);
+            lblRevenue.TabIndex = 2;
+            lblRevenue.Text = "label5";
+            lblRevenue.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // panel3
             // 
-            panel3.Controls.Add(label5);
-            panel3.Controls.Add(label6);
-            panel3.Controls.Add(label7);
-            panel3.Location = new Point(842, 23);
-            panel3.Margin = new Padding(3, 3, 20, 3);
+            panel3.Controls.Add(tableLayoutPanel4);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(160, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(250, 140);
-            panel3.TabIndex = 4;
+            panel3.Size = new Size(151, 138);
+            panel3.TabIndex = 1;
             // 
-            // label5
+            // tableLayoutPanel4
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label5.ForeColor = Color.Gray;
-            label5.Location = new Point(5, 12);
-            label5.Name = "label5";
-            label5.Size = new Size(229, 45);
-            label5.TabIndex = 0;
-            label5.Text = "Total Revenue";
+            tableLayoutPanel4.ColumnCount = 1;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.Controls.Add(label6, 0, 0);
+            tableLayoutPanel4.Controls.Add(label7, 0, 2);
+            tableLayoutPanel4.Controls.Add(lblTotalProduct, 0, 1);
+            tableLayoutPanel4.Dock = DockStyle.Fill;
+            tableLayoutPanel4.Location = new Point(0, 0);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 3;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel4.Size = new Size(151, 138);
+            tableLayoutPanel4.TabIndex = 0;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 8F);
-            label6.ForeColor = Color.Green;
-            label6.Location = new Point(33, 116);
+            label6.Dock = DockStyle.Fill;
+            label6.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(3, 0);
             label6.Name = "label6";
-            label6.Size = new Size(180, 21);
-            label6.TabIndex = 2;
-            label6.Text = "+20.1% from last month";
+            label6.Size = new Size(145, 48);
+            label6.TabIndex = 0;
+            label6.Text = "Total Products";
+            label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label7.ForeColor = Color.Black;
-            label7.Location = new Point(31, 57);
+            label7.Dock = DockStyle.Fill;
+            label7.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(3, 103);
             label7.Name = "label7";
-            label7.Size = new Size(182, 45);
+            label7.Size = new Size(145, 35);
             label7.TabIndex = 1;
-            label7.Text = "$45,231.89";
+            label7.Text = "Active in inventory";
+            label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // panel2
+            // lblTotalProduct
             // 
-            panel2.BackColor = Color.White;
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1124, 60);
-            panel2.TabIndex = 0;
+            lblTotalProduct.AutoSize = true;
+            lblTotalProduct.Dock = DockStyle.Fill;
+            lblTotalProduct.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalProduct.Location = new Point(3, 48);
+            lblTotalProduct.Name = "lblTotalProduct";
+            lblTotalProduct.Size = new Size(145, 55);
+            lblTotalProduct.TabIndex = 2;
+            lblTotalProduct.Text = "label8";
+            lblTotalProduct.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // pnlChartArea
+            // panel4
             // 
-            pnlChartArea.BackColor = Color.White;
-            pnlChartArea.Location = new Point(166, 260);
-            pnlChartArea.Name = "pnlChartArea";
-            pnlChartArea.Size = new Size(800, 300);
-            pnlChartArea.TabIndex = 1;
+            panel4.Controls.Add(tableLayoutPanel5);
+            panel4.Dock = DockStyle.Fill;
+            panel4.Location = new Point(317, 3);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(151, 138);
+            panel4.TabIndex = 2;
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 1;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel5.Controls.Add(label9, 0, 0);
+            tableLayoutPanel5.Controls.Add(lblLowStock, 0, 1);
+            tableLayoutPanel5.Controls.Add(label11, 0, 2);
+            tableLayoutPanel5.Dock = DockStyle.Fill;
+            tableLayoutPanel5.Location = new Point(0, 0);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 3;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel5.Size = new Size(151, 138);
+            tableLayoutPanel5.TabIndex = 0;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Dock = DockStyle.Fill;
+            label9.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Location = new Point(3, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(145, 48);
+            label9.TabIndex = 0;
+            label9.Text = "Low Stock Products";
+            label9.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblLowStock
+            // 
+            lblLowStock.AutoSize = true;
+            lblLowStock.Dock = DockStyle.Fill;
+            lblLowStock.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLowStock.ForeColor = Color.DarkOrange;
+            lblLowStock.Location = new Point(3, 48);
+            lblLowStock.Name = "lblLowStock";
+            lblLowStock.Size = new Size(145, 55);
+            lblLowStock.TabIndex = 1;
+            lblLowStock.Text = "label10";
+            lblLowStock.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Dock = DockStyle.Fill;
+            label11.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Location = new Point(3, 103);
+            label11.Name = "label11";
+            label11.Size = new Size(145, 35);
+            label11.TabIndex = 2;
+            label11.Text = "Require attention";
+            label11.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(tableLayoutPanel6);
+            panel5.Dock = DockStyle.Fill;
+            panel5.Location = new Point(474, 3);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(154, 138);
+            panel5.TabIndex = 3;
+            // 
+            // tableLayoutPanel6
+            // 
+            tableLayoutPanel6.ColumnCount = 1;
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel6.Controls.Add(label12, 0, 0);
+            tableLayoutPanel6.Controls.Add(lblOrders, 0, 1);
+            tableLayoutPanel6.Controls.Add(label14, 0, 2);
+            tableLayoutPanel6.Dock = DockStyle.Fill;
+            tableLayoutPanel6.Location = new Point(0, 0);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 3;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel6.Size = new Size(154, 138);
+            tableLayoutPanel6.TabIndex = 0;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Dock = DockStyle.Fill;
+            label12.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.Location = new Point(3, 0);
+            label12.Name = "label12";
+            label12.Size = new Size(148, 48);
+            label12.TabIndex = 0;
+            label12.Text = "Today's Orders";
+            label12.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblOrders
+            // 
+            lblOrders.AutoSize = true;
+            lblOrders.Dock = DockStyle.Fill;
+            lblOrders.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblOrders.Location = new Point(3, 48);
+            lblOrders.Name = "lblOrders";
+            lblOrders.Size = new Size(148, 55);
+            lblOrders.TabIndex = 1;
+            lblOrders.Text = "label13";
+            lblOrders.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Dock = DockStyle.Fill;
+            label14.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label14.Location = new Point(3, 103);
+            label14.Name = "label14";
+            label14.Size = new Size(148, 35);
+            label14.TabIndex = 2;
+            label14.Text = "label14";
+            label14.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // chartRevenue
+            // 
+            chartArea1.Name = "ChartArea1";
+            chartRevenue.ChartAreas.Add(chartArea1);
+            chartRevenue.Dock = DockStyle.Fill;
+            legend1.Name = "Legend1";
+            chartRevenue.Legends.Add(legend1);
+            chartRevenue.Location = new Point(3, 263);
+            chartRevenue.Name = "chartRevenue";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chartRevenue.Series.Add(series1);
+            chartRevenue.Size = new Size(631, 294);
+            chartRevenue.TabIndex = 3;
+            chartRevenue.Text = "chart1";
             // 
             // DashBoardForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
-            AutoScroll = true;
-            Controls.Add(pnlMainContent);
-            Controls.Add(pnlSidebar);
+            Controls.Add(panel1);
             Name = "DashBoardForm";
-            Size = new Size(1400, 800);
-            pnlSidebar.ResumeLayout(false);
-            pnlMenu.ResumeLayout(false);
+            Size = new Size(667, 421);
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            pnlUser.ResumeLayout(false);
-            pnlUser.PerformLayout();
-            pnlMainContent.ResumeLayout(false);
-            pnlScrollBody.ResumeLayout(false);
-            flowCards.ResumeLayout(false);
-            pnlCard1.ResumeLayout(false);
-            pnlCard1.PerformLayout();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
+            pnlchartRevenue.ResumeLayout(false);
+            pnlchartRevenue.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
             panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            tableLayoutPanel4.ResumeLayout(false);
+            tableLayoutPanel4.PerformLayout();
+            panel4.ResumeLayout(false);
+            tableLayoutPanel5.ResumeLayout(false);
+            tableLayoutPanel5.PerformLayout();
+            panel5.ResumeLayout(false);
+            tableLayoutPanel6.ResumeLayout(false);
+            tableLayoutPanel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)chartRevenue).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel pnlSidebar;
-        private Panel pnlMenu;
-        private Button button1;
-        private Panel pnlUser;
-        private Label label1;
-        private Button button8;
-        private Button button7;
-        private Button button6;
-        private Button button5;
-        private Button button4;
-        private Button button3;
-        private Button button2;
         private Panel panel1;
-        private Label lblAvatar;
-        private Label lblFullName;
-        private Label lblRole;
-        private Panel pnlMainContent;
-        private Panel panel2;
-        private Panel pnlScrollBody;
-        private FlowLayoutPanel flowCards;
+        private TableLayoutPanel pnlchartRevenue;
+        private Label label1;
         private Label label2;
-        private Label label3;
-        private Label label4;
-        private Panel pnlCard1;
-        private Panel panel5;
-        private Label label11;
-        private Label label12;
-        private Label label13;
-        private Panel panel4;
-        private Label label8;
-        private Label label9;
-        private Label label10;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Panel panel2;
         private Panel panel3;
-        private Label label5;
+        private Panel panel4;
+        private Panel panel5;
+        private TableLayoutPanel tableLayoutPanel3;
+        private TableLayoutPanel tableLayoutPanel4;
+        private Label label3;
+        private Label lblrevenuecomp;
+        private Label lblRevenue;
         private Label label6;
         private Label label7;
-        private Panel pnlChartArea;
+        private Label lblTotalProduct;
+        private TableLayoutPanel tableLayoutPanel5;
+        private Label label9;
+        private Label lblLowStock;
+        private Label label11;
+        private TableLayoutPanel tableLayoutPanel6;
+        private Label label12;
+        private Label lblOrders;
+        private Label label14;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartRevenue;
     }
 }

@@ -56,7 +56,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10.079051F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10.869565F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 69.16996F));
-            tableLayoutPanel1.Size = new Size(958, 506);
+            tableLayoutPanel1.Size = new Size(819, 436);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -66,7 +66,7 @@
             label1.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(952, 50);
+            label1.Size = new Size(813, 43);
             label1.TabIndex = 0;
             label1.Text = "Point of Sale";
             label1.TextAlign = ContentAlignment.BottomLeft;
@@ -77,9 +77,9 @@
             label2.Dock = DockStyle.Fill;
             label2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ControlDarkDark;
-            label2.Location = new Point(3, 50);
+            label2.Location = new Point(3, 43);
             label2.Name = "label2";
-            label2.Size = new Size(952, 51);
+            label2.Size = new Size(813, 43);
             label2.TabIndex = 1;
             label2.Text = "Process customer transactions and view history";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -92,11 +92,11 @@
             tableLayoutPanel2.Controls.Add(CreateInvoice, 0, 0);
             tableLayoutPanel2.Controls.Add(InvoiceHistory, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 104);
+            tableLayoutPanel2.Location = new Point(3, 89);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(952, 49);
+            tableLayoutPanel2.Size = new Size(813, 41);
             tableLayoutPanel2.TabIndex = 2;
             // 
             // CreateInvoice
@@ -105,7 +105,7 @@
             CreateInvoice.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             CreateInvoice.Location = new Point(3, 3);
             CreateInvoice.Name = "CreateInvoice";
-            CreateInvoice.Size = new Size(470, 43);
+            CreateInvoice.Size = new Size(400, 35);
             CreateInvoice.TabIndex = 0;
             CreateInvoice.Text = "Create Invoice";
             CreateInvoice.UseVisualStyleBackColor = true;
@@ -115,9 +115,9 @@
             // 
             InvoiceHistory.Dock = DockStyle.Fill;
             InvoiceHistory.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            InvoiceHistory.Location = new Point(479, 3);
+            InvoiceHistory.Location = new Point(409, 3);
             InvoiceHistory.Name = "InvoiceHistory";
-            InvoiceHistory.Size = new Size(470, 43);
+            InvoiceHistory.Size = new Size(401, 35);
             InvoiceHistory.TabIndex = 1;
             InvoiceHistory.Text = "Invoice History";
             InvoiceHistory.UseVisualStyleBackColor = true;
@@ -126,9 +126,9 @@
             // pnlContent
             // 
             pnlContent.Dock = DockStyle.Fill;
-            pnlContent.Location = new Point(3, 159);
+            pnlContent.Location = new Point(3, 136);
             pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(952, 344);
+            pnlContent.Size = new Size(813, 297);
             pnlContent.TabIndex = 3;
             // 
             // POSForm
@@ -138,7 +138,7 @@
             AutoScroll = true;
             Controls.Add(tableLayoutPanel1);
             Name = "POSForm";
-            Size = new Size(958, 506);
+            Size = new Size(819, 436);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);

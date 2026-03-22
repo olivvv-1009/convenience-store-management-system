@@ -13,18 +13,18 @@ namespace CSMS.Models
         public string ProductId { get; set; }
         public string ProductName { get; set; }
         //public string Barcode { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public int CategoryId { get; set; }
-        public string Category { get; set; }
+        public string CategoryName { get; set; }
         public int Stock { get; set; }
         public DateTime ExpiryDate { get; set; }
         public string Status  { get; set; }
         public Product() { }
-        public Product(string code, string name, string category, double price, int stock, DateTime expiry, string status)
+        public Product(string code, string name, int CategoryId, decimal price, int stock, DateTime expiry, string status)
         {
             ProductId = code;
             ProductName = name;
-            Category = category;
+            CategoryId = CategoryId; 
             Price = price;
             Stock = stock;
             ExpiryDate = expiry;

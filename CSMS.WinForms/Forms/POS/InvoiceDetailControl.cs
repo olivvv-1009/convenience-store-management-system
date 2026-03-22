@@ -23,17 +23,31 @@ namespace CSMS.WinForms.Forms.POS
 
         private void LoadInvoiceInfo()
         {
-            string query = @"SELECT 
-                            i.InvoiceId,
-                            i.CreatedAt,
-                            m.FullName AS CustomerName,
-                            m.Phone,
-                            p.PaymentMethod,
-                            i.TotalAmount
-                            FROM Invoices i
-                            LEFT JOIN Members m ON i.MemberId = m.MemberId
-                            LEFT JOIN Payments p ON i.InvoiceId = p.InvoiceId
-                            WHERE i.InvoiceId = @InvoiceId";
+            string query = @"
+SELECT 
+    i.InvoiceId,
+    i.CreatedAt,
+    m.FullName AS CustomerName,
+    m.Phone,
+    p.PaymentMethod,
+    i.TotalAmount,  -- 🔥 nhớ dấu phẩy
+    SUM(d.SubTotal) AS SubTotal
+
+FROM Invoices i
+LEFT JOIN Members m ON i.MemberId = m.MemberId
+LEFT JOIN Payments p ON i.InvoiceId = p.InvoiceId
+LEFT JOIN InvoiceDetails d ON i.InvoiceId = d.InvoiceId
+
+WHERE i.InvoiceId = @InvoiceId
+
+GROUP BY 
+    i.InvoiceId,
+    i.CreatedAt,
+    m.FullName,
+    m.Phone,
+    p.PaymentMethod,
+    i.TotalAmount
+";
 
             using SqlConnection conn = db.GetConnection();
 
@@ -58,7 +72,9 @@ namespace CSMS.WinForms.Forms.POS
                 lblPaymentMethod.Text = reader["PaymentMethod"] == DBNull.Value
                     ? "N/A"
                     : reader["PaymentMethod"].ToString();
-
+                lblSubtotal.Text = reader["SubTotal"] == DBNull.Value
+    ? "$0.00"
+    : Convert.ToDecimal(reader["SubTotal"]).ToString("C");
                 lblTotal.Text = Convert.ToDecimal(reader["TotalAmount"]).ToString("C");
             }
         }
@@ -96,5 +112,6 @@ namespace CSMS.WinForms.Forms.POS
                 MessageBoxIcon.Information
             );
         }
+
     }
 }

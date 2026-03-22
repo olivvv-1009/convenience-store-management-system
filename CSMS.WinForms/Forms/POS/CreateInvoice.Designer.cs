@@ -151,7 +151,6 @@
             // pnlContent
             // 
             pnlContent.AutoScroll = true;
-            pnlContent.Dock = DockStyle.Fill;
             pnlContent.Location = new Point(3, 134);
             pnlContent.Name = "pnlContent";
             pnlContent.Size = new Size(541, 486);

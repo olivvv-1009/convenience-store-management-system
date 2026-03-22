@@ -31,15 +31,12 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
             price = new Label();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            stk = new Label();
             stock = new Label();
             NameProduct = new Label();
             Id = new Label();
             panel1 = new Panel();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
-            tableLayoutPanel3.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -64,10 +61,10 @@
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 43.7362633F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 56.2637367F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.98901F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.01099F));
             tableLayoutPanel2.Controls.Add(price, 0, 0);
-            tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 1, 0);
+            tableLayoutPanel2.Controls.Add(stock, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 201);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -80,55 +77,24 @@
             // 
             price.AutoSize = true;
             price.Dock = DockStyle.Fill;
-            price.Font = new Font("Times New Roman", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            price.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             price.ForeColor = SystemColors.Highlight;
             price.Location = new Point(3, 0);
             price.Name = "price";
-            price.Size = new Size(193, 128);
+            price.Size = new Size(226, 128);
             price.TabIndex = 0;
             price.Text = "Price";
             price.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.ColumnCount = 2;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40.8F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 59.2F));
-            tableLayoutPanel3.Controls.Add(stk, 0, 0);
-            tableLayoutPanel3.Controls.Add(stock, 1, 0);
-            tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(202, 3);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(250, 122);
-            tableLayoutPanel3.TabIndex = 1;
-            // 
-            // stk
-            // 
-            stk.AutoSize = true;
-            stk.Dock = DockStyle.Fill;
-            stk.Font = new Font("Times New Roman", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stk.ForeColor = SystemColors.ControlDarkDark;
-            stk.Location = new Point(3, 0);
-            stk.Name = "stk";
-            stk.Size = new Size(96, 122);
-            stk.TabIndex = 0;
-            stk.Text = "Stock:";
-            stk.TextAlign = ContentAlignment.MiddleCenter;
-            stk.Click += stk_Click;
             // 
             // stock
             // 
             stock.AutoSize = true;
             stock.Dock = DockStyle.Fill;
-            stock.Font = new Font("Times New Roman", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stock.ForeColor = SystemColors.ControlDarkDark;
-            stock.Location = new Point(105, 0);
+            stock.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            stock.Location = new Point(235, 0);
             stock.Name = "stock";
-            stock.Size = new Size(142, 122);
+            stock.Size = new Size(217, 128);
             stock.TabIndex = 1;
-            stock.Text = "Number";
             stock.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // NameProduct
@@ -147,7 +113,7 @@
             // 
             Id.AutoSize = true;
             Id.Dock = DockStyle.Fill;
-            Id.Font = new Font("Times New Roman", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Id.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Id.ForeColor = SystemColors.ControlDarkDark;
             Id.Location = new Point(3, 99);
             Id.Name = "Id";
@@ -180,8 +146,6 @@
             tableLayoutPanel1.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
-            tableLayoutPanel3.ResumeLayout(false);
-            tableLayoutPanel3.PerformLayout();
             panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -192,10 +156,8 @@
         private TableLayoutPanel tableLayoutPanel2;
         private Label NameProduct;
         private Label price;
-        private TableLayoutPanel tableLayoutPanel3;
-        private Label stk;
-        private Label stock;
         private Label Id;
         private Panel panel1;
+        private Label stock;
     }
 }

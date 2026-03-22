@@ -34,14 +34,19 @@ namespace CSMS.WinForms.Controls
         {
             txtCode.Text = product.ProductId;
             txtName.Text = product.ProductName;
-            cbCategory.Text = product.Category;
+            cbCategory.Text = product.CategoryName;
             txtPrice.Text = product.Price.ToString();
-            numStock.Value = product.Stock;
+
+            numStock.Value = Math.Min(
+        Math.Max(product.Stock, numStock.Minimum),
+        numStock.Maximum
+    );
+
             DateTime expiry = product.ExpiryDate;
 
             if (expiry < dtExpiry.MinDate || expiry > dtExpiry.MaxDate)
             {
-                dtExpiry.Value = DateTime.Today;
+                dtExpiry.Value = DateTime.Now;
             }
             else
             {
@@ -71,11 +76,14 @@ namespace CSMS.WinForms.Controls
         {
             product.ProductId = txtCode.Text;
             product.ProductName = txtName.Text;
-            product.Category = cbCategory.Text;
+            product.CategoryName = cbCategory.Text;
             product.CategoryId = Convert.ToInt32(cbCategory.SelectedValue);
-            product.Price = Convert.ToDouble(txtPrice.Text);
+
+            product.Price = Convert.ToDecimal(txtPrice.Text); 
+
             product.Stock = Convert.ToInt32(numStock.Value);
             product.ExpiryDate = dtExpiry.Value;
+
             if (service.Exists(product.ProductId))
             {
                 service.UpdateProduct(product);
@@ -83,11 +91,11 @@ namespace CSMS.WinForms.Controls
             }
             else
             {
-                
-                service.CreateProduct(product);
+                service.AddProduct(product);
                 MessageBox.Show("Product added successfully!");
             }
-            OnClose?.Invoke(); // báo cho ProductForm
+
+            OnClose?.Invoke();
         }
     }
 }

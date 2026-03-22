@@ -13,7 +13,7 @@ namespace convenience_store_management_system.Models
 
         public string ProductName { get; set; }
 
-        public string Category { get; set; }
+        public string CategoryName { get; set; }
 
         public int Stock { get; set; }
 

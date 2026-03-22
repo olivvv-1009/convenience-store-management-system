@@ -1,139 +1,128 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using System.Windows.Forms.DataVisualization.Charting;
+
+using CSMS.Services;
 using CSMS.Database;
 
 namespace CSMS.WinForms.Forms.DashBoard
 {
     public partial class DashBoardForm : UserControl
     {
+        private DashboardService service = new DashboardService();
         private DbConnectionHelper db = new DbConnectionHelper();
 
         public DashBoardForm()
         {
             InitializeComponent();
-
-            MakeAvatarRound();
-
-            LoadUserData();
-
-            pnlChartArea.Paint += PnlChartArea_Paint;
+            this.Load += DashBoardForm_Load;
         }
 
-        // Bo tròn avatar
-        private void MakeAvatarRound()
+        private void DashBoardForm_Load(object sender, EventArgs e)
         {
-            System.Drawing.Drawing2D.GraphicsPath gp =
-                new System.Drawing.Drawing2D.GraphicsPath();
-
-            gp.AddEllipse(0, 0, lblAvatar.Width, lblAvatar.Height);
-            lblAvatar.Region = new Region(gp);
+            LoadDashboard();
+            LoadRevenueChart();
         }
 
-        // Lấy dữ liệu người dùng
-        private void LoadUserData()
+        // ================= DASHBOARD =================
+        private void LoadDashboard()
         {
-            string query = @"SELECT U.FullName, R.RoleName
-                             FROM Users U
-                             JOIN Roles R ON U.RoleId = R.RoleId
-                             WHERE U.UserId = 1";
+            LoadRevenue();
+            LoadProducts();
+            LoadLowStock();
+            LoadOrders();
+        }
 
+        private void LoadRevenue()
+        {
+            decimal revenue = service.GetTotalRevenue();
+            lblRevenue.Text = revenue.ToString("N0") + " đ";
+
+            lblrevenuecomp.Text = "+20.1% from last month";
+            lblrevenuecomp.ForeColor = Color.Green;
+        }
+
+        private void LoadProducts()
+        {
+            lblTotalProduct.Text = service.GetTotalProducts().ToString("N0");
+        }
+
+        private void LoadLowStock()
+        {
+            int lowStock = service.GetLowStockProducts();
+            lblLowStock.Text = lowStock.ToString();
+            lblLowStock.ForeColor = Color.DarkOrange;
+        }
+
+        private void LoadOrders()
+        {
+            lblOrders.Text = service.GetTodayOrders().ToString();
+
+            label14.Text = "+12% from yesterday";
+            label14.ForeColor = Color.Green;
+        }
+
+        // ================= CHART =================
+        private void LoadRevenueChart()
+        {
             using (SqlConnection conn = db.GetConnection())
             {
-                try
+                conn.Open();
+
+                string query = @"
+    SELECT 
+        CONVERT(DATE, CreatedAt) AS SaleDate,
+        SUM(TotalAmount) AS Revenue
+    FROM Invoices
+    WHERE CreatedAt >= DATEADD(DAY, -6, GETDATE())
+    GROUP BY CONVERT(DATE, CreatedAt)
+    ORDER BY SaleDate";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                // ===== RESET =====
+                chartRevenue.Series.Clear();
+                chartRevenue.ChartAreas.Clear();
+
+                // ===== AREA =====
+                ChartArea area = new ChartArea();
+                area.AxisX.MajorGrid.Enabled = false;
+                area.AxisY.MajorGrid.LineColor = Color.LightGray;
+                area.AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
+
+                chartRevenue.ChartAreas.Add(area);
+
+                // ===== SERIES =====
+                Series series = new Series
                 {
-                    conn.Open();
+                    Name = "Revenue",
+                    ChartType = SeriesChartType.Line,
+                    BorderWidth = 3,
+                    MarkerStyle = MarkerStyle.Circle,
+                    MarkerSize = 8,
+                    Color = Color.RoyalBlue
+                };
 
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
-                    {
-                        string name = reader["FullName"].ToString();
-
-                        lblFullName.Text = name;
-                        lblRole.Text = reader["RoleName"].ToString();
-                        lblAvatar.Text = name.Substring(0, 1).ToUpper();
-                    }
-                }
-                catch (Exception ex)
+                // ===== DATA =====
+                foreach (DataRow row in dt.Rows)
                 {
-                    MessageBox.Show("Lỗi lấy dữ liệu người dùng: " + ex.Message);
+                    DateTime date = Convert.ToDateTime(row["SaleDate"]);
+                    decimal revenue = Convert.ToDecimal(row["Revenue"]);
+
+                    DataPoint point = new DataPoint();
+                    point.AxisLabel = date.ToString("dd/MM");
+                    point.YValues = new double[] { (double)revenue };
+                    point.ToolTip = "Revenue: " + revenue.ToString("N0");
+
+                    series.Points.Add(point);
                 }
-            }
-        }
 
-        // Lấy dữ liệu doanh thu
-        private List<int> GetRevenueData()
-        {
-            List<int> values = new List<int>();
-
-            string sql =
-                "SELECT TOP 7 TotalAmount FROM Invoices ORDER BY InvoiceDate DESC";
-
-            using (SqlConnection conn = db.GetConnection())
-            {
-                try
-                {
-                    conn.Open();
-
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-
-                    using (SqlDataReader rdr = cmd.ExecuteReader())
-                    {
-                        while (rdr.Read())
-                        {
-                            values.Add(Convert.ToInt32(rdr["TotalAmount"]));
-                        }
-                    }
-                }
-                catch
-                {
-                    // dữ liệu giả nếu SQL lỗi
-                    return new List<int> { 1000, 2000, 1500, 3500, 2500, 4500, 4000 };
-                }
-            }
-
-            return values;
-        }
-
-        // Vẽ biểu đồ
-        private void PnlChartArea_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-
-            g.SmoothingMode =
-                System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            Pen pen = new Pen(Color.FromArgb(28, 98, 242), 3);
-
-            List<int> data = GetRevenueData();
-
-            if (data.Count < 2)
-                return;
-
-            List<Point> points = new List<Point>();
-
-            int spacing = pnlChartArea.Width / (data.Count + 1);
-
-            for (int i = 0; i < data.Count; i++)
-            {
-                int x = spacing * (i + 1);
-
-                int y =
-                    pnlChartArea.Height - 50 - (data[i] / 50);
-
-                points.Add(new Point(x, y));
-            }
-
-            g.DrawCurve(pen, points.ToArray());
-
-            foreach (var p in points)
-            {
-                g.FillEllipse(Brushes.White, p.X - 5, p.Y - 5, 10, 10);
-                g.DrawEllipse(pen, p.X - 5, p.Y - 5, 10, 10);
+                chartRevenue.Series.Add(series);
             }
         }
     }

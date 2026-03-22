@@ -10,7 +10,7 @@ namespace convenience_store_management_system.Models
     {
         public string ProductCode { get; set; }
         public string ProductName { get; set; }
-        public string Category { get; set; }
+        public string CategoryName { get; set; }
         public int CurrentStock { get; set; }
         public int MinStock { get; set; }
         public string Status { get; set; }

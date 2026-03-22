@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using convenience_store_management_system.Models;
-using CSMS.Models;
 
 namespace CSMS.WinForms.Forms.POS
 {
@@ -9,32 +9,49 @@ namespace CSMS.WinForms.Forms.POS
     {
         private ProductPOS productData;
         public event Action<ProductPOS> OnProductSelected;
+
         public ProductCard(ProductPOS p)
         {
             InitializeComponent();
             productData = p;
-            this.Width = 320;
-            this.Height = 170;
 
-            // ⭐ HIỂN THỊ DỮ LIỆU
+            // ===== SIZE & STYLE =====
+            this.Height = 150;
+            this.Margin = new Padding(10);
+            this.Padding = new Padding(10);
+            this.BackColor = Color.White;
+            this.BorderStyle = BorderStyle.FixedSingle;
+
+            // ===== DATA =====
             NameProduct.Text = p.ProductName;
             Id.Text = p.ProductId.ToString();
-            price.Text = "$" + p.Price.ToString("N2");
-            stock.AutoSize = true;
-            stock.Text = p.Stock.ToString();
+
+            // 💰 PRICE 
+            price.AutoSize = false;
+            price.Text = $"${p.Price:N0}";
+            price.ForeColor = Color.RoyalBlue;
+
+            // 📦 STOCK 
+            stock.AutoSize = false;
+
             if (p.Stock == 0)
             {
-                stock.Text = "Out";
+                stock.Text = "Stock : Out";
                 stock.ForeColor = Color.Red;
             }
-            else if (p.Stock < 10)
+            else
             {
-                stock.ForeColor = Color.OrangeRed;
+                stock.Text = $"Stock : {p.Stock}";
+                stock.ForeColor = p.Stock < 10 ? Color.OrangeRed : Color.Black;
             }
 
-            // ⭐ BẮT CLICK TOÀN BỘ CARD
+            // ===== CLICK TOÀN CARD =====
             this.Click += Card_Click;
             AddClickEventToChildren(this);
+
+            // ===== HOVER EFFECT (UI xịn hơn) =====
+            this.MouseEnter += (s, e) => this.BackColor = Color.AliceBlue;
+            this.MouseLeave += (s, e) => this.BackColor = Color.White;
         }
 
         private void AddClickEventToChildren(Control parent)
@@ -50,11 +67,6 @@ namespace CSMS.WinForms.Forms.POS
         private void Card_Click(object sender, EventArgs e)
         {
             OnProductSelected?.Invoke(productData);
-        }
-
-        private void stk_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
