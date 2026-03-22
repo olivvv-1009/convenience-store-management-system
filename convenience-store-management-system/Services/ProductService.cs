@@ -173,5 +173,9 @@ WHERE ProductId = @id";
         {
             return GetAllProducts().FindAll(p => p.Stock > 0);
         }
+        public bool Exists(string productId)
+        {
+            return productRepo.Exists(productId);
+        }
     }
 }
