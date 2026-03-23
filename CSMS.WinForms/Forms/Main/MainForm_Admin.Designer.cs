@@ -262,18 +262,18 @@
             tableLayoutPanel3.Location = new Point(163, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 2;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 10.1351347F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 89.86487F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 16.216217F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 83.78378F));
             tableLayoutPanel3.Size = new Size(634, 444);
             tableLayoutPanel3.TabIndex = 1;
             // 
             // tableLayoutPanel4
             // 
             tableLayoutPanel4.ColumnCount = 4;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.936306F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.808917F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17.9936314F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.2611465F));
             tableLayoutPanel4.Controls.Add(admin, 2, 0);
             tableLayoutPanel4.Controls.Add(LogoutBut, 3, 0);
             tableLayoutPanel4.Controls.Add(searchbut, 1, 0);
@@ -283,7 +283,7 @@
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 1;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Size = new Size(628, 39);
+            tableLayoutPanel4.Size = new Size(628, 66);
             tableLayoutPanel4.TabIndex = 0;
             // 
             // admin
@@ -294,7 +294,7 @@
             admin.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             admin.Location = new Point(441, 0);
             admin.Name = "admin";
-            admin.Size = new Size(119, 39);
+            admin.Size = new Size(107, 66);
             admin.TabIndex = 1;
             admin.Text = "Admin";
             admin.TextAlign = ContentAlignment.MiddleCenter;
@@ -302,9 +302,9 @@
             // LogoutBut
             // 
             LogoutBut.Dock = DockStyle.Fill;
-            LogoutBut.Location = new Point(566, 3);
+            LogoutBut.Location = new Point(554, 3);
             LogoutBut.Name = "LogoutBut";
-            LogoutBut.Size = new Size(59, 33);
+            LogoutBut.Size = new Size(71, 60);
             LogoutBut.TabIndex = 2;
             LogoutBut.Text = "Logout";
             LogoutBut.UseVisualStyleBackColor = true;
@@ -312,29 +312,28 @@
             // searchbut
             // 
             searchbut.Dock = DockStyle.Fill;
-            searchbut.Location = new Point(379, 3);
+            searchbut.Location = new Point(348, 3);
             searchbut.Name = "searchbut";
-            searchbut.Size = new Size(56, 33);
+            searchbut.Size = new Size(87, 60);
             searchbut.TabIndex = 0;
             searchbut.Text = "search";
             searchbut.UseVisualStyleBackColor = true;
             // 
             // searchbox
             // 
-            searchbox.Dock = DockStyle.Fill;
-            searchbox.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchbox.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchbox.Location = new Point(5, 5);
             searchbox.Margin = new Padding(5);
             searchbox.Name = "searchbox";
-            searchbox.Size = new Size(366, 25);
+            searchbox.Size = new Size(335, 34);
             searchbox.TabIndex = 1;
             // 
             // pnlContent
             // 
             pnlContent.Dock = DockStyle.Fill;
-            pnlContent.Location = new Point(3, 48);
+            pnlContent.Location = new Point(3, 75);
             pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(628, 393);
+            pnlContent.Size = new Size(628, 366);
             pnlContent.TabIndex = 1;
             // 
             // MainForm_Admin

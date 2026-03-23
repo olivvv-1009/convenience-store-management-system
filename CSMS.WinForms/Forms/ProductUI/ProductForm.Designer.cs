@@ -87,8 +87,8 @@
             tableLayoutPanel1.Location = new Point(15, 15);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 500F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 128F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 472F));
             tableLayoutPanel1.Size = new Size(778, 455);
             tableLayoutPanel1.TabIndex = 0;
             // 
@@ -104,7 +104,7 @@
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.Size = new Size(772, 94);
+            tableLayoutPanel2.Size = new Size(772, 122);
             tableLayoutPanel2.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -120,17 +120,17 @@
             tableLayoutPanel3.RowCount = 2;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 56.81818F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 43.18182F));
-            tableLayoutPanel3.Size = new Size(603, 88);
+            tableLayoutPanel3.Size = new Size(603, 116);
             tableLayoutPanel3.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Dock = DockStyle.Fill;
-            label1.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Times New Roman", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(597, 50);
+            label1.Size = new Size(597, 65);
             label1.TabIndex = 0;
             label1.Text = "Product Management";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -139,11 +139,11 @@
             // 
             label2.AutoSize = true;
             label2.Dock = DockStyle.Fill;
-            label2.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ControlDarkDark;
-            label2.Location = new Point(3, 50);
+            label2.Location = new Point(3, 65);
             label2.Name = "label2";
-            label2.Size = new Size(597, 38);
+            label2.Size = new Size(597, 51);
             label2.TabIndex = 1;
             label2.Text = "Manage your store inventory and products";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -153,10 +153,10 @@
             panel2.BackColor = SystemColors.ControlLightLight;
             panel2.Controls.Add(tableLayoutPanel5);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(3, 103);
+            panel2.Location = new Point(3, 131);
             panel2.Name = "panel2";
             panel2.Padding = new Padding(15);
-            panel2.Size = new Size(772, 494);
+            panel2.Size = new Size(772, 466);
             panel2.TabIndex = 1;
             // 
             // tableLayoutPanel5
@@ -170,20 +170,20 @@
             tableLayoutPanel5.Location = new Point(15, 15);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 3;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
-            tableLayoutPanel5.Size = new Size(742, 464);
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 11F));
+            tableLayoutPanel5.Size = new Size(742, 436);
             tableLayoutPanel5.TabIndex = 0;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Dock = DockStyle.Fill;
-            label3.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.Location = new Point(3, 0);
             label3.Name = "label3";
-            label3.Size = new Size(736, 30);
+            label3.Size = new Size(736, 42);
             label3.TabIndex = 0;
             label3.Text = "Product";
             label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -196,42 +196,42 @@
             tableLayoutPanel6.Controls.Add(txtSearch, 0, 0);
             tableLayoutPanel6.Controls.Add(cbCategory, 1, 0);
             tableLayoutPanel6.Dock = DockStyle.Fill;
-            tableLayoutPanel6.Location = new Point(3, 33);
+            tableLayoutPanel6.Location = new Point(3, 45);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 1;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel6.Size = new Size(736, 39);
+            tableLayoutPanel6.Size = new Size(736, 44);
             tableLayoutPanel6.TabIndex = 1;
             // 
             // txtSearch
             // 
             txtSearch.Dock = DockStyle.Fill;
-            txtSearch.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearch.Location = new Point(3, 3);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(329, 28);
+            txtSearch.Size = new Size(329, 34);
             txtSearch.TabIndex = 0;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // cbCategory
             // 
             cbCategory.Dock = DockStyle.Left;
-            cbCategory.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbCategory.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbCategory.FormattingEnabled = true;
             cbCategory.Location = new Point(338, 3);
             cbCategory.Name = "cbCategory";
-            cbCategory.Size = new Size(151, 28);
+            cbCategory.Size = new Size(151, 34);
             cbCategory.TabIndex = 1;
-            cbCategory.SelectedIndexChanged += cbCategory_SelectedIndexChanged;
             // 
             // dgvProducts
             // 
+            dgvProducts.BackgroundColor = SystemColors.Control;
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProducts.Dock = DockStyle.Fill;
-            dgvProducts.Location = new Point(3, 78);
+            dgvProducts.Location = new Point(3, 95);
             dgvProducts.Name = "dgvProducts";
             dgvProducts.RowHeadersWidth = 51;
-            dgvProducts.Size = new Size(736, 383);
+            dgvProducts.Size = new Size(736, 338);
             dgvProducts.TabIndex = 2;
             // 
             // ProductForm
