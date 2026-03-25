@@ -80,7 +80,14 @@ namespace CSMS.WinForms.Forms.ProductUI
             txtName.Text = product.ProductName;
             txtPrice.Text = product.Price.ToString("0.##");
             txtStock.Text = product.Stock.ToString();
-            dtpExpiry.Value = product.ExpiryDate;
+            if (product.ExpiryDate.HasValue)
+            {
+                dtpExpiry.Value = product.ExpiryDate.Value;
+            }
+            else
+            {
+                dtpExpiry.Value = DateTime.Now; // hoặc MinDate
+            }
 
             cbCategory.SelectedValue = product.CategoryId;
         }
@@ -121,7 +128,11 @@ namespace CSMS.WinForms.Forms.ProductUI
                     MessageBox.Show("Invalid stock!");
                     return;
                 }
-
+                if (cbCategory.SelectedValue == null)
+                {
+                    MessageBox.Show("Please select a valid category!");
+                    return;
+                }
                 product.ProductId = txtId.Text.Trim();
                 product.ProductName = txtName.Text.Trim();
                 product.CategoryId = Convert.ToInt32(cbCategory.SelectedValue);

@@ -17,8 +17,7 @@ namespace CSMS.Services
                 string query = "SELECT SUM(TotalAmount) FROM Invoices";
 
                 object result = new SqlCommand(query, conn).ExecuteScalar();
-
-                return Convert.ToDecimal(new SqlCommand(query, conn).ExecuteScalar());
+                return result == DBNull.Value ? 0 : Convert.ToDecimal(result);
             }
         }
 

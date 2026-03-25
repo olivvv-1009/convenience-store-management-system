@@ -53,9 +53,15 @@ LEFT JOIN Inventory i ON p.ProductId = i.ProductId";
                         ProductId = reader["ProductId"]?.ToString(),
                         ProductName = reader["ProductName"]?.ToString(),
                         CategoryName = reader["CategoryName"]?.ToString(),
-                        Price = reader["Price"] != DBNull.Value ? Convert.ToDecimal(reader["Price"]) : 0,
-                        Stock = Convert.ToInt32(reader["Stock"]),
-                        ExpiryDate = Convert.ToDateTime(reader["ExpiryDate"]),
+
+                        Price = reader["Price"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Price"]),
+
+                        Stock = reader["Stock"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Stock"]),
+
+                        ExpiryDate = reader["ExpiryDate"] == DBNull.Value
+                    ? (DateTime?)null
+                    : Convert.ToDateTime(reader["ExpiryDate"]),
+
                         Status = reader["Status"]?.ToString()
                     };
 
@@ -67,7 +73,7 @@ LEFT JOIN Inventory i ON p.ProductId = i.ProductId";
         }
 
         // ================= ADD PRODUCT =================
-        
+
         public void AddProduct(Product product)
         {
             using (SqlConnection conn = db.GetConnection())
@@ -77,29 +83,29 @@ LEFT JOIN Inventory i ON p.ProductId = i.ProductId";
 
                 try
                 {
-                    // 1. Insert Product
                     string query1 = @"
 INSERT INTO Products(ProductId, ProductName, Price, CategoryId, ExpiryDate, Status)
-VALUES(@id, @name, @price, @CategoryName, @expiry, @status)";
+VALUES(@id, @name, @price, @Category, @expiry, @status)";
 
                     SqlCommand cmd1 = new SqlCommand(query1, conn, tran);
 
                     cmd1.Parameters.AddWithValue("@id", product.ProductId);
                     cmd1.Parameters.AddWithValue("@name", product.ProductName);
                     cmd1.Parameters.AddWithValue("@price", product.Price);
-                    cmd1.Parameters.AddWithValue("@CategoryName", product.CategoryId);
+                    cmd1.Parameters.AddWithValue("@Category", product.CategoryId); 
                     cmd1.Parameters.AddWithValue("@expiry", product.ExpiryDate);
-                    cmd1.Parameters.AddWithValue("@status", product.Status);
+                    cmd1.Parameters.AddWithValue("@status", product.Status ?? "Active"); 
 
                     cmd1.ExecuteNonQuery();
 
-                    // 2. THÊM INVENTORY (FIX CHÍNH)
+                    // Inventory
                     string query2 = @"
 INSERT INTO Inventory(ProductId, Quantity, MinimumStock)
-VALUES(@id, 0, 10)";
+VALUES(@id, @stock, 5)";
 
                     SqlCommand cmd2 = new SqlCommand(query2, conn, tran);
                     cmd2.Parameters.AddWithValue("@id", product.ProductId);
+                    cmd2.Parameters.AddWithValue("@stock", product.Stock);
 
                     cmd2.ExecuteNonQuery();
 
@@ -128,7 +134,8 @@ UPDATE Products
 SET ProductName = @name,
     Price = @price,
     CategoryId = @Category,
-    ExpiryDate = @expiry
+    ExpiryDate = @expiry,
+    Status = @status
 WHERE ProductId = @id";
 
                     SqlCommand cmd1 = new SqlCommand(query1, conn, tran);
@@ -136,15 +143,25 @@ WHERE ProductId = @id";
                     cmd1.Parameters.AddWithValue("@id", product.ProductId);
                     cmd1.Parameters.AddWithValue("@name", product.ProductName);
                     cmd1.Parameters.AddWithValue("@price", product.Price);
-                    cmd1.Parameters.AddWithValue("@CategoryName", product.CategoryId);
+                    cmd1.Parameters.AddWithValue("@Category", product.CategoryId); 
                     cmd1.Parameters.AddWithValue("@expiry", product.ExpiryDate);
+                    cmd1.Parameters.AddWithValue("@status", product.Status ?? "Active"); 
 
                     cmd1.ExecuteNonQuery();
 
+                    // Update stock
                     string query2 = @"
-UPDATE Inventory
-SET Quantity = @stock
-WHERE ProductId = @id";
+IF EXISTS (SELECT 1 FROM Inventory WHERE ProductId = @id)
+BEGIN
+    UPDATE Inventory
+    SET Quantity = @stock
+    WHERE ProductId = @id
+END
+ELSE
+BEGIN
+    INSERT INTO Inventory(ProductId, Quantity, MinimumStock)
+    VALUES(@id, @stock, 5)
+END";
 
                     SqlCommand cmd2 = new SqlCommand(query2, conn, tran);
 
@@ -205,10 +222,18 @@ WHERE ProductId = @id";
                 conn.Open();
 
                 string query = @"
-SELECT p.ProductId, p.ProductName, p.Price,
-       ISNULL(i.Quantity,0) AS Stock
+SELECT 
+    p.ProductId, 
+    p.ProductName, 
+    p.Price,
+    ISNULL(s.TotalStock, 0) AS Stock
 FROM Products p
-LEFT JOIN Inventory i ON p.ProductId = i.ProductId";
+LEFT JOIN
+(
+    SELECT ProductId, SUM(Quantity) AS TotalStock
+    FROM Inventory
+    GROUP BY ProductId
+) s ON p.ProductId = s.ProductId";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
