@@ -34,7 +34,7 @@ namespace CSMS.WinForms.Forms.Inventory
             dgvExpiredProducts.Columns["BatchNumber"].HeaderText = "Batch";
             dgvExpiredProducts.Columns["ProductCode"].HeaderText = "Product Code";
             dgvExpiredProducts.Columns["ProductName"].HeaderText = "Product Name";
-            dgvExpiredProducts.Columns["Category"].HeaderText = "Category";
+            dgvExpiredProducts.Columns["CategoryName"].HeaderText = "Category";
             dgvExpiredProducts.Columns["Stock"].HeaderText = "Stock";
             dgvExpiredProducts.Columns["ExpiryDate"].HeaderText = "Expiry Date";
             dgvExpiredProducts.Columns["DaysOverdue"].HeaderText = "Days Overdue";

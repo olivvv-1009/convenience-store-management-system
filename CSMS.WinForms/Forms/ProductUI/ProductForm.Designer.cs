@@ -222,6 +222,7 @@
             cbCategory.Name = "cbCategory";
             cbCategory.Size = new Size(151, 34);
             cbCategory.TabIndex = 1;
+            cbCategory.SelectedIndexChanged += cbCategory_SelectedIndexChanged;
             // 
             // dgvProducts
             // 

@@ -17,7 +17,7 @@ namespace CSMS.Models
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public int Stock { get; set; }
-        public DateTime ExpiryDate { get; set; }
+        public DateTime? ExpiryDate { get; set; }
         public string Status  { get; set; }
         public Product() { }
         public Product(string code, string name, int CategoryId, decimal price, int stock, DateTime expiry, string status)

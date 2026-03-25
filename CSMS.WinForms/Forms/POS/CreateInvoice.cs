@@ -51,7 +51,8 @@ namespace CSMS.WinForms.Forms.POS
                 {
                     ProductId = p.ProductId,
                     ProductName = p.ProductName,
-                    Price = p.Price
+                    Price = p.Price,
+                    Stock = p.Stock
                 };
 
                 ProductCard card = new ProductCard(posProduct);

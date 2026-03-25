@@ -197,3 +197,13 @@ ADD CONSTRAINT FK_Inventory_Product
 FOREIGN KEY (ProductId)
 REFERENCES Products(ProductId)
 ON DELETE CASCADE
+
+CREATE TABLE Suppliers (
+    SupplierId NVARCHAR(20) PRIMARY KEY,
+    SupplierName NVARCHAR(200) NOT NULL
+)
+
+INSERT INTO Suppliers (SupplierId, SupplierName)
+VALUES
+('S001', 'Store A'),
+('S002', 'Store B')

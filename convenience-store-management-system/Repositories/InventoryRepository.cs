@@ -135,7 +135,7 @@ SELECT
 b.BatchNumber,
 p.ProductId,
 p.ProductName,
-c.CategoryNameName AS CategoryName,
+c.CategoryName AS CategoryName,
 b.Quantity AS Stock,
 b.ExpiryDate,
 DATEDIFF(DAY, b.ExpiryDate, GETDATE()) AS DaysOverdue,
