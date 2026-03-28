@@ -38,8 +38,8 @@ namespace CSMS.WinForms.Forms.Employees
                     e.FullName,
                     e.Email,
                     e.Position,
-                    e.HireDate.ToString("yyyy-MM-dd"), // ✅ đúng cột
-                    e.IsActive ? "Active" : "Locked",  // ✅ đúng cột
+                    e.HireDate.ToString("yyyy-MM-dd"), 
+                    e.IsActive ? "Active" : "Locked",  
                     "Edit",
                     e.IsActive ? "Lock" : "Unlock"
                 );
@@ -54,7 +54,7 @@ namespace CSMS.WinForms.Forms.Employees
 
             string columnName = dgvEmployees.Columns[e.ColumnIndex].Name;
 
-            // 👉 EDIT
+            // EDIT
             if (columnName == "Edit")
             {
                 EditEmployeeForm f = new EditEmployeeForm(id);
@@ -62,7 +62,7 @@ namespace CSMS.WinForms.Forms.Employees
                 LoadStatsAndUsers();
             }
 
-            // 👉 LOCK / UNLOCK
+            // LOCK / UNLOCK
             if (columnName == "Action")
             {
                 employeeService.ToggleActive(id);
@@ -95,8 +95,8 @@ namespace CSMS.WinForms.Forms.Employees
                     e.FullName,
                     e.Email,
                     e.Position,
-                    e.HireDate.ToString("yyyy-MM-dd"), // ✅ thêm lại dòng này
-                    e.IsActive ? "Active" : "Locked",  // ✅ thêm lại dòng này
+                    e.HireDate.ToString("yyyy-MM-dd"), 
+                    e.IsActive ? "Active" : "Locked",  
                     "Edit",
                     e.IsActive ? "Lock" : "Unlock"
                 );
