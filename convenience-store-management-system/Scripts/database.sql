@@ -6,20 +6,33 @@ GO
 
 CREATE TABLE Roles (
     RoleId INT IDENTITY(1,1) PRIMARY KEY,
-    RoleName NVARCHAR(50) NOT NULL
+    RoleName NVARCHAR(50) UNIQUE NOT NULL
 )
 
 CREATE TABLE Users (
     UserId INT IDENTITY(1,1) PRIMARY KEY,
+
     Username NVARCHAR(100) UNIQUE NOT NULL,
     PasswordHash NVARCHAR(255) NOT NULL,
-    FullName NVARCHAR(200),
-    Phone NVARCHAR(20),
-    RoleId INT,
+
+    RoleId INT NOT NULL,
     IsLocked BIT DEFAULT 0,
     CreatedAt DATETIME DEFAULT GETDATE(),
 
     FOREIGN KEY (RoleId) REFERENCES Roles(RoleId)
+)
+
+CREATE TABLE Employees (
+    EmployeeId INT IDENTITY(1,1) PRIMARY KEY,
+
+    FullName NVARCHAR(200) NOT NULL,
+    Email NVARCHAR(200),
+    Phone NVARCHAR(20),
+
+    Position NVARCHAR(100), -- Cashier, Manager...
+    HireDate DATETIME DEFAULT GETDATE(),
+
+    IsActive BIT DEFAULT 1
 )
 
 CREATE TABLE Categories (
@@ -76,12 +89,12 @@ CREATE TABLE Promotions (
 
 CREATE TABLE Invoices (
     InvoiceId INT IDENTITY(1,1) PRIMARY KEY,
-    UserId INT,
+    EmployeeId INT,
     MemberId INT,
     TotalAmount DECIMAL(12,2),
     CreatedAt DATETIME DEFAULT GETDATE(),
 
-    FOREIGN KEY (UserId) REFERENCES Users(UserId),
+    FOREIGN KEY (EmployeeId) REFERENCES Employees(EmployeeId),
     FOREIGN KEY (MemberId) REFERENCES Members(MemberId)
 )
 
@@ -112,10 +125,16 @@ VALUES
 ('Admin'),
 ('Staff')
 
-INSERT INTO Users(Username,PasswordHash,FullName,RoleId)
+INSERT INTO Users(Username, PasswordHash, RoleId)
 VALUES
-('admin','123456','Administrator',1),
-('staff','123456','Staff User',2)
+('admin','123456',1),
+('staff','123456',2)
+-- Employees 
+INSERT INTO Employees (FullName, Email, Position)
+VALUES
+('Nguyen Van A', 'a@gmail.com', 'Manager'),
+('Tran Thi B', 'b@gmail.com', 'Staff'),
+('Le Van C', 'c@gmail.com', 'Staff')
 
 INSERT INTO Categories(CategoryName)
 VALUES
@@ -156,6 +175,7 @@ ADD Supplier NVARCHAR(200)
 
 ALTER TABLE Batches
 ADD BatchNumber NVARCHAR(50)
+GO
 
 UPDATE Batches
 SET BatchNumber = 'BATCH-' + ProductId + '-' + FORMAT(ExpiryDate,'yyyyMMdd')

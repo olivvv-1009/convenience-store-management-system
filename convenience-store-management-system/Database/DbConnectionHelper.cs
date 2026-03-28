@@ -5,7 +5,7 @@ namespace CSMS.Database
     public class DbConnectionHelper
     {
         private string connectionString =
-        "Server=(localdb)\\MSSQLLocalDB;Database=CSMS_DB;Trusted_Connection=True;TrustServerCertificate=True;";
+        "Server=LAPTOP-7A534JGV\\SQLEXPRESS;Database=CSMS_DB;Trusted_Connection=True;TrustServerCertificate=True;";
         public SqlConnection GetConnection()
         {
             return new SqlConnection(connectionString);

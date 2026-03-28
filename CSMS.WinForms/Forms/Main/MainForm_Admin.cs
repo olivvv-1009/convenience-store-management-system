@@ -88,7 +88,7 @@ namespace CSMS.WinForms.Forms.Main
 
         private void EmployeesBut_Click(object sender, EventArgs e)
         {
-            LoadUserControl(new EmployeesForm());
+            LoadUserControl(new EmployeeForm());
 
         }
 
