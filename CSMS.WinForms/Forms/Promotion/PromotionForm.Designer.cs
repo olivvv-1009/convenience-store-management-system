@@ -32,6 +32,11 @@
             createPromo = new Button();
             panel1 = new Panel();
             panel2 = new Panel();
+            dgvPromotions = new DataGridView();
+            refreshBtn = new Button();
+            editBtn = new Button();
+            activateBtn = new Button();
+            deactivateBtn = new Button();
             SuspendLayout();
             // 
             // label1
@@ -58,11 +63,61 @@
             // 
             // panel1
             // 
-            panel1.Location = new Point(16, 152);
+            panel1.Location = new Point(16, 85);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(803, 332);
+            panel1.Size = new Size(636, 412);
             panel1.TabIndex = 2;
+            // 
+            // dgvPromotions
+            // 
+            dgvPromotions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvPromotions.Location = new Point(8, 8);
+            dgvPromotions.Name = "dgvPromotions";
+            dgvPromotions.Size = new Size(620, 360);
+            dgvPromotions.ReadOnly = true;
+            dgvPromotions.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPromotions.AutoGenerateColumns = false;
+            dgvPromotions.MultiSelect = false;
+            dgvPromotions.AllowUserToAddRows = false;
+            dgvPromotions.AllowUserToDeleteRows = false;
+            dgvPromotions.RowHeadersVisible = false;
+            // 
+            // refreshBtn
+            // 
+            refreshBtn.Location = new Point(8, 376);
+            refreshBtn.Name = "refreshBtn";
+            refreshBtn.Size = new Size(75, 28);
+            refreshBtn.Text = "Refresh";
+            refreshBtn.UseVisualStyleBackColor = true;
+            refreshBtn.Click += refreshBtn_Click;
+            // 
+            // editBtn
+            // 
+            editBtn.Location = new Point(92, 376);
+            editBtn.Name = "editBtn";
+            editBtn.Size = new Size(75, 28);
+            editBtn.Text = "Edit";
+            editBtn.UseVisualStyleBackColor = true;
+            editBtn.Click += editBtn_Click;
+            // 
+            // activateBtn
+            // 
+            activateBtn.Location = new Point(176, 376);
+            activateBtn.Name = "activateBtn";
+            activateBtn.Size = new Size(100, 28);
+            activateBtn.Text = "Activate";
+            activateBtn.UseVisualStyleBackColor = true;
+            activateBtn.Click += activateBtn_Click;
+            // 
+            // deactivateBtn
+            // 
+            deactivateBtn.Location = new Point(282, 376);
+            deactivateBtn.Name = "deactivateBtn";
+            deactivateBtn.Size = new Size(100, 28);
+            deactivateBtn.Text = "Deactivate";
+            deactivateBtn.UseVisualStyleBackColor = true;
+            deactivateBtn.Click += deactivateBtn_Click;
             // 
             // panel2
             // 
@@ -76,6 +131,11 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            panel1.Controls.Add(dgvPromotions);
+            panel1.Controls.Add(refreshBtn);
+            panel1.Controls.Add(editBtn);
+            panel1.Controls.Add(activateBtn);
+            panel1.Controls.Add(deactivateBtn);
             Controls.Add(panel1);
             Controls.Add(createPromo);
             Controls.Add(label1);
@@ -93,5 +153,10 @@
 		private Button createPromo;
 		private Panel panel1;
         private Panel panel2;
+        private DataGridView dgvPromotions;
+        private Button refreshBtn;
+        private Button editBtn;
+        private Button activateBtn;
+        private Button deactivateBtn;
     }
 }

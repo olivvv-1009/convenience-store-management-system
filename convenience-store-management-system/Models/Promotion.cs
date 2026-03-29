@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace convenience_store_management_system.Models
 {
-    internal class Promotion
+    public class Promotion
     {
         public int PromotionId { get; set; }
-        public string ConditionRule { get; set; }
-        public decimal DiscountValue { get; set; }
+        public string? PromotionName { get; set; }
+        public int DiscountPercent { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public bool IsActive { get; set; }
     }
 }

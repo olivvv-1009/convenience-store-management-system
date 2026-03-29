@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            dgvMembers = new DataGridView();
+            btnAdd = new Button();
+            btnEdit = new Button();
+            btnDelete = new Button();
+            btnRefresh = new Button();
             panel1 = new Panel();
             SuspendLayout();
             // 
@@ -46,46 +47,61 @@
             label1.TabIndex = 0;
             label1.Text = "Customer ";
             // 
-            // flowLayoutPanel1
+            // dgvMembers
             // 
-            flowLayoutPanel1.Location = new Point(22, 108);
-            flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(765, 409);
-            flowLayoutPanel1.TabIndex = 1;
+            dgvMembers.Location = new Point(22, 68);
+            dgvMembers.Name = "dgvMembers";
+            dgvMembers.Size = new Size(765, 449);
+            dgvMembers.TabIndex = 1;
+            dgvMembers.AllowUserToAddRows = false;
+            dgvMembers.AllowUserToDeleteRows = false;
+            dgvMembers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvMembers.ReadOnly = true;
+            dgvMembers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // 
-            // button1
+            // btnAdd
             // 
-            button1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(793, 108);
-            button1.Margin = new Padding(3, 4, 3, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(193, 49);
-            button1.TabIndex = 2;
-            button1.Text = "Add customer";
-            button1.UseVisualStyleBackColor = true;
+            btnAdd.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAdd.Location = new Point(800, 68);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(180, 42);
+            btnAdd.TabIndex = 2;
+            btnAdd.Text = "Add Member";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += BtnAdd_Click;
             // 
-            // button2
+            // btnEdit
             // 
-            button2.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(793, 165);
-            button2.Margin = new Padding(3, 4, 3, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(193, 57);
-            button2.TabIndex = 3;
-            button2.Text = "Delete customer";
-            button2.UseVisualStyleBackColor = true;
+            btnEdit.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEdit.Location = new Point(800, 120);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(180, 42);
+            btnEdit.TabIndex = 3;
+            btnEdit.Text = "Edit Member";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += BtnEdit_Click;
             // 
-            // button3
+            // btnDelete
             // 
-            button3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(793, 231);
-            button3.Margin = new Padding(3, 4, 3, 4);
-            button3.Name = "button3";
-            button3.Size = new Size(193, 57);
-            button3.TabIndex = 4;
-            button3.Text = "Customize";
-            button3.UseVisualStyleBackColor = true;
+            btnDelete.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDelete.Location = new Point(800, 172);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(180, 42);
+            btnDelete.TabIndex = 4;
+            btnDelete.Text = "Delete Member";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += BtnDelete_Click;
+
+            // btnRefresh
+            // 
+            btnRefresh.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRefresh.Location = new Point(800, 224);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(180, 42);
+            btnRefresh.TabIndex = 5;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += BtnRefresh_Click;
             // 
             // panel1
             // 
@@ -101,10 +117,11 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(btnRefresh);
+            Controls.Add(btnDelete);
+            Controls.Add(btnEdit);
+            Controls.Add(btnAdd);
+            Controls.Add(dgvMembers);
             Controls.Add(label1);
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
@@ -118,10 +135,11 @@
         #endregion
 
         private Label label1;
-		private FlowLayoutPanel flowLayoutPanel1;
-		private Button button1;
-		private Button button2;
-		private Button button3;
+        private DataGridView dgvMembers;
+        private Button btnAdd;
+        private Button btnEdit;
+        private Button btnDelete;
+        private Button btnRefresh;
         private Panel panel1;
     }
 }

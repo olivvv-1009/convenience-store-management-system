@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using convenience_store_management_system.Models;
 using CSMS.Database;
 using CSMS.Repositories;
+using CSMS.Services;
 
 
 public class InvoiceService
@@ -20,7 +21,7 @@ public class InvoiceService
         }
     }
 
-    public void CreateInvoice(List<CartItem> items, string paymentMethod, int? memberId)
+    public void CreateInvoice(List<CartItem> items, string paymentMethod, int? memberId, int pointsToRedeem = 0)
     {
         using (SqlConnection conn = db.GetConnection())
         {
@@ -71,7 +72,30 @@ public class InvoiceService
 
                 tran.Commit();
 
+                // Update stock
                 UpdateStockAfterInvoice(items);
+
+                // Award points to member based on total (e.g., 1 point per $10)
+                if (memberId != null)
+                {
+                    try
+                    {
+                        int totalPoints = (int)(total / 10);
+                        MemberService ms = new MemberService();
+
+                        if (pointsToRedeem > 0)
+                        {
+                            ms.UsePoints(memberId.Value, pointsToRedeem);
+                        }
+
+                        if (totalPoints > 0)
+                            ms.AddPoints(memberId.Value, totalPoints);
+                    }
+                    catch
+                    {
+                        // non-fatal for invoice, ignore
+                    }
+                }
             }
             catch
             {
