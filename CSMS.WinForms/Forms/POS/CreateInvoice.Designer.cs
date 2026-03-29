@@ -108,6 +108,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = SystemColors.ControlLightLight;
             label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Times New Roman", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.Location = new Point(3, 0);
@@ -119,6 +120,7 @@
             // 
             // tableLayoutPanel3
             // 
+            tableLayoutPanel3.BackColor = SystemColors.ControlLightLight;
             tableLayoutPanel3.ColumnCount = 2;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
@@ -144,9 +146,9 @@
             // 
             // textBox1
             // 
-            textBox1.Dock = DockStyle.Fill;
+            textBox1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             textBox1.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(3, 3);
+            textBox1.Location = new Point(3, 14);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Search products...";
             textBox1.Size = new Size(480, 30);
@@ -155,6 +157,7 @@
             // pnlContent
             // 
             pnlContent.AutoScroll = true;
+            pnlContent.BackColor = SystemColors.ControlLightLight;
             pnlContent.Location = new Point(3, 134);
             pnlContent.Name = "pnlContent";
             pnlContent.Size = new Size(541, 486);
@@ -171,6 +174,7 @@
             // 
             // tableLayoutPanel4
             // 
+            tableLayoutPanel4.BackColor = SystemColors.ControlLightLight;
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel4.Controls.Add(label2, 0, 0);
@@ -210,6 +214,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = SystemColors.ControlLightLight;
             label2.Dock = DockStyle.Fill;
             label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(3, 0);
@@ -222,6 +227,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = SystemColors.ControlLightLight;
             label3.Dock = DockStyle.Fill;
             label3.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(3, 208);
@@ -233,6 +239,7 @@
             // discount
             // 
             discount.AutoSize = true;
+            discount.BackColor = SystemColors.ControlLightLight;
             discount.Dock = DockStyle.Fill;
             discount.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             discount.Location = new Point(3, 240);
@@ -244,6 +251,7 @@
             // member
             // 
             member.AutoSize = true;
+            member.BackColor = SystemColors.ControlLightLight;
             member.Dock = DockStyle.Fill;
             member.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             member.Location = new Point(3, 272);
@@ -264,6 +272,7 @@
             // 
             // lblEmptyCart
             // 
+            lblEmptyCart.BackColor = SystemColors.ControlLightLight;
             lblEmptyCart.Dock = DockStyle.Top;
             lblEmptyCart.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblEmptyCart.ForeColor = SystemColors.ControlDarkDark;
@@ -277,6 +286,7 @@
             // flowCartItems
             // 
             flowCartItems.AutoScroll = true;
+            flowCartItems.BackColor = SystemColors.ControlLightLight;
             flowCartItems.Dock = DockStyle.Fill;
             flowCartItems.Location = new Point(0, 0);
             flowCartItems.Name = "flowCartItems";
@@ -295,6 +305,7 @@
             // lblCustomerName
             // 
             lblCustomerName.AutoSize = true;
+            lblCustomerName.BackColor = SystemColors.ControlLightLight;
             lblCustomerName.Dock = DockStyle.Fill;
             lblCustomerName.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCustomerName.Location = new Point(3, 334);
@@ -371,6 +382,7 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.BackColor = SystemColors.ControlLightLight;
             label6.Dock = DockStyle.Fill;
             label6.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.Location = new Point(3, 494);
@@ -398,6 +410,7 @@
             // total1
             // 
             total1.AutoSize = true;
+            total1.BackColor = SystemColors.ControlLightLight;
             total1.Dock = DockStyle.Fill;
             total1.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             total1.Location = new Point(3, 0);
@@ -410,6 +423,7 @@
             // lbltotal
             // 
             lbltotal.AutoSize = true;
+            lbltotal.BackColor = SystemColors.ControlLightLight;
             lbltotal.Dock = DockStyle.Fill;
             lbltotal.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbltotal.Location = new Point(146, 0);
@@ -437,6 +451,7 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = SystemColors.ControlLightLight;
             label5.Dock = DockStyle.Fill;
             label5.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.Location = new Point(3, 0);
@@ -449,6 +464,7 @@
             // lblsubtotal
             // 
             lblsubtotal.AutoSize = true;
+            lblsubtotal.BackColor = SystemColors.ControlLightLight;
             lblsubtotal.Dock = DockStyle.Fill;
             lblsubtotal.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblsubtotal.Location = new Point(146, 0);

@@ -74,6 +74,7 @@
             // 
             // tableLayoutPanel2
             // 
+            tableLayoutPanel2.BackColor = SystemColors.ControlLightLight;
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(tableLayoutPanel5, 0, 0);
@@ -89,47 +90,50 @@
             // 
             // tableLayoutPanel5
             // 
+            tableLayoutPanel5.BackColor = SystemColors.ControlLightLight;
             tableLayoutPanel5.ColumnCount = 1;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Controls.Add(storePOS, 0, 0);
             tableLayoutPanel5.Controls.Add(label1, 0, 1);
+            tableLayoutPanel5.Dock = DockStyle.Fill;
             tableLayoutPanel5.Location = new Point(3, 3);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.Size = new Size(147, 82);
+            tableLayoutPanel5.Size = new Size(148, 82);
             tableLayoutPanel5.TabIndex = 0;
             // 
             // storePOS
             // 
             storePOS.AutoSize = true;
             storePOS.Dock = DockStyle.Fill;
-            storePOS.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            storePOS.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
             storePOS.ForeColor = SystemColors.HotTrack;
             storePOS.ImageAlign = ContentAlignment.BottomLeft;
             storePOS.Location = new Point(3, 0);
             storePOS.Name = "storePOS";
-            storePOS.Size = new Size(141, 41);
+            storePOS.Size = new Size(142, 41);
             storePOS.TabIndex = 0;
             storePOS.Text = "StorePOS";
-            storePOS.TextAlign = ContentAlignment.BottomLeft;
+            storePOS.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Dock = DockStyle.Fill;
-            label1.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ControlDarkDark;
             label1.Location = new Point(3, 41);
             label1.Name = "label1";
-            label1.Size = new Size(141, 41);
+            label1.Size = new Size(142, 41);
             label1.TabIndex = 1;
             label1.Text = "Management System";
-            label1.TextAlign = ContentAlignment.MiddleLeft;
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel6
             // 
+            tableLayoutPanel6.BackColor = SystemColors.ControlLightLight;
             tableLayoutPanel6.ColumnCount = 1;
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel6.Controls.Add(DashboardBut, 0, 0);
@@ -254,6 +258,7 @@
             // 
             // tableLayoutPanel3
             // 
+            tableLayoutPanel3.BackColor = SystemColors.Control;
             tableLayoutPanel3.ColumnCount = 1;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.Controls.Add(tableLayoutPanel4, 0, 0);
@@ -269,6 +274,7 @@
             // 
             // tableLayoutPanel4
             // 
+            tableLayoutPanel4.BackColor = SystemColors.ControlLightLight;
             tableLayoutPanel4.ColumnCount = 4;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.936306F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.808917F));
@@ -289,9 +295,10 @@
             // admin
             // 
             admin.AutoSize = true;
-            admin.BackColor = SystemColors.ControlDark;
+            admin.BackColor = SystemColors.HotTrack;
             admin.Dock = DockStyle.Fill;
-            admin.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            admin.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            admin.ForeColor = SystemColors.ControlLightLight;
             admin.Location = new Point(441, 0);
             admin.Name = "admin";
             admin.Size = new Size(107, 66);
@@ -302,6 +309,7 @@
             // LogoutBut
             // 
             LogoutBut.Dock = DockStyle.Fill;
+            LogoutBut.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LogoutBut.Location = new Point(554, 3);
             LogoutBut.Name = "LogoutBut";
             LogoutBut.Size = new Size(71, 60);
@@ -312,17 +320,19 @@
             // searchbut
             // 
             searchbut.Dock = DockStyle.Fill;
+            searchbut.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchbut.Location = new Point(348, 3);
             searchbut.Name = "searchbut";
             searchbut.Size = new Size(87, 60);
             searchbut.TabIndex = 0;
-            searchbut.Text = "search";
+            searchbut.Text = "Search";
             searchbut.UseVisualStyleBackColor = true;
             // 
             // searchbox
             // 
+            searchbox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             searchbox.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchbox.Location = new Point(5, 5);
+            searchbox.Location = new Point(5, 16);
             searchbox.Margin = new Padding(5);
             searchbox.Name = "searchbox";
             searchbox.Size = new Size(335, 34);
