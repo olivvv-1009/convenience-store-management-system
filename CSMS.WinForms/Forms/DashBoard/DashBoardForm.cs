@@ -113,7 +113,7 @@ namespace CSMS.WinForms.Forms.DashBoard
                 {
                     DateTime date = Convert.ToDateTime(row["SaleDate"]);
                     decimal revenue = Convert.ToDecimal(row["Revenue"]);
-
+                    if (revenue == 0) continue;
                     DataPoint point = new DataPoint();
                     point.AxisLabel = date.ToString("dd/MM");
                     point.YValues = new double[] { (double)revenue };

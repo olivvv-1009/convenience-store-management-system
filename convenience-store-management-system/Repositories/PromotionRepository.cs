@@ -122,5 +122,37 @@ namespace CSMS.Repositories
                 }
             }
         }
+        public Promotion GetByCode(string code)
+        {
+            using (var conn = db.GetConnection())
+            {
+                conn.Open();
+
+                string query = "SELECT TOP 1 * FROM Promotions WHERE PromotionName = @code";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@code", code);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Promotion
+                            {
+                                PromotionId = (int)reader["PromotionId"],
+                                PromotionName = reader["PromotionName"].ToString(),
+                                DiscountPercent = (int)reader["DiscountPercent"],
+                                StartDate = reader["StartDate"] as DateTime?,
+                                EndDate = reader["EndDate"] as DateTime?,
+                                IsActive = (bool)reader["IsActive"]
+                            };
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }

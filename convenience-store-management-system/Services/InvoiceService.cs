@@ -33,11 +33,11 @@ public class InvoiceService
                 decimal total = items.Sum(x => x.SubTotal);
 
                 SqlCommand cmdInvoice = new SqlCommand(
-                @"INSERT INTO Invoices(UserId,MemberId,TotalAmount)
-              OUTPUT INSERTED.InvoiceId
-              VALUES(@UserId,@MemberId,@Total)", conn, tran);
+                @"INSERT INTO Invoices(EmployeeId, MemberId, TotalAmount)
+  OUTPUT INSERTED.InvoiceId
+  VALUES(@EmployeeId, @MemberId, @Total)", conn, tran);
 
-                cmdInvoice.Parameters.AddWithValue("@UserId", 2);
+                cmdInvoice.Parameters.AddWithValue("@EmployeeId", 2);
                 cmdInvoice.Parameters.AddWithValue("@MemberId", memberId ?? (object)DBNull.Value);
                 cmdInvoice.Parameters.AddWithValue("@Total", total);
 

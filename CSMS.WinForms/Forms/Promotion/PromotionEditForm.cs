@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using PromotionModel = convenience_store_management_system.Models.Promotion;
 using CSMS.Repositories;
@@ -9,6 +10,7 @@ namespace CSMS.WinForms.Forms.Promotion
     {
         private PromotionRepository _repo = new PromotionRepository();
         private PromotionModel? _promotion;
+
         private TextBox txtName = new TextBox();
         private NumericUpDown nudDiscount = new NumericUpDown();
         private DateTimePicker dtStart = new DateTimePicker();
@@ -16,14 +18,16 @@ namespace CSMS.WinForms.Forms.Promotion
         private Button btnSave = new Button();
         private Button btnCancel = new Button();
 
-        public PromotionEditForm() : this(null) { }
-
-        public PromotionEditForm(int? promotionId)
+        public PromotionEditForm(int? promotionId = null)
         {
             this.Text = promotionId.HasValue ? "Edit Promotion" : "Create Promotion";
-            this.Width = 400;
-            this.Height = 260;
+            this.Size = new Size(500, 350); // ?? TO H?N
+            this.StartPosition = FormStartPosition.CenterParent;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+
             InitializeControls();
+
             if (promotionId.HasValue)
             {
                 _promotion = _repo.GetById(promotionId.Value);
@@ -33,31 +37,83 @@ namespace CSMS.WinForms.Forms.Promotion
 
         private void InitializeControls()
         {
-            Label lbl1 = new Label { Text = "Name:", Left = 10, Top = 20, Width = 80 };
-            txtName.Left = 100; txtName.Top = 20; txtName.Width = 250;
 
-            Label lbl2 = new Label { Text = "Discount %:", Left = 10, Top = 60, Width = 80 };
-            nudDiscount.Left = 100; nudDiscount.Top = 60; nudDiscount.Width = 100; nudDiscount.Maximum = 100;
+            var panel = new Panel
+            {
+                Dock = DockStyle.Fill,
+                Padding = new Padding(20)
+            };
+            this.Controls.Add(panel);
 
-            Label lbl3 = new Label { Text = "Start:", Left = 10, Top = 100, Width = 80 };
-            dtStart.Left = 100; dtStart.Top = 100; dtStart.Width = 200;
+            var table = new TableLayoutPanel
+            {
+                Dock = DockStyle.Top,
+                ColumnCount = 2,
+                RowCount = 5,
+                AutoSize = true
+            };
 
-            Label lbl4 = new Label { Text = "End:", Left = 10, Top = 140, Width = 80 };
-            dtEnd.Left = 100; dtEnd.Top = 140; dtEnd.Width = 200;
+            table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30));
+            table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70));
 
-            btnSave.Text = "Save"; btnSave.Left = 100; btnSave.Top = 180; btnSave.Click += BtnSave_Click;
-            btnCancel.Text = "Cancel"; btnCancel.Left = 200; btnCancel.Top = 180; btnCancel.Click += (s, e) => this.DialogResult = DialogResult.Cancel;
+            panel.Controls.Add(table);
 
-            this.Controls.Add(lbl1); this.Controls.Add(txtName);
-            this.Controls.Add(lbl2); this.Controls.Add(nudDiscount);
-            this.Controls.Add(lbl3); this.Controls.Add(dtStart);
-            this.Controls.Add(lbl4); this.Controls.Add(dtEnd);
-            this.Controls.Add(btnSave); this.Controls.Add(btnCancel);
+            Font labelFont = new Font("Segoe UI", 10, FontStyle.Regular);
+
+            // NAME
+            table.Controls.Add(new Label { Text = "Name:", Font = labelFont, Anchor = AnchorStyles.Left }, 0, 0);
+            txtName.Dock = DockStyle.Fill;
+            table.Controls.Add(txtName, 1, 0);
+
+            // DISCOUNT
+            table.Controls.Add(new Label { Text = "Discount (%):", Font = labelFont, Anchor = AnchorStyles.Left }, 0, 1);
+            nudDiscount.Maximum = 100;
+            nudDiscount.Dock = DockStyle.Left;
+            table.Controls.Add(nudDiscount, 1, 1);
+
+            // START
+            table.Controls.Add(new Label { Text = "Start Date:", Font = labelFont, Anchor = AnchorStyles.Left }, 0, 2);
+            dtStart.Dock = DockStyle.Fill;
+            table.Controls.Add(dtStart, 1, 2);
+
+            // END
+            table.Controls.Add(new Label { Text = "End Date:", Font = labelFont, Anchor = AnchorStyles.Left }, 0, 3);
+            dtEnd.Dock = DockStyle.Fill;
+            table.Controls.Add(dtEnd, 1, 3);
+
+            // BUTTON PANEL
+            var btnPanel = new FlowLayoutPanel
+            {
+                Dock = DockStyle.Bottom,
+                FlowDirection = FlowDirection.RightToLeft,
+                Padding = new Padding(0, 20, 0, 0)
+            };
+
+            panel.Controls.Add(btnPanel);
+
+            // SAVE BUTTON
+            btnSave.Text = "Save";
+            btnSave.BackColor = Color.RoyalBlue;
+            btnSave.ForeColor = Color.White;
+            btnSave.Width = 100;
+            btnSave.Height = 35;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Click += BtnSave_Click;
+
+            // CANCEL BUTTON
+            btnCancel.Text = "Cancel";
+            btnCancel.Width = 100;
+            btnCancel.Height = 35;
+            btnCancel.Click += (s, e) => this.DialogResult = DialogResult.Cancel;
+
+            btnPanel.Controls.Add(btnSave);
+            btnPanel.Controls.Add(btnCancel);
         }
 
         private void LoadToForm()
         {
             if (_promotion == null) return;
+
             txtName.Text = _promotion.PromotionName;
             nudDiscount.Value = _promotion.DiscountPercent;
             dtStart.Value = _promotion.StartDate ?? DateTime.Now;
@@ -66,8 +122,14 @@ namespace CSMS.WinForms.Forms.Promotion
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtName.Text)) { MessageBox.Show("Name required"); return; }
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("Name required");
+                return;
+            }
+
             if (_promotion == null) _promotion = new PromotionModel();
+
             _promotion.PromotionName = txtName.Text.Trim();
             _promotion.DiscountPercent = (int)nudDiscount.Value;
             _promotion.StartDate = dtStart.Value;
@@ -76,13 +138,10 @@ namespace CSMS.WinForms.Forms.Promotion
             try
             {
                 if (_promotion.PromotionId == 0)
-                {
                     _repo.Insert(_promotion);
-                }
                 else
-                {
                     _repo.Update(_promotion);
-                }
+
                 this.DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
