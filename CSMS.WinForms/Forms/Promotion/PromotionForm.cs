@@ -15,6 +15,9 @@ namespace CSMS.WinForms.Forms.Promotion
             this.Dock = DockStyle.Fill;
 
             InitializeGridColumns();
+            dgvPromotions.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvPromotions.Font = new Font("Times New Roman", 12);
+            dgvPromotions.ColumnHeadersDefaultCellStyle.Font = new Font("Times New Roman", 12, FontStyle.Bold);
             LoadPromotions();
         }
 
