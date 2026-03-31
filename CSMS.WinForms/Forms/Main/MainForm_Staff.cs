@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CSMS.WinForms.Forms.Auth;
 using CSMS.WinForms.Forms.DashBoard;
 using CSMS.WinForms.Forms.Inventory;
 using CSMS.WinForms.Forms.POS;
@@ -54,6 +55,26 @@ namespace CSMS.WinForms.Forms.Main
             LoadUserControl(new InventoryForm());
 
 
+        }
+
+        private void logout_Click(object sender, EventArgs e)
+        {
+            var confirm = MessageBox.Show(
+        "Bạn có chắc muốn đăng xuất?",
+        "Logout",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Question
+    );
+
+            if (confirm == DialogResult.Yes)
+            {
+                this.Hide();
+
+                var login = new LoginForm();
+                login.Show();
+
+                this.Close();
+            }
         }
     }
 }

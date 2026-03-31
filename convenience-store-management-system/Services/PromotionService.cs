@@ -17,7 +17,7 @@ namespace convenience_store_management_system.Services
             // apply percentage discount if DiscountPercent supplied
             if (promotion.DiscountPercent > 0)
             {
-                return total * (100 - promotion.DiscountPercent) / 100;
+                return total * (100 - promotion.DiscountPercent) / 1000;
             }
 
             return total;
