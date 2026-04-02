@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm_Admin));
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel5 = new TableLayoutPanel();
@@ -44,10 +45,10 @@
             ReportsBut = new Button();
             tableLayoutPanel3 = new TableLayoutPanel();
             tableLayoutPanel4 = new TableLayoutPanel();
+            tableLayoutPanel8 = new TableLayoutPanel();
             admin = new Label();
+            tableLayoutPanel9 = new TableLayoutPanel();
             LogoutBut = new Button();
-            searchbut = new Button();
-            searchbox = new TextBox();
             pnlContent = new Panel();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -55,6 +56,8 @@
             tableLayoutPanel6.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
+            tableLayoutPanel8.SuspendLayout();
+            tableLayoutPanel9.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -267,8 +270,8 @@
             tableLayoutPanel3.Location = new Point(163, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 2;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 16.216217F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 83.78378F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 10.36036F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 89.63964F));
             tableLayoutPanel3.Size = new Size(634, 444);
             tableLayoutPanel3.TabIndex = 1;
             // 
@@ -276,74 +279,83 @@
             // 
             tableLayoutPanel4.BackColor = SystemColors.ControlLightLight;
             tableLayoutPanel4.ColumnCount = 4;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.936306F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.808917F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17.9936314F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.2611465F));
-            tableLayoutPanel4.Controls.Add(admin, 2, 0);
-            tableLayoutPanel4.Controls.Add(LogoutBut, 3, 0);
-            tableLayoutPanel4.Controls.Add(searchbut, 1, 0);
-            tableLayoutPanel4.Controls.Add(searchbox, 0, 0);
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 63.6942673F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9.55414F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18.6305733F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 7.96178341F));
+            tableLayoutPanel4.Controls.Add(tableLayoutPanel8, 2, 0);
+            tableLayoutPanel4.Controls.Add(tableLayoutPanel9, 3, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(3, 3);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 1;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Size = new Size(628, 66);
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.Size = new Size(628, 40);
             tableLayoutPanel4.TabIndex = 0;
+            // 
+            // tableLayoutPanel8
+            // 
+            tableLayoutPanel8.ColumnCount = 1;
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel8.Controls.Add(admin, 0, 0);
+            tableLayoutPanel8.Dock = DockStyle.Fill;
+            tableLayoutPanel8.Location = new Point(463, 3);
+            tableLayoutPanel8.Name = "tableLayoutPanel8";
+            tableLayoutPanel8.RowCount = 1;
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel8.Size = new Size(111, 34);
+            tableLayoutPanel8.TabIndex = 4;
             // 
             // admin
             // 
             admin.AutoSize = true;
             admin.BackColor = SystemColors.HotTrack;
             admin.Dock = DockStyle.Fill;
-            admin.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            admin.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             admin.ForeColor = SystemColors.ControlLightLight;
-            admin.Location = new Point(441, 0);
+            admin.Location = new Point(3, 0);
             admin.Name = "admin";
-            admin.Size = new Size(107, 66);
+            admin.Size = new Size(105, 34);
             admin.TabIndex = 1;
             admin.Text = "Admin";
             admin.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // tableLayoutPanel9
+            // 
+            tableLayoutPanel9.ColumnCount = 1;
+            tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel9.Controls.Add(LogoutBut, 0, 1);
+            tableLayoutPanel9.Dock = DockStyle.Fill;
+            tableLayoutPanel9.Location = new Point(580, 3);
+            tableLayoutPanel9.Name = "tableLayoutPanel9";
+            tableLayoutPanel9.RowCount = 2;
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 8F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel9.Size = new Size(45, 34);
+            tableLayoutPanel9.TabIndex = 5;
+            // 
             // LogoutBut
             // 
+            LogoutBut.BackgroundImage = (Image)resources.GetObject("LogoutBut.BackgroundImage");
+            LogoutBut.BackgroundImageLayout = ImageLayout.Stretch;
             LogoutBut.Dock = DockStyle.Fill;
-            LogoutBut.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LogoutBut.Location = new Point(554, 3);
+            LogoutBut.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LogoutBut.ForeColor = SystemColors.ControlLightLight;
+            LogoutBut.Location = new Point(3, 11);
             LogoutBut.Name = "LogoutBut";
-            LogoutBut.Size = new Size(71, 60);
+            LogoutBut.Size = new Size(39, 20);
             LogoutBut.TabIndex = 2;
-            LogoutBut.Text = "Logout";
             LogoutBut.UseVisualStyleBackColor = true;
-            // 
-            // searchbut
-            // 
-            searchbut.Dock = DockStyle.Fill;
-            searchbut.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchbut.Location = new Point(348, 3);
-            searchbut.Name = "searchbut";
-            searchbut.Size = new Size(87, 60);
-            searchbut.TabIndex = 0;
-            searchbut.Text = "Search";
-            searchbut.UseVisualStyleBackColor = true;
-            // 
-            // searchbox
-            // 
-            searchbox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            searchbox.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchbox.Location = new Point(5, 16);
-            searchbox.Margin = new Padding(5);
-            searchbox.Name = "searchbox";
-            searchbox.Size = new Size(335, 34);
-            searchbox.TabIndex = 1;
+            LogoutBut.Click += LogoutBut_Click;
             // 
             // pnlContent
             // 
             pnlContent.Dock = DockStyle.Fill;
-            pnlContent.Location = new Point(3, 75);
+            pnlContent.Location = new Point(3, 49);
             pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(628, 366);
+            pnlContent.Size = new Size(628, 392);
             pnlContent.TabIndex = 1;
             // 
             // MainForm_Admin
@@ -361,7 +373,9 @@
             tableLayoutPanel6.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel4.ResumeLayout(false);
-            tableLayoutPanel4.PerformLayout();
+            tableLayoutPanel8.ResumeLayout(false);
+            tableLayoutPanel8.PerformLayout();
+            tableLayoutPanel9.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -383,11 +397,10 @@
         private Button PromotionsBut;
         private Button EmployeesBut;
         private Button ReportsBut;
-        private TableLayoutPanel tableLayoutPanel7;
-        private Button searchbut;
-        private TextBox searchbox;
         private Label admin;
         private Button LogoutBut;
         private Panel pnlContent;
+        private TableLayoutPanel tableLayoutPanel8;
+        private TableLayoutPanel tableLayoutPanel9;
     }
 }

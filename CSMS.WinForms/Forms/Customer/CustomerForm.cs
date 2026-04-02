@@ -110,5 +110,6 @@ namespace CSMS.WinForms.Forms.Customer
         {
             LoadMembers();
         }
+
     }
 }
