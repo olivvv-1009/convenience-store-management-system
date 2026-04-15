@@ -1,187 +1,246 @@
-﻿using System;
+﻿using convenience_store_management_system.Services;
+using CSMS.Database;
+using CSMS.Services;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using CSMS.Database;
-using CSMS.Services;
 
 namespace CSMS.WinForms.Forms.Report
 {
     public partial class ReportForm : UserControl
     {
-        private DashboardService dashboardService = new DashboardService();
         private DbConnectionHelper db = new DbConnectionHelper();
+        ReportService service = new ReportService();
+
+        DateTime startDate;
+        DateTime endDate;
 
         public ReportForm()
         {
             InitializeComponent();
-            this.Load += ReportForm_Load;
 
-            cboReportType.Items.AddRange(new object[] { "Revenue Report", "Orders Report" });
-            cboReportType.SelectedIndex = 0;
+            // ===== COMBO =====
+            cmbReportType.Items.AddRange(new string[]
+            {
+                "Revenue Report",
+                "Product Report",
+                "Category Report"
+            });
 
-            cboPeriod.Items.AddRange(new object[] { "Last 7 Days", "Last 30 Days" });
-            cboPeriod.SelectedIndex = 0;
-            cboPeriod.SelectedIndexChanged += (s, e) => LoadReport();
+            cmbTimeRange.Items.AddRange(new string[]
+            {
+                "Last 7 Days",
+                "Last 30 Days",
+                "Last 12 Months"
+            });
 
-            btnExport.Click += BtnExport_Click;
-        }
+            cmbReportType.SelectedIndex = 0;
+            cmbTimeRange.SelectedIndex = 1;
 
-        private void ReportForm_Load(object sender, EventArgs e)
-        {
+            // ===== EVENT =====
+            cmbReportType.SelectedIndexChanged += cmbReportType_SelectedIndexChanged;
+            cmbTimeRange.SelectedIndexChanged += cmbTimeRange_SelectedIndexChanged;
+
+            SetDateRange();
             LoadReport();
         }
 
+        // ===== DATE RANGE =====
+        private void SetDateRange()
+        {
+            endDate = DateTime.Today;
+
+            switch (cmbTimeRange.Text)
+            {
+                case "Last 7 Days":
+                    startDate = endDate.AddDays(-7);
+                    break;
+
+                case "Last 30 Days":
+                    startDate = endDate.AddDays(-30);
+                    break;
+
+                case "Last 12 Months":
+                    startDate = endDate.AddMonths(-12);
+                    break;
+
+                default:
+                    startDate = endDate.AddDays(-7); // fallback
+                    break;
+            }
+        }
+
+        // ===== GROWTH =====
+        private double Growth(decimal current, decimal prev)
+        {
+            if (prev == 0) return 0;
+            return (double)((current - prev) / prev * 100);
+        }
+
+        // ===== MAIN LOAD =====
         private void LoadReport()
         {
-            try
+
+            // reset UI
+
+            dgvReport.DataSource = null;
+            chartMain.Series.Clear();
+            chartMain.ChartAreas.Clear();
+            chartMain.ChartAreas.Add("Main");
+
+            dgvReport.Visible = false;
+            chartMain.Visible = false;
+            tlpInfoPanels.Visible = false;
+
+            string type = cmbReportType.Text;
+
+            if (type == "Revenue Report")
             {
-                decimal revenue = dashboardService.GetTotalRevenue();
-                lblTotalRevenue.Text = revenue.ToString("N0") + " đ";
+                tlpInfoPanels.Visible = true;
+                tlpMain.RowStyles[2].SizeType = SizeType.Absolute;
+                tlpMain.RowStyles[2].Height = 100;
 
-                int totalOrders = GetTotalOrdersLastNDays(7);
-                lblTotalOrders.Text = totalOrders.ToString("N0");
+                tlpMain.RowStyles[3].Height = 80;
+                tlpMain.RowStyles[4].Height = 0;
 
-                decimal avgOrder = totalOrders == 0 ? 0 : revenue / totalOrders;
-                lblAverageOrder.Text = avgOrder.ToString("N2") + " đ";
+                chartMain.Visible = true;
 
-                lblProfitMargin.Text = "32.5%";
-
-                LoadReportChart();
+                LoadRevenue();
             }
-            catch (Exception ex)
+            else if (type == "Product Report")
             {
-                MessageBox.Show("Load report failed: " + ex.Message);
+                tlpMain.RowStyles[2].Height = 0;
+
+                tlpMain.RowStyles[3].Height = 0;
+                tlpMain.RowStyles[4].Height = 100;
+
+                dgvReport.Visible = true;
+
+                LoadProduct();
             }
-        }
-
-        private int GetTotalOrdersLastNDays(int days)
-        {
-            using (var conn = db.GetConnection())
+            else
             {
-                conn.Open();
-                string q = $"SELECT COUNT(*) FROM Invoices WHERE CreatedAt >= DATEADD(DAY, -{days - 1}, GETDATE())";
+                tlpMain.RowStyles[2].Height = 0;
 
-                using (var cmd = new Microsoft.Data.SqlClient.SqlCommand(q, conn))
-                {
-                    return (int)cmd.ExecuteScalar();
-                }
-            }
-        }
+                tlpMain.RowStyles[3].Height = 50;
+                tlpMain.RowStyles[4].Height = 50;
 
-        private void LoadReportChart()
-        {
-            using (var conn = db.GetConnection())
-            {
-                conn.Open();
+                chartMain.Visible = true;
+                dgvReport.Visible = true;
 
-                string query = @"
-                SELECT 
-                    CONVERT(DATE, CreatedAt) AS SaleDate,
-                    SUM(TotalAmount) AS Revenue,
-                    COUNT(*) AS Orders
-                FROM Invoices
-                WHERE CreatedAt >= DATEADD(DAY, -6, GETDATE())
-                GROUP BY CONVERT(DATE, CreatedAt)
-                ORDER BY SaleDate";
-
-                var da = new Microsoft.Data.SqlClient.SqlDataAdapter(query, conn);
-                var dt = new DataTable();
-                da.Fill(dt);
-
-                chartReport.Series.Clear();
-                chartReport.ChartAreas.Clear();
-
-                var area = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-                area.AxisX.MajorGrid.Enabled = false;
-                area.AxisY.MajorGrid.LineColor = Color.LightGray;
-                chartReport.ChartAreas.Add(area);
-
-                var sRevenue = new System.Windows.Forms.DataVisualization.Charting.Series("Revenue")
-                {
-                    ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line,
-                    BorderWidth = 3,
-                    Color = Color.RoyalBlue,
-                    MarkerStyle = MarkerStyle.Circle,  
-                    MarkerSize = 8
-                };
-
-                var sOrders = new System.Windows.Forms.DataVisualization.Charting.Series("Orders")
-                {
-                    ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line,
-                    BorderWidth = 3,
-                    Color = Color.SeaGreen,
-                    YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary,
-                    MarkerStyle = MarkerStyle.Circle,  
-                    MarkerSize = 8
-                };
-
-
-                if (dt.Rows.Count == 0)
-                {
-                    chartReport.Series.Add(sRevenue);
-                    chartReport.Series.Add(sOrders);
-                    return;
-                }
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    DateTime date = Convert.ToDateTime(row["SaleDate"]);
-                    decimal rev = Convert.ToDecimal(row["Revenue"]);
-                    int orders = Convert.ToInt32(row["Orders"]);
-
-                    sRevenue.Points.AddXY(date.ToString("MM-dd"), (double)rev);
-                    sOrders.Points.AddXY(date.ToString("MM-dd"), orders);
-                }
-
-                chartReport.Series.Add(sRevenue);
-                chartReport.Series.Add(sOrders);
+                LoadCategory();
             }
         }
 
-        private void BtnExport_Click(object sender, EventArgs e)
+        // ===== REVENUE =====
+        private void LoadRevenue()
         {
-            try
-            {
-                using (var sfd = new SaveFileDialog())
-                {
-                    sfd.Filter = "CSV files (*.csv)|*.csv";
-                    sfd.FileName = "report.csv";
+            chartMain.Visible = true;
+            tlpInfoPanels.Visible = true;
 
-                    if (sfd.ShowDialog() == DialogResult.OK)
-                    {
-                        ExportReportCsv(sfd.FileName);
-                        MessageBox.Show("Exported successfully!");
-                    }
-                }
-            }
-            catch (Exception ex)
+            // layout FULL chart
+            tlpMain.RowStyles[3].Height = 100;
+            tlpMain.RowStyles[4].Height = 0;
+
+            // chart
+            var revenue = chartMain.Series.Add("Revenue");
+            revenue.ChartType = SeriesChartType.Line;
+            revenue.BorderWidth = 3;
+
+            var orders = chartMain.Series.Add("Orders");
+            orders.ChartType = SeriesChartType.Line;
+
+            DataTable dt = service.GetRevenueTrend(startDate, endDate);
+
+            foreach (DataRow r in dt.Rows)
             {
-                MessageBox.Show("Export failed: " + ex.Message);
+                revenue.Points.AddXY(r["Date"], r["Revenue"]);
+                orders.Points.AddXY(r["Date"], r["Orders"]);
             }
+
+            // KPI
+            LoadRevenuePanels();
         }
 
-        private void ExportReportCsv(string path)
+        private void LoadRevenuePanels()
         {
-            using (var conn = db.GetConnection())
+            decimal revenue = service.GetTotalRevenue(startDate, endDate);
+            decimal prevRevenue = service.GetTotalRevenue(startDate.AddDays(-7), startDate);
+
+            int orders = service.GetTotalOrders(startDate, endDate);
+            int prevOrders = service.GetTotalOrders(startDate.AddDays(-7), startDate);
+
+            decimal avg = service.GetAverageOrder(startDate, endDate);
+            decimal prevAvg = service.GetAverageOrder(startDate.AddDays(-7), startDate);
+
+            decimal profit = service.GetProfitMargin(startDate, endDate);
+            decimal prevProfit = service.GetProfitMargin(startDate.AddDays(-7), startDate);
+
+            lblRevenueAmount.Text = revenue.ToString("N0");
+            lblRevenuePercent.Text = Growth(revenue, prevRevenue).ToString("0.##") + "%";
+
+            lblOrdersAmount.Text = orders.ToString();
+            lblOrdersPercent.Text = Growth(orders, prevOrders).ToString("0.##") + "%";
+
+            lblAvgOrderAmount.Text = avg.ToString("N0");
+            lblAvgOrderPercent.Text = Growth(avg, prevAvg).ToString("0.##") + "%";
+
+            lblProfitAmount.Text = profit.ToString("N0");
+            lblProfitPercent.Text = Growth(profit, prevProfit).ToString("0.##") + "%";
+
+            // màu
+            lblRevenuePercent.ForeColor = (Growth(revenue, prevRevenue) >= 0) ? Color.Green : Color.Red;
+        }
+
+        // ===== PRODUCT =====
+        private void LoadProduct()
+        {
+            dgvReport.Visible = true;
+
+            // layout FULL table
+            tlpMain.RowStyles[3].Height = 0;
+            tlpMain.RowStyles[4].Height = 100;
+
+            dgvReport.DataSource = service.GetBestSellingProducts(startDate, endDate);
+        }
+
+        // ===== CATEGORY =====
+        private void LoadCategory()
+        {
+            chartMain.Visible = true;
+            dgvReport.Visible = true;
+
+            // layout split
+            tlpMain.RowStyles[3].Height = 50;
+            tlpMain.RowStyles[4].Height = 50;
+
+            var s = chartMain.Series.Add("Revenue");
+            s.ChartType = SeriesChartType.Column;
+
+            DataTable dt = service.GetCategoryReport(startDate, endDate);
+
+            foreach (DataRow r in dt.Rows)
             {
-                conn.Open();
-
-                string query = @"SELECT CreatedAt, TotalAmount FROM Invoices ORDER BY CreatedAt";
-
-                using (var cmd = new Microsoft.Data.SqlClient.SqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
-                using (var sw = new System.IO.StreamWriter(path))
-                {
-                    sw.WriteLine("CreatedAt,TotalAmount");
-
-                    while (reader.Read())
-                    {
-                        sw.WriteLine($"{reader.GetDateTime(0):yyyy-MM-dd HH:mm:ss},{reader.GetDecimal(1)}");
-                    }
-                }
+                s.Points.AddXY(r["Category"], r["Revenue"]);
             }
+
+            dgvReport.DataSource = dt;
+        }
+
+        // ===== EVENTS =====
+        private void cmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetDateRange();
+            LoadReport();
+        }
+
+        private void cmbTimeRange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetDateRange();
+            LoadReport();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace CSMS.Database
             else
             {
                 // Fallback to LocalDB which is commonly available on developer machines
-                connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CSMS_DB;Integrated Security=True;TrustServerCertificate=True";
+                connectionString = "Data Source=LAPTOP-7A534JGV\\SQLEXPRESS;Initial Catalog=CSMS_DB;Integrated Security=True;TrustServerCertificate=True";
             }
         }
 
