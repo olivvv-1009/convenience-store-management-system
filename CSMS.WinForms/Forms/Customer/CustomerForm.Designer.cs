@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             tlpMain = new TableLayoutPanel();
-            panel1 = new Panel();
             btnAddCustomer = new Button();
             label2 = new Label();
             label1 = new Label();
@@ -54,14 +53,19 @@
             TotalSpent = new DataGridViewTextBoxColumn();
             Edit = new DataGridViewButtonColumn();
             Delete = new DataGridViewButtonColumn();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            panel1 = new Panel();
+            panel6 = new Panel();
             tlpMain.SuspendLayout();
-            panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel4.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomer).BeginInit();
+            tableLayoutPanel2.SuspendLayout();
+            panel1.SuspendLayout();
+            panel6.SuspendLayout();
             SuspendLayout();
             // 
             // tlpMain
@@ -69,10 +73,10 @@
             tlpMain.AutoSize = true;
             tlpMain.ColumnCount = 1;
             tlpMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpMain.Controls.Add(panel1, 0, 0);
             tlpMain.Controls.Add(tableLayoutPanel1, 0, 1);
             tlpMain.Controls.Add(panel5, 0, 2);
             tlpMain.Controls.Add(dgvCustomer, 0, 3);
+            tlpMain.Controls.Add(tableLayoutPanel2, 0, 0);
             tlpMain.Dock = DockStyle.Fill;
             tlpMain.Location = new Point(0, 0);
             tlpMain.Name = "tlpMain";
@@ -84,24 +88,13 @@
             tlpMain.Size = new Size(1067, 632);
             tlpMain.TabIndex = 0;
             // 
-            // panel1
-            // 
-            panel1.Controls.Add(btnAddCustomer);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1061, 74);
-            panel1.TabIndex = 1;
-            // 
             // btnAddCustomer
             // 
             btnAddCustomer.BackColor = SystemColors.HotTrack;
             btnAddCustomer.FlatStyle = FlatStyle.Popup;
             btnAddCustomer.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAddCustomer.ForeColor = SystemColors.ButtonHighlight;
-            btnAddCustomer.Location = new Point(872, 19);
+            btnAddCustomer.Location = new Point(342, 18);
             btnAddCustomer.Name = "btnAddCustomer";
             btnAddCustomer.Size = new Size(189, 38);
             btnAddCustomer.TabIndex = 2;
@@ -113,7 +106,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(14, 52);
+            label2.Location = new Point(11, 46);
             label2.Name = "label2";
             label2.Size = new Size(389, 22);
             label2.TabIndex = 1;
@@ -123,7 +116,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(14, 9);
+            label1.Location = new Point(11, 9);
             label1.Name = "label1";
             label1.Size = new Size(291, 32);
             label1.TabIndex = 0;
@@ -148,6 +141,7 @@
             // 
             // panel4
             // 
+            panel4.BackColor = SystemColors.ButtonHighlight;
             panel4.Controls.Add(lblTotalSpent);
             panel4.Controls.Add(label5);
             panel4.Dock = DockStyle.Fill;
@@ -177,6 +171,7 @@
             // 
             // panel3
             // 
+            panel3.BackColor = SystemColors.ButtonHighlight;
             panel3.Controls.Add(lblTotalPoints);
             panel3.Controls.Add(label4);
             panel3.Dock = DockStyle.Fill;
@@ -206,6 +201,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = SystemColors.ButtonHighlight;
             panel2.Controls.Add(lblTotalCustomers);
             panel2.Controls.Add(label3);
             panel2.Dock = DockStyle.Fill;
@@ -235,6 +231,7 @@
             // 
             // panel5
             // 
+            panel5.BackColor = SystemColors.ButtonHighlight;
             panel5.Controls.Add(label6);
             panel5.Controls.Add(txtSearch);
             panel5.Dock = DockStyle.Fill;
@@ -330,6 +327,41 @@
             Delete.Text = "Delete";
             Delete.UseColumnTextForButtonValue = true;
             // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Controls.Add(panel1, 0, 0);
+            tableLayoutPanel2.Controls.Add(panel6, 1, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(3, 3);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new Size(1061, 74);
+            tableLayoutPanel2.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(3, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(524, 68);
+            panel1.TabIndex = 0;
+            // 
+            // panel6
+            // 
+            panel6.Controls.Add(btnAddCustomer);
+            panel6.Dock = DockStyle.Fill;
+            panel6.Location = new Point(533, 3);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(525, 68);
+            panel6.TabIndex = 1;
+            // 
             // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -340,8 +372,6 @@
             Size = new Size(1067, 632);
             Load += CustomerForm_Load;
             tlpMain.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
@@ -352,6 +382,10 @@
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomer).EndInit();
+            tableLayoutPanel2.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel6.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -359,7 +393,6 @@
         #endregion
 
         private TableLayoutPanel tlpMain;
-        private Panel panel1;
         private Label label2;
         private Label label1;
         private Button btnAddCustomer;
@@ -384,5 +417,8 @@
         private DataGridViewTextBoxColumn TotalSpent;
         private DataGridViewButtonColumn Edit;
         private DataGridViewButtonColumn Delete;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Panel panel1;
+        private Panel panel6;
     }
 }

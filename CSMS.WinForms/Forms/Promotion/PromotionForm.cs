@@ -7,178 +7,80 @@ namespace CSMS.WinForms.Forms.Promotion
 {
     public partial class PromotionForm : UserControl
     {
-        private PromotionRepository _repo = new PromotionRepository();
+
+        private PromotionRepository repo = new PromotionRepository();
 
         public PromotionForm()
         {
             InitializeComponent();
-            this.Dock = DockStyle.Fill;
+        }
 
-            InitializeGridColumns();
-            dgvPromotions.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvPromotions.Font = new Font("Times New Roman", 12);
-            dgvPromotions.ColumnHeadersDefaultCellStyle.Font = new Font("Times New Roman", 12, FontStyle.Bold);
+        private void PromotionManagementForm_Load(object sender, EventArgs e)
+        {
             LoadPromotions();
         }
 
-        // ================= LOAD =================
+        // LOAD DATA
         private void LoadPromotions()
         {
-            try
-            {
-                var list = _repo.GetAll();
+            dgvPromotions.Rows.Clear();
 
-                foreach (var p in list)
+            var list = repo.GetAll();
+
+            foreach (var p in list)
+            {
+                dgvPromotions.Rows.Add(
+                    p.Code,
+                    p.PromotionName,
+                    p.DiscountPercent,
+                    p.Type,
+                    p.StartDate?.ToString("dd/MM/yyyy"),
+                    p.EndDate?.ToString("dd/MM/yyyy"),
+                    p.IsActive ? "Active" : "Inactive"
+                );
+            }
+
+            lblActive.Text = $"Active Promotions: {list.Count(x => x.IsActive)}";
+            lblTotal.Text = $"Total Promotions: {list.Count}";
+            lblDiscount.Text = $"Total Discount Given: 0"; // chưa tracking
+        }
+
+        // ADD
+        private void btnAddPromotion_Click(object sender, EventArgs e)
+        {
+            var f = new PromotionEditForm();
+
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                LoadPromotions();
+            }
+        }
+
+        // EDIT
+        private void dgvPromotions_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (e.ColumnIndex == dgvPromotions.Columns["colEdit"].Index)
+            {
+                string code = dgvPromotions.Rows[e.RowIndex].Cells["colCode"].Value.ToString();
+
+                var promo = repo.GetByCode(code);
+
+                if (promo == null)
                 {
-                    if (p.EndDate.HasValue && p.EndDate.Value < DateTime.Now)
-                        p.IsActive = false;
+                    MessageBox.Show("Promotion not found");
+                    return;
                 }
 
-                dgvPromotions.DataSource = null;   // 🔥 fix refresh
-                dgvPromotions.DataSource = list;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to load promotions: " + ex.Message);
-            }
-        }
+                var f = new PromotionEditForm(promo);
 
-        // ================= GRID =================
-        private void InitializeGridColumns()
-        {
-            dgvPromotions.AutoGenerateColumns = false;
-            dgvPromotions.Columns.Clear();
-
-            dgvPromotions.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "PromotionId",
-                HeaderText = "ID",
-                Width = 50
-            });
-
-            dgvPromotions.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "PromotionName",
-                HeaderText = "Name",
-                Width = 200
-            });
-
-            dgvPromotions.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "DiscountPercent",
-                HeaderText = "Discount (%)",
-                Width = 80
-            });
-
-            dgvPromotions.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "StartDate",
-                HeaderText = "Start",
-                Width = 120,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd/MM/yyyy" }
-            });
-
-            dgvPromotions.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "EndDate",
-                HeaderText = "End",
-                Width = 120,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd/MM/yyyy" }
-            });
-
-            dgvPromotions.Columns.Add(new DataGridViewCheckBoxColumn
-            {
-                DataPropertyName = "IsActive",
-                HeaderText = "Active",
-                Width = 60
-            });
-        }
-
-        // ================= CREATE =================
-        private void createPromo_Click(object sender, EventArgs e)
-        {
-            var edit = new PromotionEditForm();
-
-            if (edit.ShowDialog() == DialogResult.OK)
-            {
-                LoadPromotions();
-            }
-        }
-
-        // ================= REFRESH =================
-        private void refreshBtn_Click(object sender, EventArgs e)
-        {
-            LoadPromotions();
-        }
-
-        // ================= SELECT =================
-        private PromotionModel? GetSelectedPromotion()
-        {
-            if (dgvPromotions.CurrentRow == null) return null;
-            return dgvPromotions.CurrentRow.DataBoundItem as PromotionModel;
-        }
-
-        // ================= EDIT =================
-        private void editBtn_Click(object sender, EventArgs e)
-        {
-            var sel = GetSelectedPromotion();
-
-            if (sel == null)
-            {
-                MessageBox.Show("Select a promotion to edit.");
-                return;
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    LoadPromotions();
+                }
             }
 
-            var edit = new PromotionEditForm(sel.PromotionId);
-
-            if (edit.ShowDialog() == DialogResult.OK)
-            {
-                LoadPromotions();
-            }
-        }
-
-        // ================= ACTIVATE =================
-        private void activateBtn_Click(object sender, EventArgs e)
-        {
-            var sel = GetSelectedPromotion();
-
-            if (sel == null)
-            {
-                MessageBox.Show("Select promotion.");
-                return;
-            }
-
-            try
-            {
-                _repo.SetActive(sel.PromotionId, true);
-                LoadPromotions();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to activate: " + ex.Message);
-            }
-        }
-
-        // ================= DEACTIVATE =================
-        private void deactivateBtn_Click(object sender, EventArgs e)
-        {
-            var sel = GetSelectedPromotion();
-
-            if (sel == null)
-            {
-                MessageBox.Show("Select promotion.");
-                return;
-            }
-
-            try
-            {
-                _repo.SetActive(sel.PromotionId, false);
-                LoadPromotions();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to deactivate: " + ex.Message);
-            }
         }
     }
 }

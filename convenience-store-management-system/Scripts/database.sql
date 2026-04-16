@@ -197,6 +197,11 @@ ADD ExpiryDate DATE
 ALTER TABLE Members
 ADD TotalSpent DECIMAL(12,2) DEFAULT 0
 
+ALTER TABLE Promotions
+ADD Code NVARCHAR(50) UNIQUE,
+    Type NVARCHAR(20) DEFAULT 'Percentage', -- Percentage | Fixed
+    IsActive BIT DEFAULT 1;
+
 -- Unique Inventory
 ALTER TABLE Inventory
 ADD CONSTRAINT UQ_Inventory_Product UNIQUE(ProductId)
