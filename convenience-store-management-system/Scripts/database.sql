@@ -194,6 +194,9 @@ WHERE BatchNumber IS NULL
 ALTER TABLE Products
 ADD ExpiryDate DATE
 
+ALTER TABLE Members
+ADD TotalSpent DECIMAL(12,2) DEFAULT 0
+
 -- Unique Inventory
 ALTER TABLE Inventory
 ADD CONSTRAINT UQ_Inventory_Product UNIQUE(ProductId)

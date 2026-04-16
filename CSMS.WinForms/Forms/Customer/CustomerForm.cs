@@ -14,102 +14,97 @@ namespace CSMS.WinForms.Forms.Customer
 {
     public partial class CustomerForm : UserControl
     {
-        private MemberService memberService = new MemberService();
-
+        CustomerService service = new CustomerService();
         public CustomerForm()
         {
             InitializeComponent();
-            this.Dock = DockStyle.Fill;
-        }
 
+
+        }
         private void CustomerForm_Load(object sender, EventArgs e)
         {
-            SetupGrid();
-            LoadMembers();
+            txtSearch.Text = "Search by name or phone...";
+            txtSearch.ForeColor = Color.Gray;
+            dgvCustomer.AutoGenerateColumns = false;
+            dgvCustomer.Columns["TotalSpent"].DefaultCellStyle.Format = "N2";
+            LoadData();
         }
-
-        private void SetupGrid()
+        private void LoadData()
         {
-            if (dgvMembers.Columns.Count == 0)
+            var list = service.GetAllCustomers();
+
+            dgvCustomer.DataSource = list;
+
+            lblTotalCustomers.Text = list.Count.ToString();
+            lblTotalPoints.Text = list.Sum(x => x.Points).ToString();
+            lblTotalSpent.Text = list.Sum(x => x.TotalSpent).ToString("N0");
+        }
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            var list = service.GetAllCustomers();
+
+            string key = txtSearch.Text.Trim();
+
+            if (key == "" || key == "Search by name or phone...")
             {
-                dgvMembers.Columns.Add("MemberId", "ID");
-                dgvMembers.Columns.Add("FullName", "Full Name");
-                dgvMembers.Columns.Add("Phone", "Phone");
-                dgvMembers.Columns.Add("Points", "Points");
+                dgvCustomer.DataSource = list;
+                return;
             }
+
+            dgvCustomer.DataSource = list.Where(x =>
+                x.FullName.ToLower().Contains(key.ToLower()) ||
+                x.Phone.Contains(key) ||
+                x.MemberId.ToString().Contains(key)
+            ).ToList();
         }
-
-        private void LoadMembers()
+        private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            try
-            {
-                dgvMembers.Rows.Clear();
-                var members = memberService.GetAllMembers();
+            MemberEditForm frm = new MemberEditForm();
+            frm.ShowDialog();
+            LoadData();
+        }
+        private void dgvCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
 
-                foreach (var m in members)
+            string colName = dgvCustomer.Columns[e.ColumnIndex].Name;
+
+            int id = Convert.ToInt32(dgvCustomer.Rows[e.RowIndex].Cells["CustomerId"].Value);
+
+            if (colName == "Edit")
+            {
+                MemberEditForm frm = new MemberEditForm(id);
+                frm.ShowDialog();
+                LoadData();
+            }
+
+            if (colName == "Delete")
+            {
+                var confirm = MessageBox.Show("Delete?", "Confirm",
+                    MessageBoxButtons.YesNo);
+
+                if (confirm == DialogResult.Yes)
                 {
-                    dgvMembers.Rows.Add(m.MemberId, m.FullName, m.Phone, m.Points);
+                    service.DeleteCustomer(id);
+                    LoadData();
                 }
             }
-            catch (Exception ex)
+        }
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == "Search by name or phone...")
             {
-                MessageBox.Show("Error loading members: " + ex.Message);
+                txtSearch.Text = "";
+                txtSearch.ForeColor = Color.Black;
             }
         }
-
-        private void BtnAdd_Click(object sender, EventArgs e)
+        private void txtSearch_Leave(object sender, EventArgs e)
         {
-            using (var f = new MemberEditForm())
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
             {
-                if (f.ShowDialog() == DialogResult.OK)
-                {
-                    memberService.AddMember(f.Member);
-                    LoadMembers();
-                }
+                txtSearch.Text = "Search by name or phone...";
+                txtSearch.ForeColor = Color.Gray;
             }
         }
-
-        private void BtnEdit_Click(object sender, EventArgs e)
-        {
-            if (dgvMembers.SelectedRows.Count == 0) return;
-
-            var row = dgvMembers.SelectedRows[0];
-            int id = Convert.ToInt32(row.Cells[0].Value);
-            string name = row.Cells[1].Value?.ToString();
-            string phone = row.Cells[2].Value?.ToString();
-            int points = Convert.ToInt32(row.Cells[3].Value);
-
-            var m = new Member { MemberId = id, FullName = name, Phone = phone, Points = points };
-
-            using (var f = new MemberEditForm(m))
-            {
-                if (f.ShowDialog() == DialogResult.OK)
-                {
-                    memberService.UpdateMember(f.Member);
-                    LoadMembers();
-                }
-            }
-        }
-
-        private void BtnDelete_Click(object sender, EventArgs e)
-        {
-            if (dgvMembers.SelectedRows.Count == 0) return;
-
-            var row = dgvMembers.SelectedRows[0];
-            int id = Convert.ToInt32(row.Cells[0].Value);
-
-            var r = MessageBox.Show("Delete selected member?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (r == DialogResult.Yes)
-            {
-                memberService.DeleteMember(id);
-                LoadMembers();
-            }
-        }
-
-        private void BtnRefresh_Click(object sender, EventArgs e)
-        {
-            LoadMembers();
-        }
-
     }
 }

@@ -76,6 +76,7 @@
             // tlpMain
             // 
             tlpMain.AutoSize = true;
+            tlpMain.BackColor = SystemColors.Control;
             tlpMain.ColumnCount = 1;
             tlpMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tlpMain.Controls.Add(panelHeader, 0, 0);
@@ -97,6 +98,7 @@
             // 
             // panelHeader
             // 
+            panelHeader.BackColor = SystemColors.Control;
             panelHeader.Controls.Add(btnExport);
             panelHeader.Controls.Add(label2);
             panelHeader.Controls.Add(label1);
@@ -107,13 +109,15 @@
             // 
             // btnExport
             // 
+            btnExport.BackColor = SystemColors.HotTrack;
             btnExport.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnExport.ForeColor = SystemColors.ButtonHighlight;
             btnExport.Location = new Point(854, 9);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(178, 50);
             btnExport.TabIndex = 2;
             btnExport.Text = "Export Report";
-            btnExport.UseVisualStyleBackColor = true;
+            btnExport.UseVisualStyleBackColor = false;
             // 
             // label2
             // 
@@ -137,6 +141,7 @@
             // 
             // panelFilters
             // 
+            panelFilters.BackColor = SystemColors.Control;
             panelFilters.Controls.Add(cmbTimeRange);
             panelFilters.Controls.Add(cmbReportType);
             panelFilters.Location = new Point(3, 83);
@@ -184,6 +189,8 @@
             // 
             // panelProfitMargin
             // 
+            panelProfitMargin.BackColor = SystemColors.ControlLightLight;
+            panelProfitMargin.BorderStyle = BorderStyle.FixedSingle;
             panelProfitMargin.Controls.Add(lblProfitPercent);
             panelProfitMargin.Controls.Add(lblProfitAmount);
             panelProfitMargin.Controls.Add(label6);
@@ -226,6 +233,8 @@
             // 
             // panelAverageOrder
             // 
+            panelAverageOrder.BackColor = SystemColors.ControlLightLight;
+            panelAverageOrder.BorderStyle = BorderStyle.FixedSingle;
             panelAverageOrder.Controls.Add(lblAvgOrderPercent);
             panelAverageOrder.Controls.Add(lblAvgOrderAmount);
             panelAverageOrder.Controls.Add(label5);
@@ -277,6 +286,8 @@
             // 
             // panelRevenue
             // 
+            panelRevenue.BackColor = SystemColors.ControlLightLight;
+            panelRevenue.BorderStyle = BorderStyle.FixedSingle;
             panelRevenue.Controls.Add(lblRevenuePercent);
             panelRevenue.Controls.Add(lblRevenueAmount);
             panelRevenue.Controls.Add(label4);
@@ -328,6 +339,8 @@
             // 
             // panelOrders
             // 
+            panelOrders.BackColor = SystemColors.ControlLightLight;
+            panelOrders.BorderStyle = BorderStyle.FixedSingle;
             panelOrders.Controls.Add(lblOrdersPercent);
             panelOrders.Controls.Add(lblOrdersAmount);
             panelOrders.Controls.Add(label3);

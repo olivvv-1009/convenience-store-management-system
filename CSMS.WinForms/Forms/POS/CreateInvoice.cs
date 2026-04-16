@@ -15,7 +15,7 @@ namespace CSMS.WinForms.Forms.POS
     {
         private ProductService productService = new ProductService();
         private InvoiceService invoiceService = new InvoiceService();
-        private MemberService memberService = new MemberService();
+        private CustomerService memberService = new CustomerService();
         private PromotionModel currentPromotion = null;
 
         private List<CartItem> cartItems = new List<CartItem>();

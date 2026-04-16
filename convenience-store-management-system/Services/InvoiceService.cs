@@ -81,7 +81,7 @@ public class InvoiceService
                     try
                     {
                         int totalPoints = (int)(total / 10);
-                        MemberService ms = new MemberService();
+                        CustomerService ms = new CustomerService();
 
                         if (pointsToRedeem > 0)
                         {
