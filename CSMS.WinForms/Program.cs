@@ -1,5 +1,6 @@
 using CSMS.WinForms.Forms.Auth;
 using CSMS.WinForms.Forms.POS;
+using CSMS.WinForms.Forms.Report;
 namespace CSMS.WinForms
 {
     internal static class Program

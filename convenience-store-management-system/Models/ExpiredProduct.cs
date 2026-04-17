@@ -9,11 +9,11 @@ namespace convenience_store_management_system.Models
     public class ExpiredProduct
     {
 
-        public string ProductCode { get; set; }
+        public string ProductCode { get; set; } = "";
 
-        public string ProductName { get; set; }
+        public string ProductName { get; set; } = "";
 
-        public string CategoryName { get; set; }
+        public string CategoryName { get; set; } = "";
 
         public int Stock { get; set; }
 
@@ -21,7 +21,7 @@ namespace convenience_store_management_system.Models
 
         public int DaysOverdue { get; set; }
 
-        public string Status { get; set; }
-        public string BatchNumber { get; set; }
+        public string Status { get; set; } = "";
+        public string BatchNumber { get; set; } = "";
     }
 }

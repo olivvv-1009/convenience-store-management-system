@@ -9,7 +9,7 @@ namespace convenience_store_management_system.Models
     public class Batch
     {
         public int BatchId { get; set; }
-        public string ProductId { get; set; }
+        public string ProductId { get; set; } = "";
         public decimal UnitCost { get; set; }
         public int Quantity { get; set; }
         public DateTime ExpiryDate { get; set; }

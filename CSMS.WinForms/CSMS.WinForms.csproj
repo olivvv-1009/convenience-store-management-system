@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controls\**" />
+    <EmbeddedResource Remove="Controls\**" />
+    <None Remove="Controls\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Forms\Customer\Customer.cs" />
     <Compile Remove="Forms\Customer\Customer.Designer.cs" />
   </ItemGroup>
@@ -19,11 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\convenience-store-management-system\convenience-store-management-system.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controls\" />
-    <Folder Include="Forms\Customer\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm_Staff));
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -43,8 +44,6 @@
             staff = new Label();
             logout = new Button();
             tableLayoutPanel7 = new TableLayoutPanel();
-            textBox1 = new TextBox();
-            Search = new Button();
             pnlContent = new Panel();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -52,7 +51,6 @@
             tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel6.SuspendLayout();
-            tableLayoutPanel7.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -208,17 +206,17 @@
             tableLayoutPanel5.Location = new Point(163, 3);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 2;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel5.Size = new Size(634, 445);
             tableLayoutPanel5.TabIndex = 1;
             // 
             // tableLayoutPanel6
             // 
             tableLayoutPanel6.ColumnCount = 3;
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22F));
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 69.745224F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.7707F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 7.4840765F));
             tableLayoutPanel6.Controls.Add(staff, 1, 0);
             tableLayoutPanel6.Controls.Add(logout, 2, 0);
             tableLayoutPanel6.Controls.Add(tableLayoutPanel7, 0, 0);
@@ -227,7 +225,7 @@
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 1;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel6.Size = new Size(628, 38);
+            tableLayoutPanel6.Size = new Size(628, 64);
             tableLayoutPanel6.TabIndex = 1;
             // 
             // staff
@@ -236,62 +234,44 @@
             staff.BackColor = SystemColors.ControlDark;
             staff.Dock = DockStyle.Fill;
             staff.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            staff.Location = new Point(442, 0);
+            staff.Location = new Point(441, 0);
             staff.Name = "staff";
-            staff.Size = new Size(132, 38);
+            staff.Size = new Size(137, 64);
             staff.TabIndex = 0;
             staff.Text = "Staff";
             staff.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // logout
             // 
+            logout.BackgroundImage = (Image)resources.GetObject("logout.BackgroundImage");
+            logout.BackgroundImageLayout = ImageLayout.Stretch;
             logout.Dock = DockStyle.Fill;
-            logout.Location = new Point(580, 3);
+            logout.Location = new Point(584, 3);
             logout.Name = "logout";
-            logout.Size = new Size(45, 32);
+            logout.Size = new Size(41, 58);
             logout.TabIndex = 1;
-            logout.Text = "Logout";
             logout.UseVisualStyleBackColor = true;
+            logout.Click += logout_Click;
             // 
             // tableLayoutPanel7
             // 
             tableLayoutPanel7.ColumnCount = 2;
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90F));
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel7.Controls.Add(textBox1, 0, 0);
-            tableLayoutPanel7.Controls.Add(Search, 1, 0);
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 83.83372F));
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.1662827F));
             tableLayoutPanel7.Dock = DockStyle.Fill;
             tableLayoutPanel7.Location = new Point(3, 3);
             tableLayoutPanel7.Name = "tableLayoutPanel7";
             tableLayoutPanel7.RowCount = 1;
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel7.Size = new Size(433, 32);
+            tableLayoutPanel7.Size = new Size(432, 58);
             tableLayoutPanel7.TabIndex = 2;
-            // 
-            // textBox1
-            // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(3, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(383, 27);
-            textBox1.TabIndex = 0;
-            // 
-            // Search
-            // 
-            Search.Dock = DockStyle.Fill;
-            Search.Location = new Point(392, 3);
-            Search.Name = "Search";
-            Search.Size = new Size(38, 26);
-            Search.TabIndex = 1;
-            Search.Text = "Search";
-            Search.UseVisualStyleBackColor = true;
             // 
             // pnlContent
             // 
             pnlContent.Dock = DockStyle.Fill;
-            pnlContent.Location = new Point(3, 47);
+            pnlContent.Location = new Point(3, 73);
             pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(628, 395);
+            pnlContent.Size = new Size(628, 369);
             pnlContent.TabIndex = 2;
             // 
             // MainForm_Staff
@@ -310,8 +290,6 @@
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel6.ResumeLayout(false);
             tableLayoutPanel6.PerformLayout();
-            tableLayoutPanel7.ResumeLayout(false);
-            tableLayoutPanel7.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -332,8 +310,6 @@
         private Label staff;
         private Button logout;
         private TableLayoutPanel tableLayoutPanel7;
-        private TextBox textBox1;
-        private Button Search;
         private Panel pnlContent;
     }
 }

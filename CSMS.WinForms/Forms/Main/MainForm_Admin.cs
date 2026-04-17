@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CSMS.WinForms.Forms.Auth;
+using CSMS.WinForms.Forms.Customer;
 using CSMS.WinForms.Forms.DashBoard;
+using CSMS.WinForms.Forms.Employees;
+using CSMS.WinForms.Forms.Inventory;
 using CSMS.WinForms.Forms.POS;
 using CSMS.WinForms.Forms.ProductUI;
 using CSMS.WinForms.Forms.Promotion;
-using CSMS.WinForms.Forms.Inventory;
-using CSMS.WinForms.Forms.Employees;
-using CSMS.WinForms.Forms.Customer;
 using CSMS.WinForms.Forms.Report;
 
 
@@ -88,7 +89,7 @@ namespace CSMS.WinForms.Forms.Main
 
         private void EmployeesBut_Click(object sender, EventArgs e)
         {
-            LoadUserControl(new EmployeesForm());
+            LoadUserControl(new EmployeeForm());
 
         }
 
@@ -96,6 +97,26 @@ namespace CSMS.WinForms.Forms.Main
         {
             LoadUserControl(new ReportForm());
 
+        }
+
+        private void LogoutBut_Click(object sender, EventArgs e)
+        {
+            var confirm = MessageBox.Show(
+        "Bạn có chắc muốn đăng xuất?",
+        "Logout",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Question
+    );
+
+            if (confirm == DialogResult.Yes)
+            {
+                this.Hide();
+
+                var login = new LoginForm();
+                login.Show();
+
+                this.Close();
+            }
         }
     }
 }

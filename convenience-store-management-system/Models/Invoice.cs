@@ -11,6 +11,6 @@ namespace convenience_store_management_system.Models
         public int InvoiceId { get; set; }
         public DateTime CreatedAt { get; set; }
         public decimal TotalAmount { get; set; }
-        public string Status { get; set; }
+        public string Status { get; set; } = "";
     }
 }

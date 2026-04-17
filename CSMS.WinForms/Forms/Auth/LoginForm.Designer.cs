@@ -35,7 +35,6 @@
             txtUsername = new TextBox();
             label5 = new Label();
             label3 = new Label();
-            label2 = new Label();
             label1 = new Label();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
@@ -44,13 +43,14 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.Anchor = AnchorStyles.Top;
+            tableLayoutPanel1.BackColor = Color.FromArgb(128, 128, 255);
             tableLayoutPanel1.ColumnCount = 3;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel1.Controls.Add(panel1, 1, 1);
             tableLayoutPanel1.Location = new Point(-3, -1);
-            tableLayoutPanel1.Margin = new Padding(2, 2, 2, 2);
+            tableLayoutPanel1.Margin = new Padding(2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
@@ -68,11 +68,10 @@
             panel1.Controls.Add(txtUsername);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(194, 74);
-            panel1.Margin = new Padding(2, 2, 2, 2);
+            panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
             panel1.Size = new Size(253, 212);
             panel1.TabIndex = 0;
@@ -81,10 +80,13 @@
             // 
             btnlogin.Anchor = AnchorStyles.None;
             btnlogin.AutoSize = true;
-            btnlogin.BackColor = Color.Teal;
+            btnlogin.BackColor = SystemColors.HotTrack;
+            btnlogin.FlatStyle = FlatStyle.Popup;
+            btnlogin.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnlogin.ForeColor = SystemColors.ControlLightLight;
             btnlogin.ImageAlign = ContentAlignment.TopCenter;
             btnlogin.Location = new Point(80, 166);
-            btnlogin.Margin = new Padding(2, 2, 2, 2);
+            btnlogin.Margin = new Padding(2);
             btnlogin.Name = "btnlogin";
             btnlogin.Size = new Size(90, 30);
             btnlogin.TabIndex = 7;
@@ -95,7 +97,7 @@
             // txtPassword
             // 
             txtPassword.Location = new Point(22, 136);
-            txtPassword.Margin = new Padding(2, 2, 2, 2);
+            txtPassword.Margin = new Padding(2);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(177, 27);
             txtPassword.TabIndex = 6;
@@ -104,7 +106,7 @@
             // txtUsername
             // 
             txtUsername.Location = new Point(22, 79);
-            txtUsername.Margin = new Padding(2, 2, 2, 2);
+            txtUsername.Margin = new Padding(2);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(177, 27);
             txtUsername.TabIndex = 5;
@@ -132,19 +134,6 @@
             label3.TabIndex = 2;
             label3.Text = "Username";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.DarkGray;
-            label2.ImageAlign = ContentAlignment.MiddleRight;
-            label2.Location = new Point(23, 40);
-            label2.Margin = new Padding(2, 0, 2, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(229, 19);
-            label2.TabIndex = 1;
-            label2.Text = "The text associated with the control.";
-            // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Top;
@@ -168,7 +157,7 @@
             ClientSize = new Size(640, 360);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             MaximizeBox = false;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -186,7 +175,6 @@
         private TextBox txtUsername;
         private Label label5;
         private Label label3;
-        private Label label2;
         private Label label1;
         #endregion
     }

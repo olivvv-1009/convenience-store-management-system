@@ -129,6 +129,7 @@
             // 
             // tableLayoutPanel2
             // 
+            tableLayoutPanel2.BackColor = SystemColors.ControlLightLight;
             tableLayoutPanel2.ColumnCount = 4;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));

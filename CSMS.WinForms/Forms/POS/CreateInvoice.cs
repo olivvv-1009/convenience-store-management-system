@@ -1,10 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
-using CSMS.Models;
-using CSMS.Services;
 using convenience_store_management_system.Models;
+using CSMS.Models;
+using CSMS.Repositories;
+using CSMS.Services;
+using Microsoft.Identity.Client;
+using PromotionModel = convenience_store_management_system.Models.Promotion;
 
 namespace CSMS.WinForms.Forms.POS
 {
@@ -12,7 +15,8 @@ namespace CSMS.WinForms.Forms.POS
     {
         private ProductService productService = new ProductService();
         private InvoiceService invoiceService = new InvoiceService();
-        private MemberService memberService = new MemberService();
+        private CustomerService memberService = new CustomerService();
+        private PromotionModel currentPromotion = null;
 
         private List<CartItem> cartItems = new List<CartItem>();
 
@@ -170,11 +174,22 @@ namespace CSMS.WinForms.Forms.POS
 
         private void UpdateTotal(decimal subtotal)
         {
+            manualDiscount = 0;
+
+            
+            if (currentPromotion != null)
+            {
+                manualDiscount = subtotal * currentPromotion.DiscountPercent / 100;
+            }
+
             if (manualDiscount > subtotal)
                 manualDiscount = subtotal;
 
             decimal total = subtotal - manualDiscount;
+
+            
             lbltotal.Text = "$" + total.ToString("0.00");
+            discount.Text = manualDiscount.ToString("N0");
         }
 
         private decimal GetCurrentTotal()
@@ -263,5 +278,63 @@ namespace CSMS.WinForms.Forms.POS
         private void cash_Click(object sender, EventArgs e) => paymentMethod = "Cash";
         private void button2_Click(object sender, EventArgs e) => paymentMethod = "Bank";
         private void button3_Click(object sender, EventArgs e) => paymentMethod = "EWallet";
+
+        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+            ApplyPromotion();
+        }
+        private void ApplyPromotion()
+        {
+            string code = txtPromo.Text.Trim();
+
+            if (string.IsNullOrEmpty(code))
+            {
+                MessageBox.Show("Nhập mã khuyến mãi");
+                return;
+            }
+
+            try
+            {
+                var list = new PromotionRepository().GetAll();
+
+                var promo = list.FirstOrDefault(p =>
+                    p.PromotionName.Equals(code, StringComparison.OrdinalIgnoreCase)
+                    || p.PromotionId.ToString() == code
+                );
+
+                if (promo == null)
+                {
+                    MessageBox.Show("Mã không tồn tại");
+                    return;
+                }
+
+                if (!promo.IsActive)
+                {
+                    MessageBox.Show("Khuyến mãi không hoạt động");
+                    return;
+                }
+
+                if (promo.StartDate > DateTime.Now || promo.EndDate < DateTime.Now)
+                {
+                    MessageBox.Show("Khuyến mãi đã hết hạn");
+                    return;
+                }
+
+                currentPromotion = promo;
+                txtPromo.Text = promo.PromotionName;
+                UpdateSubTotal();
+
+                MessageBox.Show("Áp dụng thành công!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
     }
 }
