@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace CSMS.Repositories
 {
-    public class ProductRepository
+    public class ProductRepository 
     {
         private DbConnectionHelper db = new DbConnectionHelper();
 
